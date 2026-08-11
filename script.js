@@ -375,6 +375,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initFacilityTourGSAP();
   initThreeJSMedicalVisualizationCanvas();
   initUniversalGSAPAnimations();
+  initOrganNavigator();
+  initGSAPHeroParallax();
+  initAnimatedStatCounters();
+  initOrganicGlassHover();
+  initNeuralNetworkBackground();
+  initPageTransitionLoader();
+  initLanguageSwitcher();
 });
 
 /* --------------------------------------------------------------------------
@@ -1698,6 +1705,317 @@ function initUniversalGSAPAnimations() {
     });
   }
 }
+
+/* --------------------------------------------------------------------------
+   25. 3D ORGAN HEALTH NAVIGATOR SWITCHER
+   -------------------------------------------------------------------------- */
+function initOrganNavigator() {
+  const btns = document.querySelectorAll('.organ-btn');
+  const title = document.getElementById('organ-card-title');
+  const desc = document.getElementById('organ-card-desc');
+  if (!btns.length || !title || !desc) return;
+
+  const organData = {
+    cardio: {
+      title: 'Cardiovascular Care & Surgery',
+      desc: 'Full-fledged cardiac wing led by Dr. Viswa Jyothi. Operating a state-of-the-art Flat-Panel Cath Lab for emergency primary angioplasty, pacemaker implantations, and complex coronary interventions.'
+    },
+    neuro: {
+      title: 'Neurology & Brain Trauma Center',
+      desc: 'Advanced neurosurgical unit led by Dr. Sai Krishna. Dedicated 24/7 Stroke Emergency ICU, brain tumor microsurgery, aneurysm clipping, and comprehensive spine care.'
+    },
+    ortho: {
+      title: 'Orthopedics & MISSO Robotic Joint Care',
+      desc: 'Renowned orthopedic department led by Dr. Krishna Sravanth and Dr. Bhanu Vijay. Pioneering sub-millimeter accurate MISSO Robotic Knee Replacement, total hip replacement, and complex trauma reconstruction.'
+    },
+    gastro: {
+      title: 'Surgical Gastroenterology & Endoscopy',
+      desc: 'Comprehensive GI care featuring therapeutic endoscopy, ERCP, colonoscopy, laparoscopic gallbladder & hernia surgery, and liver disease management.'
+    }
+  };
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => {
+        b.classList.remove('active');
+        b.style.border = '1px solid var(--border-color)';
+      });
+      btn.classList.add('active');
+      btn.style.border = '2px solid var(--blue)';
+
+      const key = btn.getAttribute('data-organ');
+      if (organData[key]) {
+        title.style.opacity = '0';
+        desc.style.opacity = '0';
+        setTimeout(() => {
+          title.textContent = organData[key].title;
+          desc.textContent = organData[key].desc;
+          title.style.opacity = '1';
+          desc.style.opacity = '1';
+        }, 200);
+      }
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   26. MULTI-LAYER GSAP HERO SCROLL PARALLAX
+   -------------------------------------------------------------------------- */
+function initGSAPHeroParallax() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  const heroBg = document.querySelector('.hero-bg-media img');
+  const heroTitle = document.querySelector('.hero-title');
+  const heroSubtitle = document.querySelector('.hero-subtitle');
+
+  if (heroBg) {
+    gsap.to(heroBg, {
+      yPercent: 18,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  }
+
+  if (heroTitle) {
+    gsap.to(heroTitle, {
+      yPercent: -12,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  }
+
+  if (heroSubtitle) {
+    gsap.to(heroSubtitle, {
+      yPercent: -8,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  }
+}
+
+/* --------------------------------------------------------------------------
+   27. ANIMATED GSAP COUNT-UP STAT COUNTERS
+   -------------------------------------------------------------------------- */
+function initAnimatedStatCounters() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  const statVals = document.querySelectorAll('.stat-number, .stat-item strong');
+  statVals.forEach(el => {
+    const rawText = el.textContent.trim();
+    const matches = rawText.match(/(\d+)/);
+    if (!matches) return;
+
+    const targetVal = parseInt(matches[0], 10);
+    const suffix = rawText.replace(matches[0], '');
+
+    gsap.fromTo(el, 
+      { textContent: 0 },
+      {
+        textContent: targetVal,
+        duration: 2,
+        ease: 'power1.out',
+        snap: { textContent: 1 },
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%'
+        },
+        onUpdate: function() {
+          el.textContent = Math.floor(el.textContent) + suffix;
+        }
+      }
+    );
+  });
+}
+
+/* --------------------------------------------------------------------------
+   28. ORGANIC GLASS PANEL HOVER MORPHING
+   -------------------------------------------------------------------------- */
+function initOrganicGlassHover() {
+  if (typeof gsap === 'undefined') return;
+
+  const panels = document.querySelectorAll('.glass-panel, .hero-info-bar, .organ-detail-card');
+  panels.forEach(panel => {
+    panel.addEventListener('mouseenter', () => {
+      gsap.to(panel, {
+        borderRadius: '24px 12px 24px 12px',
+        scale: 1.015,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    });
+
+    panel.addEventListener('mouseleave', () => {
+      gsap.to(panel, {
+        borderRadius: '16px',
+        scale: 1,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   29. THREE.JS GLOBAL NEURAL NETWORK 3D PARTICLE SYSTEM
+   -------------------------------------------------------------------------- */
+function initNeuralNetworkBackground() {
+  if (typeof THREE === 'undefined') return;
+
+  const bgContainer = document.createElement('div');
+  bgContainer.id = 'neural-net-bg';
+  bgContainer.style.position = 'fixed';
+  bgContainer.style.inset = '0';
+  bgContainer.style.pointerEvents = 'none';
+  bgContainer.style.zIndex = '0';
+  bgContainer.style.opacity = '0.35';
+  document.body.prepend(bgContainer);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+  camera.position.z = 400;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  bgContainer.appendChild(renderer.domElement);
+
+  const particleCount = 60;
+  const geometry = new THREE.BufferGeometry();
+  const positions = new Float32Array(particleCount * 3);
+
+  for (let i = 0; i < particleCount * 3; i += 3) {
+    positions[i] = (Math.random() - 0.5) * 800;
+    positions[i + 1] = (Math.random() - 0.5) * 800;
+    positions[i + 2] = (Math.random() - 0.5) * 400;
+  }
+
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const material = new THREE.PointsMaterial({ color: 0x00F0FF, size: 4, transparent: true, opacity: 0.8 });
+  const points = new THREE.Points(geometry, material);
+  scene.add(points);
+
+  function animate() {
+    requestAnimationFrame(animate);
+    points.rotation.y += 0.001;
+    points.rotation.x += 0.0005;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+}
+
+/* --------------------------------------------------------------------------
+   30. GSAP CURTAIN-SWIPE PAGE TRANSITION LOADER
+   -------------------------------------------------------------------------- */
+function initPageTransitionLoader() {
+  if (typeof gsap === 'undefined') return;
+
+  const curtain = document.getElementById('page-transition-curtain');
+  if (!curtain) return;
+
+  // Animate curtain up on initial load
+  gsap.to(curtain, {
+    yPercent: -100,
+    duration: 0.8,
+    ease: 'power3.inOut',
+    delay: 0.1
+  });
+
+  // Intercept navigation links for smooth swipe transition
+  document.querySelectorAll('a[href]:not([target="_blank"]):not([href^="#"]):not([href^="tel:"]):not([href^="mailto:"])').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const targetUrl = link.getAttribute('href');
+      if (targetUrl && !targetUrl.startsWith('#')) {
+        e.preventDefault();
+        gsap.to(curtain, {
+          yPercent: 0,
+          duration: 0.5,
+          ease: 'power3.inOut',
+          onComplete: () => {
+            window.location.href = targetUrl;
+          }
+        });
+      }
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   31. REGIONAL LANGUAGE SWITCHER (ENGLISH / TELUGU DICTIONARY)
+   -------------------------------------------------------------------------- */
+function initLanguageSwitcher() {
+  const btns = document.querySelectorAll('.lang-btn');
+  if (!btns.length) return;
+
+  const teluguDictionary = {
+    'Home': 'హోమ్',
+    'Doctors': 'వైద్యులు',
+    'Specialties': 'విభాగాలు',
+    'Facilities': 'వసతులు',
+    'Locations': 'చిరునామా',
+    'Blog': 'వార్తలు',
+    'Contact': 'సంప్రదించండి',
+    'Call Emergency': 'అత్యవసర పిలుపు',
+    'Book Appointment': 'అపాయింట్‌మెంట్ బుక్ చేయండి',
+    'Advanced Multi-Speciality Care with': 'అత్యుత్తమ మల్టీ-స్పెషాలిటీ వైద్యం',
+    'Compassion & Excellence': 'దయ మరియు నైపుణ్యంతో'
+  };
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      btns.forEach(b => {
+        b.classList.remove('active');
+        b.style.background = 'transparent';
+        b.style.color = 'var(--navy)';
+      });
+      btn.classList.add('active');
+      btn.style.background = 'var(--blue)';
+      btn.style.color = 'var(--white)';
+
+      if (lang === 'te') {
+        document.querySelectorAll('.nav-links a, .hero-title').forEach(el => {
+          const text = el.textContent.trim();
+          if (teluguDictionary[text]) {
+            el.setAttribute('data-en-text', text);
+            el.textContent = teluguDictionary[text];
+          }
+        });
+        if (typeof showToast === 'function') {
+          showToast('తెలుగు భాషలోకి మారారు (Switched to Telugu)');
+        }
+      } else {
+        document.querySelectorAll('[data-en-text]').forEach(el => {
+          el.textContent = el.getAttribute('data-en-text');
+        });
+        if (typeof showToast === 'function') {
+          showToast('Switched to English');
+        }
+      }
+    });
+  });
+}
+
 
 
 

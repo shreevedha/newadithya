@@ -3640,9 +3640,27 @@ button, input, select, textarea {
   transition: all 0.4s ease;
 }
 
-.tour-card-item:hover {
-  border-color: #00F0FF;
-  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
+@keyframes ecgDash {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
 }
+
+@keyframes driveAmbulance {
+  0% { left: -100px; transform: scaleX(1); }
+  90% { left: 105%; transform: scaleX(1); }
+  91% { left: 105%; transform: scaleX(-1); }
+  100% { left: -100px; transform: scaleX(-1); }
+}
+
+.glass-panel {
+  transition: border-radius 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-panel:hover {
+  border-radius: 28px 14px 28px 14px !important;
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 15px 35px rgba(0, 240, 255, 0.25) !important;
+}
+
 
 

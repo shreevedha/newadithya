@@ -89,6 +89,15 @@
 
 <body>
 
+  <!-- GSAP PAGE TRANSITION CURTAIN SWIPE LOADER -->
+  <div id="page-transition-curtain" style="position: fixed; inset: 0; background: linear-gradient(135deg, var(--navy) 0%, #030d1a 100%); z-index: 999999; transform: translateY(-100%); pointer-events: none; display: flex; align-items: center; justify-content: center;">
+    <div style="text-align: center; color: var(--white);">
+      <div style="font-size: 3rem; margin-bottom: 12px;">🏥</div>
+      <div style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 1px;">ADITYA MEDICARE HOSPITALS</div>
+      <div style="font-size: 0.85rem; color: #00F0FF; margin-top: 6px;">Care • Precision • Excellence</div>
+    </div>
+  </div>
+
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="container nav-inner">
@@ -110,7 +119,13 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
 
-      <div class="nav-cta">
+      <div class="nav-cta" style="display: flex; align-items: center; gap: 10px;">
+        <!-- REGIONAL LANGUAGE SWITCHER (EN / TELUGU) -->
+        <div class="lang-switcher" style="display: flex; gap: 2px; background: rgba(8, 126, 164, 0.12); padding: 3px; border-radius: 50px; border: 1px solid var(--border-color);">
+          <button class="lang-btn active" data-lang="en" style="padding: 4px 10px; border-radius: 50px; border: none; background: var(--blue); color: var(--white); font-weight: 700; font-size: 0.75rem; cursor: pointer; transition: all 0.2s ease;">EN</button>
+          <button class="lang-btn" data-lang="te" style="padding: 4px 10px; border-radius: 50px; border: none; background: transparent; color: var(--navy); font-weight: 700; font-size: 0.75rem; cursor: pointer; transition: all 0.2s ease;">తెలుగు</button>
+        </div>
+
         <a href="tel:08632944444" class="btn btn-danger">
           <svg class="btn-icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.03 21 3 13.97 3 5.48a1 1 0 011-1H7.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.27 1.11l-2.37 2.32z"/></svg>
           Call Emergency
@@ -657,6 +672,99 @@
           <div class="journey-step-icon">💚</div>
           <h3 class="journey-step-title">Full Recovery</h3>
           <p class="journey-step-desc">Personalized post-op rehab, ICU care, and compassionate follow-up wellness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 1: 3D ORGAN HEALTH NAVIGATOR -->
+  <section class="section section-white" id="section-organ-navigator" data-aos="fade-up" style="background: #f8fafc; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Interactive Clinical Navigator</span>
+        <h2 class="section-title">Explore Specialized Organ Care</h2>
+        <p class="section-subtitle">Select an organ system to view our diagnostic capabilities, specialist consultants, and treatment technologies.</p>
+      </div>
+
+      <div class="organ-navigator-grid" style="display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: center;">
+        <div class="organ-pill-list" style="display: flex; flex-direction: column; gap: 12px;">
+          <button class="organ-btn active" data-organ="cardio" style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 2px solid var(--blue); border-radius: var(--radius-md); font-weight: 700; color: var(--navy); cursor: pointer; text-align: left; transition: all 0.3s ease;">
+            <span style="font-size: 1.8rem;">🫀</span>
+            <div>
+              <div style="font-size: 1.05rem;">Cardiovascular System</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 400;">Cath Lab, Bypass, Angioplasty</div>
+            </div>
+          </button>
+
+          <button class="organ-btn" data-organ="neuro" style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-weight: 700; color: var(--navy); cursor: pointer; text-align: left; transition: all 0.3s ease;">
+            <span style="font-size: 1.8rem;">🧠</span>
+            <div>
+              <div style="font-size: 1.05rem;">Brain & Neuro System</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 400;">Stroke Unit, Brain Tumor, Spine</div>
+            </div>
+          </button>
+
+          <button class="organ-btn" data-organ="ortho" style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-weight: 700; color: var(--navy); cursor: pointer; text-align: left; transition: all 0.3s ease;">
+            <span style="font-size: 1.8rem;">🦴</span>
+            <div>
+              <div style="font-size: 1.05rem;">Bones & Joint System</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 400;">MISSO Robotics, Hip, Arthroscopy</div>
+            </div>
+          </button>
+
+          <button class="organ-btn" data-organ="gastro" style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-weight: 700; color: var(--navy); cursor: pointer; text-align: left; transition: all 0.3s ease;">
+            <span style="font-size: 1.8rem;">🧬</span>
+            <div>
+              <div style="font-size: 1.05rem;">Digestive & GI System</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 400;">Laparoscopy, ERCP, Endoscopy</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="organ-detail-card" id="organ-detail-card" style="background: var(--navy); color: var(--white); padding: 40px; border-radius: var(--radius-xl); position: relative; overflow: hidden; box-shadow: var(--shadow-lg);">
+          <div style="position: absolute; top: -30px; right: -30px; font-size: 12rem; opacity: 0.08;">🫀</div>
+          <span style="background: rgba(0, 240, 255, 0.2); color: #00F0FF; padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">24/7 Cardiac Emergency Unit</span>
+          <h3 id="organ-card-title" style="font-size: 2rem; color: var(--white); margin: 16px 0 12px;">Cardiovascular Care & Surgery</h3>
+          <p id="organ-card-desc" style="color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.6; margin-bottom: 24px;">
+            Full-fledged cardiac wing led by Dr. Viswa Jyothi. Operating a state-of-the-art Flat-Panel Cath Lab for emergency primary angioplasty, pacemaker implantations, and complex coronary interventions.
+          </p>
+          <div style="display: flex; gap: 16px;">
+            <button class="btn btn-primary" data-open-modal="true" data-department="Cardiology">Book Cardiac Consult</button>
+            <a href="specialties.html" class="btn btn-outline-white">View Department Specs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 2: 24/7 EMERGENCY & RAPID RESPONSE DESK -->
+  <section class="section" id="section-emergency-desk" data-aos="zoom-in" style="background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); color: var(--white); padding: 70px 0; position: relative; overflow: hidden;">
+    <div class="container" style="position: relative; z-index: 2;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
+        <div style="max-width: 600px;">
+          <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; margin-bottom: 12px;">
+            <span style="width: 10px; height: 10px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse 1s infinite;"></span> LEVEL-I TRAUMA READY
+          </div>
+          <h2 style="font-size: 2.2rem; color: var(--white); margin-bottom: 12px;">24/7 Emergency & Critical Ambulance Line</h2>
+          <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin: 0;">
+            Immediate cardiac, trauma, stroke, and pediatric emergency care with equipped ACLS ambulances stationed across Guntur.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 280px;">
+          <a href="tel:08632944444" class="btn" style="background: var(--white); color: #991b1b; font-size: 1.2rem; font-weight: 800; padding: 16px 28px; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); text-align: center;">
+            📞 0863-294-4444
+          </a>
+          <div style="text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.8);">Zero Waiting Time for Cardiac & Trauma Emergencies</div>
+        </div>
+      </div>
+
+      <!-- ANIMATED ECG HEART RATE LINE & MOVING AMBULANCE -->
+      <div class="ecg-track-container" style="width: 100%; height: 60px; margin-top: 30px; position: relative; border-top: 1px solid rgba(255,255,255,0.2); overflow: hidden;">
+        <svg viewBox="0 0 1000 100" preserveAspectRatio="none" style="width: 100%; height: 100%; position: absolute; inset: 0;">
+          <path d="M 0 50 L 200 50 L 210 20 L 220 80 L 230 10 L 240 90 L 250 50 L 500 50 L 510 20 L 520 80 L 530 10 L 540 90 L 550 50 L 800 50 L 810 20 L 820 80 L 830 10 L 840 90 L 850 50 L 1000 50" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="1000" stroke-dashoffset="1000" style="animation: ecgDash 3s linear infinite;" />
+        </svg>
+        <div class="moving-ambulance" style="position: absolute; bottom: 8px; left: -80px; font-size: 2.2rem; animation: driveAmbulance 9s linear infinite; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));">
+          🚑💨
         </div>
       </div>
     </div>

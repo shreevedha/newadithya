@@ -152,11 +152,12 @@
   </div>
 
   <!-- HERO SECTION -->
-  <section class="hero-section">
+  <section class="hero-section" style="position: relative;">
+    <div id="hero-3d-scene-container" style="position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden;"></div>
     <div class="hero-bg-media">
       <img src="images/Hospital.Building.jpg" alt="Aditya Medicare Hospital Building" />
     </div>
-    <div class="container">
+    <div class="container" style="position: relative; z-index: 3;">
       <div class="hero-content">
         <div class="hero-badge">🏥 Trusted Healthcare Leader in Guntur</div>
         <h1 class="hero-title">Advanced Multi-Speciality Care with <span>Compassion & Excellence</span></h1>
@@ -260,87 +261,152 @@
     </div>
   </section>
 
-  <!-- SPECIALTIES SECTION -->
-  <section class="section section-soft">
+  <!-- CENTERS OF EXCELLENCE SECTION -->
+  <section class="section section-soft" data-aos="fade-up">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header text-center">
         <span class="section-tag">Centers of Excellence</span>
-        <h2 class="section-title">Comprehensive Medical Specialties</h2>
+        <h2 class="section-title">Specialized Clinical Services</h2>
         <p class="section-subtitle">Delivering high-end diagnostic, therapeutic & surgical care across all major clinical disciplines.</p>
       </div>
 
-      <div class="specialties-grid">
-        <div class="specialty-card">
-          <div class="specialty-header">
-            <span class="specialty-icon">🫀</span>
-            <h3 class="specialty-name">Cardiology & Cardiac Surgery</h3>
-          </div>
-          <p class="specialty-desc">24/7 Cath Lab, emergency angioplasty, pacemaker implantation, bypass surgery and non-invasive heart care.</p>
-          <a href="specialties.html" class="specialty-link">Explore Cardiology →</a>
+      <div class="coe-tabs-container">
+        <div class="coe-tabs-nav">
+          <button class="coe-tab-btn active" data-tab="coe-cardio">Cardio Vascular Sciences</button>
+          <button class="coe-tab-btn" data-tab="coe-neuro">Neurological Sciences</button>
+          <button class="coe-tab-btn" data-tab="coe-ortho">Orthopaedic Sciences</button>
+          <button class="coe-tab-btn" data-tab="coe-diagnostics">Advanced Diagnostics & Imaging</button>
         </div>
 
-        <div class="specialty-card">
-          <div class="specialty-header">
-            <span class="specialty-icon">🦴</span>
-            <h3 class="specialty-name">Orthopedics & Joint Care</h3>
-          </div>
-          <p class="specialty-desc">Robotic knee replacement, hip arthroplasty, arthroscopic ligament reconstruction & complex trauma management.</p>
-          <a href="specialties.html" class="specialty-link">Explore Orthopedics →</a>
+        <div class="coe-tab-panel active" id="coe-cardio">
+          <h3 class="coe-panel-title">Cardiology & Cardiac Surgery</h3>
+          <ul class="coe-panel-list">
+            <li>State-of-the-art Flat-Panel Cath Lab operating 24/7 for primary angioplasties.</li>
+            <li>Minimally Invasive Coronary Artery Bypass Grafting (CABG).</li>
+            <li>Advanced electrophysiology studies and dual-chamber pacemaker implantations.</li>
+            <li>Emergency response protocols for acute myocardial infarction (heart attack).</li>
+            <li>Complex valvular repair and congenital heart defect corrections.</li>
+            <li>Non-invasive diagnostic suite including color Doppler, Echo, and Holter monitoring.</li>
+          </ul>
         </div>
 
-        <div class="specialty-card">
-          <div class="specialty-header">
-            <span class="specialty-icon">🧠</span>
-            <h3 class="specialty-name">Neurology & Neurosurgery</h3>
-          </div>
-          <p class="specialty-desc">Comprehensive stroke emergency response, brain tumor surgery, spine procedures and neuro intensive care.</p>
-          <a href="specialties.html" class="specialty-link">Explore Neurology →</a>
+        <div class="coe-tab-panel" id="coe-neuro">
+          <h3 class="coe-panel-title">Neurology & Neurosurgery</h3>
+          <ul class="coe-panel-list">
+            <li>Comprehensive Stroke Care Center equipped with thrombolysis facilities.</li>
+            <li>Micro-neurosurgery for brain tumor excisions, spinal reconstructions, and aneurysms.</li>
+            <li>Dedicated Neuro Intensive Care Unit (NICU) with continuous neuromonitoring.</li>
+            <li>Advanced surgical and medical treatments for epilepsy, Parkinson's disease, and tremors.</li>
+            <li>Spinal surgery for herniated discs, spinal stenosis, and spinal cord injuries.</li>
+            <li>Electromyography (EMG) and Electroencephalography (EEG) diagnostic services.</li>
+          </ul>
         </div>
 
-        <div class="specialty-card">
-          <div class="specialty-header">
-            <span class="specialty-icon">🧬</span>
-            <h3 class="specialty-name">Surgical Gastroenterology</h3>
-          </div>
-          <p class="specialty-desc">Laparoscopic GI procedures, endoscopy, colonoscopy, liver & pancreas surgical management.</p>
-          <a href="specialties.html" class="specialty-link">Explore Gastro →</a>
+        <div class="coe-tab-panel" id="coe-ortho">
+          <h3 class="coe-panel-title">Orthopaedics & Joint Reconstruction</h3>
+          <ul class="coe-panel-list">
+            <li>MISSO Robotic Knee and Hip replacements for sub-millimeter precision.</li>
+            <li>Arthroscopic ligament reconstructions (ACL, PCL) and sports medicine.</li>
+            <li>Advanced management of complex fractures, polytrauma, and non-unions.</li>
+            <li>Minimally invasive spine surgeries and scoliosis corrections.</li>
+            <li>Specialized pediatric orthopaedics and bone deformity corrections.</li>
+            <li>Dedicated rehabilitation clinic for post-operative physical therapy.</li>
+          </ul>
         </div>
 
-        <div class="specialty-card">
-          <div class="specialty-header">
-            <span class="specialty-icon">🩺</span>
-            <h3 class="specialty-name">Urology & Andrology</h3>
-          </div>
-          <p class="specialty-desc">Laser kidney stone removal (RIRS/URSL), prostate surgery, endourology & reconstructive urology.</p>
-          <a href="specialties.html" class="specialty-link">Explore Urology →</a>
+        <div class="coe-tab-panel" id="coe-diagnostics">
+          <h3 class="coe-panel-title">Advanced Diagnostics & Radiology</h3>
+          <ul class="coe-panel-list">
+            <li>High-resolution 3T Siemens MRI scanner for detailed structural imaging.</li>
+            <li>128-Slice ultra-fast CT Scanner for coronary angiography and trauma screening.</li>
+            <li>High-definition ultrasound units with 3D/4D fetal imaging capabilities.</li>
+            <li>Digital mammography and dual-energy X-ray absorptiometry (DEXA) bone density scans.</li>
+            <li>Comprehensive pathology lab with automated clinical biochemistry and hematology.</li>
+            <li>Interventional radiology suite for non-surgical vascular treatments.</li>
+          </ul>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="specialty-card">
-          <div class="specialty-header">
-            <span class="specialty-icon">🫁</span>
-            <h3 class="specialty-name">Pulmonology & Respiratory Care</h3>
-          </div>
-          <p class="specialty-desc">Asthma, COPD, bronchoscopy, sleep lab and advanced respiratory critical care.</p>
-          <a href="specialties.html" class="specialty-link">Explore Pulmonology →</a>
-        </div>
+  <!-- CLINICAL DEPARTMENTS DIRECTORY -->
+  <section class="section clinical-depts-section" data-aos="fade-up">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Clinical Departments</span>
+        <h2 class="section-title">Explore Our Clinical Care Wings</h2>
+        <p class="section-subtitle" style="color: #94a3b8;">Delivering full-spectrum tertiary healthcare consultations and critical services 24/7.</p>
+      </div>
 
-        <div class="specialty-card">
-          <div class="specialty-header">
-            <span class="specialty-icon">👶</span>
-            <h3 class="specialty-name">Pediatrics & Neonatology</h3>
-          </div>
-          <p class="specialty-desc">24/7 Level-III NICU & PICU, pediatric surgery, childhood immunizations and newborn care.</p>
-          <a href="specialties.html" class="specialty-link">Explore Pediatrics →</a>
-        </div>
+      <div class="clinical-depts-grid">
+        <!-- Row 1 -->
+        <a href="specialties.html?dept=cardiac" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="clinical-dept-icon">🫀</div>
+          <div class="clinical-dept-name">Cardiology</div>
+        </a>
+        <a href="specialties.html?dept=cardiac" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="clinical-dept-icon">🩺</div>
+          <div class="clinical-dept-name">Cardiothoracic</div>
+        </a>
+        <a href="specialties.html?dept=neuro" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="clinical-dept-icon">🧠</div>
+          <div class="clinical-dept-name">Neurosurgery</div>
+        </a>
+        <a href="specialties.html?dept=neuro" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="clinical-dept-icon">⚡</div>
+          <div class="clinical-dept-name">Neurology</div>
+        </a>
+        <a href="specialties.html?dept=nephro" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="500">
+          <div class="clinical-dept-icon">🔬</div>
+          <div class="clinical-dept-name">Nephrology</div>
+        </a>
 
-        <div class="specialty-card">
-          <div class="specialty-header">
-            <span class="specialty-icon">🤱</span>
-            <h3 class="specialty-name">Mother & Child Care</h3>
-          </div>
-          <p class="specialty-desc">High-risk obstetrics, painless labor delivery, gynecology surgery & reproductive wellness.</p>
-          <a href="specialties.html" class="specialty-link">Explore Mother & Child →</a>
+        <!-- Row 2 -->
+        <a href="specialties.html?dept=nephro" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="clinical-dept-icon">🧪</div>
+          <div class="clinical-dept-name">Urology</div>
+        </a>
+        <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="clinical-dept-icon">🧬</div>
+          <div class="clinical-dept-name">Gastroenterology</div>
+        </a>
+        
+        <!-- CENTER CIRCLE -->
+        <div class="clinical-dept-center-circle" data-aos="zoom-in">
+          <h3>Clinical Services</h3>
+          <p>Integrated departments with 24/7 care wings</p>
         </div>
+        
+        <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="clinical-dept-icon">🔪</div>
+          <div class="clinical-dept-name">Surgical Gastro</div>
+        </a>
+        <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="500">
+          <div class="clinical-dept-icon">🌡️</div>
+          <div class="clinical-dept-name">General Medicine</div>
+        </a>
+
+        <!-- Row 3 -->
+        <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="clinical-dept-icon">🫁</div>
+          <div class="clinical-dept-name">Pulmonology</div>
+        </a>
+        <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="clinical-dept-icon">👶</div>
+          <div class="clinical-dept-name">Pediatrics</div>
+        </a>
+        <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="clinical-dept-icon">🤱</div>
+          <div class="clinical-dept-name">Neonatology</div>
+        </a>
+        <a href="specialties.html?dept=ortho" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="clinical-dept-icon">🦴</div>
+          <div class="clinical-dept-name">Orthopedics</div>
+        </a>
+        <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="500">
+          <div class="clinical-dept-icon">🤰</div>
+          <div class="clinical-dept-name">Mother & Child</div>
+        </a>
       </div>
     </div>
   </section>
@@ -478,8 +544,126 @@
     </div>
   </section>
 
+  <!-- ADVANCED MEDICAL TECHNOLOGY SHOWCASE (DARK CYBER-MEDICAL THEME) -->
+  <section class="section section-dark-tech" data-aos="fade-up">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag" style="color: #00F0FF; background: rgba(0, 240, 255, 0.1);">Next-Gen Medical Tech</span>
+        <h2 class="section-title" style="color: var(--white);">Advanced Diagnostic & Robotic Innovations</h2>
+        <p class="section-subtitle" style="color: #94a3b8;">Leveraging sub-millimeter surgical robotics and ultra-fast 3D digital imaging for unmatched clinical outcomes.</p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tech-card-header">
+            <div class="tech-icon-badge">🤖</div>
+            <h3 class="tech-card-title">MISSO Robotic System</h3>
+          </div>
+          <p class="tech-card-desc">Patient-specific 3D anatomical planning with sub-millimeter bone resection accuracy for total joint replacements.</p>
+          <ul class="tech-specs-list">
+            <li>Sub-millimeter implant placement precision</li>
+            <li>Minimal soft tissue trauma & quick recovery</li>
+            <li>Real-time intraoperative optical tracking</li>
+          </ul>
+        </div>
+
+        <div class="tech-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="tech-card-header">
+            <div class="tech-icon-badge">⚡</div>
+            <h3 class="tech-card-title">3T Siemens MRI Imaging</h3>
+          </div>
+          <p class="tech-card-desc">High-field 3.0 Tesla magnetic resonance imaging suite providing ultra-crisp structural brain, spine, and joint scans.</p>
+          <ul class="tech-specs-list">
+            <li>Quiet-Suite acoustic noise suppression</li>
+            <li>High-resolution 3D neuro vascular imaging</li>
+            <li>Non-invasive cardiac MRI evaluations</li>
+          </ul>
+        </div>
+
+        <div class="tech-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="tech-card-header">
+            <div class="tech-icon-badge">🫀</div>
+            <h3 class="tech-card-title">Flat-Panel Digital Cath Lab</h3>
+          </div>
+          <p class="tech-card-desc">Ultra-low radiation fluoroscopy system operating 24/7 for primary emergency angioplasties and complex stenting.</p>
+          <ul class="tech-specs-list">
+            <li>Sub-second emergency vascular access</li>
+            <li>DoseReduction AI radiation optimization</li>
+            <li>3D Coronary roadmapping integration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tech-showcase-container" data-aos="zoom-in">
+        <img src="images/CTscan.png" alt="Advanced Diagnostic Suite" class="tech-showcase-img" />
+        <!-- Hotspot Pin 1 -->
+        <div class="tech-hotspot-pin" style="top: 40%; left: 35%;">
+          <div class="tech-hotspot-tooltip">
+            <strong>128-Slice Ultra-Fast CT Scanner</strong><br/>
+            Provides 0.28-second full-cardiac scanning for immediate emergency coronary triage.
+          </div>
+        </div>
+        <!-- Hotspot Pin 2 -->
+        <div class="tech-hotspot-pin" style="top: 55%; left: 65%;">
+          <div class="tech-hotspot-tooltip">
+            <strong>3D Diagnostic Workstation</strong><br/>
+            Real-time multiplanar anatomical reconstruction for precision surgical planning.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATIENT JOURNEY 5-STEP TIMELINE -->
+  <section class="section patient-journey-section" data-aos="fade-up">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Patient Experience</span>
+        <h2 class="section-title">Your Seamless Care Journey</h2>
+        <p class="section-subtitle">From initial consultation to full post-operative rehabilitation, we guide your healing every step of the way.</p>
+      </div>
+
+      <div class="journey-timeline-grid">
+        <div class="journey-step-item active" data-aos="fade-up" data-aos-delay="100">
+          <span class="journey-step-number">01</span>
+          <div class="journey-step-icon">📅</div>
+          <h3 class="journey-step-title">Instant Booking</h3>
+          <p class="journey-step-desc">Schedule your OPD consultation online or call our 24/7 helpline.</p>
+        </div>
+
+        <div class="journey-step-item" data-aos="fade-up" data-aos-delay="200">
+          <span class="journey-step-number">02</span>
+          <div class="journey-step-icon">🩺</div>
+          <h3 class="journey-step-title">Expert Consult</h3>
+          <p class="journey-step-desc">Comprehensive evaluation with our senior board-certified specialists.</p>
+        </div>
+
+        <div class="journey-step-item" data-aos="fade-up" data-aos-delay="300">
+          <span class="journey-step-number">03</span>
+          <div class="journey-step-icon">🔬</div>
+          <h3 class="journey-step-title">3D Diagnostics</h3>
+          <p class="journey-step-desc">High-speed 3T MRI, 128-Slice CT and lab testing with instant digital reports.</p>
+        </div>
+
+        <div class="journey-step-item" data-aos="fade-up" data-aos-delay="400">
+          <span class="journey-step-number">04</span>
+          <div class="journey-step-icon">🏥</div>
+          <h3 class="journey-step-title">Robotic Treatment</h3>
+          <p class="journey-step-desc">Minimally invasive surgeries and robotic joint care in 8 modular OTs.</p>
+        </div>
+
+        <div class="journey-step-item" data-aos="fade-up" data-aos-delay="500">
+          <span class="journey-step-number">05</span>
+          <div class="journey-step-icon">💚</div>
+          <h3 class="journey-step-title">Full Recovery</h3>
+          <p class="journey-step-desc">Personalized post-op rehab, ICU care, and compassionate follow-up wellness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PATIENT TESTIMONIALS -->
-  <section class="section section-soft">
+  <section class="section section-soft" data-aos="fade-up">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Patient Stories</span>
@@ -488,7 +672,7 @@
       </div>
 
       <div class="reviews-grid">
-        <div class="review-card">
+        <div class="review-card" data-aos="fade-up" data-aos-delay="100">
           <div class="stars">★★★★★</div>
           <p class="review-text">
             "When my father suffered an acute cardiac event in the middle of the night, the emergency trauma team at Aditya Medicare acted instantly. The Cath Lab team performed emergency angioplasty within 30 minutes. Exceptional medical care!"
@@ -502,7 +686,7 @@
           </div>
         </div>
 
-        <div class="review-card">
+        <div class="review-card" data-aos="fade-up" data-aos-delay="200">
           <div class="stars">★★★★★</div>
           <p class="review-text">
             "Underwent MISSO robotic knee replacement surgery under Dr. Krishna Sravanth. I was able to walk without knee pain within a few days! The ICU nursing care and doctor follow-up were outstanding."
@@ -516,7 +700,7 @@
           </div>
         </div>
 
-        <div class="review-card">
+        <div class="review-card" data-aos="fade-up" data-aos-delay="300">
           <div class="stars">★★★★★</div>
           <p class="review-text">
             "The pediatric care and NICU facilities are wonderful. Dr. Farha and the nursing staff treated our newborn child with utmost warmth and professional expertise. Highly recommended hospital in Guntur!"
@@ -533,8 +717,123 @@
     </div>
   </section>
 
+  <!-- EXPERT TALKS & HEALTHY FAMILY -->
+  <section class="section expert-talks-section" data-aos="fade-up">
+    <div class="container">
+      <div class="expert-talks-split">
+        <div class="expert-talks-card" data-aos="fade-right">
+          <div class="section-header" style="margin-bottom: 20px;">
+            <span class="section-tag">Expert Talks</span>
+            <h2 class="section-title">Health Awareness & Insights</h2>
+            <p class="section-subtitle" style="margin-bottom: 0;">From prevention to treatment, our experts explain critical health topics to keep you informed.</p>
+          </div>
+          <div class="expert-video-frame">
+            <img src="images/expert_doctor_talk.jpg" class="expert-video-placeholder-img" alt="Expert Doctor Talk Video Placeholder" />
+            <a href="https://www.youtube.com/@adityamedicare.institute" target="_blank" rel="noopener" class="expert-video-overlay-btn" aria-label="Play video"></a>
+          </div>
+          <div style="margin-top: 10px; text-align: center;">
+            <a href="https://www.youtube.com/@adityamedicare.institute" target="_blank" rel="noopener" class="btn btn-secondary" style="width: 100%; justify-content: center;">
+              🎥 View YouTube Channel
+            </a>
+          </div>
+        </div>
+
+        <div class="healthy-family-card" data-aos="fade-left">
+          <div class="section-header" style="margin-bottom: 20px;">
+            <span class="section-tag">Healthy Lifestyle</span>
+            <h2 class="section-title">Factors for a Healthy Family</h2>
+            <p class="section-subtitle" style="margin-bottom: 0;">A healthy family is built on active choices, preventive screenings, and balanced daily habits.</p>
+          </div>
+          <div class="healthy-family-grid">
+            <div class="healthy-item">
+              <div class="healthy-icon">🥦</div>
+              <div class="healthy-text">Balanced Nutrition</div>
+            </div>
+            <div class="healthy-item">
+              <div class="healthy-icon">🚭</div>
+              <div class="healthy-text">Avoiding Harmful Habits</div>
+            </div>
+            <div class="healthy-item">
+              <div class="healthy-icon">🏃</div>
+              <div class="healthy-text">Staying Physically Active</div>
+            </div>
+            <div class="healthy-item">
+              <div class="healthy-icon">💧</div>
+              <div class="healthy-text">Drink Enough Water</div>
+            </div>
+            <div class="healthy-item">
+              <div class="healthy-icon">🧘</div>
+              <div class="healthy-text">Stress Management</div>
+            </div>
+            <div class="healthy-item">
+              <div class="healthy-icon">😴</div>
+              <div class="healthy-text">Adequate Sleep</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGACY SHOWCASE -->
+  <section class="section legacy-section" data-aos="fade-up">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Our Legacy</span>
+        <h2 class="section-title">Our Legacy Continues...</h2>
+        <p class="section-subtitle">Under the vision of our founders, our specialized care centers are carried forward by board-certified consultants.</p>
+      </div>
+
+      <div class="legacy-grid">
+        <div class="legacy-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="legacy-img-wrap">
+            <img src="images/doctors/krishna-sravanth.jpg" alt="Dr. Krishna Sravanth Pakanati" />
+          </div>
+          <div class="legacy-body">
+            <h4 class="legacy-name">Dr. Krishna Sravanth</h4>
+            <div class="legacy-title">Robotic Knee Specialist</div>
+            <p class="legacy-desc">Leading MISSO Robotic joint replacement care, orthopedic trauma & advanced arthroscopy.</p>
+          </div>
+        </div>
+
+        <div class="legacy-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="legacy-img-wrap">
+            <img src="images/doctors/sai-krishna-katakam.jpeg" alt="Dr. Sai Krishna Katakam" />
+          </div>
+          <div class="legacy-body">
+            <h4 class="legacy-name">Dr. Sai Krishna</h4>
+            <div class="legacy-title">GI Onco-Surgeon</div>
+            <p class="legacy-desc">Specialized in laparoscopic gastrointestinal surgeries, liver disorders & pancreatic cancer care.</p>
+          </div>
+        </div>
+
+        <div class="legacy-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="legacy-img-wrap">
+            <img src="images/doctors/dr-guttikonda.jpeg" alt="Dr. G. Bhanu Vijay" />
+          </div>
+          <div class="legacy-body">
+            <h4 class="legacy-name">Dr. G. Bhanu Vijay</h4>
+            <div class="legacy-title">Interventional Cardiologist</div>
+            <p class="legacy-desc">Operating Flat-Panel Cath Lab for primary angioplasties, heart failure care & pacemakers.</p>
+          </div>
+        </div>
+
+        <div class="legacy-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="legacy-img-wrap">
+            <img src="images/doctors/raghu-sarath.jpg" alt="Dr. Raghu Sarath" />
+          </div>
+          <div class="legacy-body">
+            <h4 class="legacy-name">Dr. Raghu Sarath</h4>
+            <div class="legacy-title">Consultant Urologist</div>
+            <p class="legacy-desc">Specialist in RIRS laser kidney stone removal, prostate health, and reconstructive urology.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- LOCATION & CONTACT -->
-  <section class="section section-white">
+  <section class="section section-white" data-aos="fade-up">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Location & Contact</span>
@@ -679,9 +978,46 @@
     </div>
   </div>
 
+  <!-- HOSPITAL ACCREDITATIONS SHOWCASE -->
+  <section class="accreditations-section" data-aos="fade-up">
+    <div class="container">
+      <div class="accreditations-grid">
+        <div class="accreditation-item">
+          <div class="accreditation-badge">🎖️</div>
+          <div class="accreditation-text">
+            <h4>NABH Accredited</h4>
+            <p>Highest National Patient Safety Standards</p>
+          </div>
+        </div>
+
+        <div class="accreditation-item">
+          <div class="accreditation-badge">🏆</div>
+          <div class="accreditation-text">
+            <h4>Best Multi-Speciality Hospital</h4>
+            <p>Recognized for Clinical Excellence in AP</p>
+          </div>
+        </div>
+
+        <div class="accreditation-item">
+          <div class="accreditation-badge">🔬</div>
+          <div class="accreditation-text">
+            <h4>ISO 9001:2015 Certified</h4>
+            <p>Quality Diagnostic & Pathology Labs</p>
+          </div>
+        </div>
+
+        <div class="accreditation-item">
+          <div class="accreditation-badge">🚑</div>
+          <div class="accreditation-text">
+            <h4>24/7 Level-III Trauma Unit</h4>
+            <p>Sub-15 Min Emergency Response Protocol</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
-    <!-- FOOTER -->
-    <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -755,8 +1091,71 @@
     </div>
   </footer>
 
-  <!-- Script File -->
-  <script src="script.js?v=15"></script>
+  <!-- FLOATING SIDE ACTION RAIL -->
+  <div class="side-action-rail">
+    <a href="tel:08632944444" class="rail-item rail-call" aria-label="Call Hospital">
+      <span class="rail-icon">📞</span>
+      <span class="rail-label">Call Hospital</span>
+    </a>
+    <a href="https://wa.me/918632944444" target="_blank" rel="noopener" class="rail-item rail-whatsapp" aria-label="WhatsApp Us">
+      <span class="rail-icon">💬</span>
+      <span class="rail-label">WhatsApp Us</span>
+    </a>
+    <a href="https://maps.google.com/?q=Aditya+Medicare+Hospitals+Guntur" target="_blank" rel="noopener" class="rail-item rail-location" aria-label="Get Directions">
+      <span class="rail-icon">📍</span>
+      <span class="rail-label">Get Directions</span>
+    </a>
+    <button class="rail-item rail-appointment" data-open-modal="true" aria-label="Book Appointment">
+      <span class="rail-icon">📅</span>
+      <span class="rail-label">Book Appointment</span>
+    </button>
+  </div>
+
+  <!-- FLOATING AI ASSISTANT CHATBOT -->
+  <div class="chatbot-widget-container">
+    <button class="chatbot-trigger" id="chatbot-trigger" aria-label="Open AI Helpdesk">
+      <span class="chat-trigger-icon">💬</span>
+      <span class="chat-trigger-pulse"></span>
+    </button>
+
+    <div class="chatbot-panel" id="chatbot-panel">
+      <div class="chatbot-header">
+        <div class="chat-header-avatar">🤖</div>
+        <div class="chat-header-info">
+          <h4>Aditya AI Helpdesk</h4>
+          <span class="chat-status"><span class="chat-status-dot"></span> Online & Active</span>
+        </div>
+        <button class="chat-close-btn" id="chatbot-close" aria-label="Close Chat">✕</button>
+      </div>
+
+      <div class="chatbot-body" id="chatbot-body">
+        <div class="chat-msg bot-msg">
+          Hello! How can I assist you with your health enquiries today?
+        </div>
+      </div>
+
+      <div class="chatbot-suggestions">
+        <button class="suggestion-chip" data-query="Book an Appointment">📅 Book Appointment</button>
+        <button class="suggestion-chip" data-query="Find a Doctor">🩺 Find Doctor</button>
+        <button class="suggestion-chip" data-query="Emergency Services">🚨 Emergency Info</button>
+        <button class="suggestion-chip" data-query="Operating Hours">⏰ Operating Hours</button>
+      </div>
+
+      <div class="chatbot-footer">
+        <input type="text" id="chatbot-input" placeholder="Type your health enquiry..." aria-label="Chat input" />
+        <button id="chatbot-send-btn" aria-label="Send message">➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3RD PARTY 3D & ANIMATION LIBRARIES (THREE.JS, GSAP, SCROLLTRIGGER, VANILLA-TILT) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+  <!-- Main Application Script -->
+  <script src="script.js?v=16"></script>
 </body>
 
 </html>

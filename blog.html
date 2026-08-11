@@ -122,10 +122,18 @@
   </section>
 
   <!-- BLOG ARTICLES -->
-  <section class="section section-white">
+  <section class="section section-white" data-aos="fade-up">
     <div class="container">
+      <!-- CATEGORY FILTER BAR -->
+      <div class="blog-filter-bar" style="margin-bottom: 40px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+        <button class="filter-pill-btn active" data-blog-filter="all" style="padding: 10px 22px; border: 1px solid var(--border-color); background: var(--white); color: var(--navy); border-radius: var(--radius-full); font-weight: 700; cursor: pointer; transition: var(--transition);">All Articles</button>
+        <button class="filter-pill-btn" data-blog-filter="cardio" style="padding: 10px 22px; border: 1px solid var(--border-color); background: var(--white); color: var(--navy); border-radius: var(--radius-full); font-weight: 700; cursor: pointer; transition: var(--transition);">Cardiology</button>
+        <button class="filter-pill-btn" data-blog-filter="ortho" style="padding: 10px 22px; border: 1px solid var(--border-color); background: var(--white); color: var(--navy); border-radius: var(--radius-full); font-weight: 700; cursor: pointer; transition: var(--transition);">Orthopedics</button>
+        <button class="filter-pill-btn" data-blog-filter="gastro" style="padding: 10px 22px; border: 1px solid var(--border-color); background: var(--white); color: var(--navy); border-radius: var(--radius-full); font-weight: 700; cursor: pointer; transition: var(--transition);">Gastroenterology</button>
+      </div>
+
       <div class="facilities-grid">
-        <article class="facility-card">
+        <article class="facility-card" data-category="ortho" data-aos="fade-up" data-aos-delay="100">
           <div class="facility-img-wrap">
             <img src="images/misso-robot.jpg" alt="MISSO Robotic Knee Surgery Guide" />
           </div>
@@ -139,7 +147,7 @@
           </div>
         </article>
 
-        <article class="facility-card">
+        <article class="facility-card" data-category="cardio" data-aos="fade-up" data-aos-delay="200">
           <div class="facility-img-wrap">
             <img src="images/cath-lab.png" alt="Emergency Cardiac Angioplasty" />
           </div>
@@ -153,7 +161,7 @@
           </div>
         </article>
 
-        <article class="facility-card">
+        <article class="facility-card" data-category="gastro" data-aos="fade-up" data-aos-delay="300">
           <div class="facility-img-wrap">
             <img src="images/Endocolonobroncho.png" alt="Advanced Endoscopy Guide" />
           </div>

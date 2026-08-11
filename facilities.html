@@ -122,10 +122,18 @@
   </section>
 
   <!-- FACILITIES SHOWCASE -->
-  <section class="section section-white">
+  <section class="section section-white" data-aos="fade-up">
     <div class="container">
+      <!-- CATEGORY FILTER BAR -->
+      <div class="facility-filter-bar" style="margin-bottom: 40px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+        <button class="filter-pill-btn active" data-facility-filter="all" style="padding: 10px 22px; border: 1px solid var(--border-color); background: var(--white); color: var(--navy); border-radius: var(--radius-full); font-weight: 700; cursor: pointer; transition: var(--transition);">All Facilities</button>
+        <button class="filter-pill-btn" data-facility-filter="icu" style="padding: 10px 22px; border: 1px solid var(--border-color); background: var(--white); color: var(--navy); border-radius: var(--radius-full); font-weight: 700; cursor: pointer; transition: var(--transition);">Intensive Care (ICU)</button>
+        <button class="filter-pill-btn" data-facility-filter="ot" style="padding: 10px 22px; border: 1px solid var(--border-color); background: var(--white); color: var(--navy); border-radius: var(--radius-full); font-weight: 700; cursor: pointer; transition: var(--transition);">Modular OTs</button>
+        <button class="filter-pill-btn" data-facility-filter="diagnostics" style="padding: 10px 22px; border: 1px solid var(--border-color); background: var(--white); color: var(--navy); border-radius: var(--radius-full); font-weight: 700; cursor: pointer; transition: var(--transition);">Diagnostics & Radiology</button>
+      </div>
+
       <div class="facilities-grid">
-        <div class="facility-card">
+        <div class="facility-card" data-category="icu" data-aos="fade-up" data-aos-delay="100">
           <div class="facility-img-wrap">
             <img src="images/icu.png" alt="100-Bed Intensive Care Unit" />
           </div>
@@ -135,7 +143,7 @@
           </div>
         </div>
 
-        <div class="facility-card">
+        <div class="facility-card" data-category="diagnostics" data-aos="fade-up" data-aos-delay="200">
           <div class="facility-img-wrap">
             <img src="images/cath-lab.png" alt="Flat-Panel Digital Cath Lab" />
           </div>
@@ -145,7 +153,7 @@
           </div>
         </div>
 
-        <div class="facility-card">
+        <div class="facility-card" data-category="ot" data-aos="fade-up" data-aos-delay="300">
           <div class="facility-img-wrap">
             <img src="images/operation-theatre.png" alt="8 Modular Operation Theatres" />
           </div>
@@ -155,7 +163,7 @@
           </div>
         </div>
 
-        <div class="facility-card">
+        <div class="facility-card" data-category="diagnostics" data-aos="fade-up" data-aos-delay="400">
           <div class="facility-img-wrap">
             <img src="images/CTscan.png" alt="3T MRI & 128-Slice CT Scan" />
           </div>
@@ -165,7 +173,7 @@
           </div>
         </div>
 
-        <div class="facility-card">
+        <div class="facility-card" data-category="diagnostics" data-aos="fade-up" data-aos-delay="500">
           <div class="facility-img-wrap">
             <img src="images/Endocolonobroncho.png" alt="Advanced Endoscopy & GI Suite" />
           </div>
@@ -175,7 +183,7 @@
           </div>
         </div>
 
-        <div class="facility-card">
+        <div class="facility-card" data-category="icu" data-aos="fade-up" data-aos-delay="600">
           <div class="facility-img-wrap">
             <img src="images/Hospital.Building.jpg" alt="24/7 Pharmacy & Emergency Care" />
           </div>

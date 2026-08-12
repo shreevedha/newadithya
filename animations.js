@@ -840,8 +840,12 @@
       setTimeout(() => {
         const cRect = container.getBoundingClientRect();
         const pts = Array.from(steps).map(s => {
-          const r = s.getBoundingClientRect();
-          return { x: r.left + r.width/2 - cRect.left, y: r.top + r.height/2 - cRect.top };
+          const iconEl = s.querySelector('.journey-step-icon') || s;
+          const rIcon = iconEl.getBoundingClientRect();
+          return {
+            x: rIcon.left + rIcon.width / 2 - cRect.left,
+            y: rIcon.top + rIcon.height / 2 - cRect.top
+          };
         });
 
         // Smooth bezier path

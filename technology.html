@@ -197,6 +197,34 @@
     </div>
   </section>
 
+  <!-- APPOINTMENT MODAL -->
+  <div class="modal-overlay" id="appointment-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title-heading">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="modal-title-heading">Book Doctor Appointment</h3>
+        <button class="modal-close" id="modal-close-btn" aria-label="Close appointment form">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="appointment-form">
+          <div class="form-group"><label for="modal-patient-name">Full Patient Name *</label><input type="text" id="modal-patient-name" class="form-control" placeholder="e.g. Ramesh Kumar" required /></div>
+          <div class="form-row">
+            <div class="form-group"><label for="modal-patient-phone">Phone Number *</label><input type="tel" id="modal-patient-phone" class="form-control" placeholder="10-digit mobile number" required /></div>
+            <div class="form-group"><label for="modal-patient-email">Email Address</label><input type="email" id="modal-patient-email" class="form-control" placeholder="name@example.com" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="modal-department-select">Medical Specialty</label><select id="modal-department-select" class="form-control"><option value="">General Consultation</option><option>Cardiology</option><option>Orthopedics</option><option>Neurology</option><option>Gastroenterology</option><option>Urology</option><option>Pulmonology</option></select></div>
+            <div class="form-group"><label for="modal-doctor-select">Preferred Doctor</label><select id="modal-doctor-select" class="form-control"><option value="">Any Available Specialist</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="modal-preferred-date">Preferred Date</label><input type="date" id="modal-preferred-date" class="form-control" /></div>
+            <div class="form-group"><label for="modal-time-slot">Preferred Time Slot</label><select id="modal-time-slot" class="form-control"><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Confirm Appointment Booking</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
@@ -337,6 +365,8 @@
 
   <!-- Main Application Script -->
   <script src="script.js?v=16"></script>
+  <!-- FIXED OVERALL BACKGROUND SMALL HOSPITAL LOGO WATERMARK -->
+  <img src="images/Aditya_Medicare_Hospital_Logo.png" alt="Aditya Medicare Logo Watermark" class="fixed-bg-hospital-logo" />
 </body>
 
 </html>

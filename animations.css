@@ -1,0 +1,583 @@
+/*
+ * Aditya Medicare Hospital — Cinematic Animation Stylesheet v3.0
+ * Premium CSS animations, glassmorphism, micro-interactions, responsive
+ * Pairs with animations.js cinematic engine
+ */
+
+:root {
+  /* Timing */
+  --dur-fast: 0.2s;
+  --dur-normal: 0.35s;
+  --dur-slow: 0.6s;
+  --dur-slower: 1s;
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Accents */
+  --accent-cyan: #00F0FF;
+  --accent-cyan-dim: rgba(0, 240, 255, 0.12);
+  --accent-red: #dc2626;
+  --accent-green: #22c55e;
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   HERO ANIMATIONS
+   ========================================================================== */
+.hero-section {
+  will-change: transform;
+}
+
+.hero-badge {
+  will-change: transform, opacity;
+}
+
+.hero-title .k-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Animated gradient mesh overlay for hero */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(0, 240, 255, 0.04), transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(0, 136, 204, 0.03), transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+  animation: heroMeshShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroMeshShift {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; background-position: 30% 60%, 70% 40%; }
+}
+
+/* Emergency badge pulse */
+.pulse-dot {
+  animation: emergPulse 1.5s ease-in-out infinite !important;
+}
+
+@keyframes emergPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+}
+
+/* ==========================================================================
+   SCROLL REVEAL UTILITIES
+   ========================================================================== */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform var(--dur-slower) var(--ease-expo), opacity var(--dur-slower) ease;
+}
+.anim-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: transform var(--dur-slower) var(--ease-expo), opacity var(--dur-slower) ease;
+}
+.anim-fade-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-scale-in {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: transform var(--dur-slow) var(--ease-spring), opacity var(--dur-slow) ease;
+}
+.anim-scale-in.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ==========================================================================
+   CARD EFFECTS — 3D Tilt + Cursor Lighting + Edge Glow
+   ========================================================================== */
+.doctor-card,
+.facility-card,
+.tech-card,
+.specialty-card,
+.stat-card,
+.clinical-dept-item {
+  transition: transform var(--dur-normal) var(--ease-expo),
+              box-shadow var(--dur-normal) ease !important;
+  will-change: transform;
+}
+
+/* Card border flow animation on hover */
+.doctor-card:hover,
+.facility-card:hover,
+.tech-card:hover {
+  outline: 1px solid rgba(0, 240, 255, 0.08);
+}
+
+/* Stat cards glass effect */
+.stat-card {
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.stat-card:hover {
+  box-shadow: 0 12px 35px rgba(0, 136, 204, 0.12) !important;
+}
+
+/* Doctor card image hover */
+.doctor-card .doctor-photo-wrap {
+  overflow: hidden;
+}
+
+.doctor-card .doctor-photo-wrap img {
+  transition: transform 0.5s var(--ease-expo), filter 0.45s ease !important;
+}
+
+.doctor-card:hover .doctor-photo-wrap img {
+  transform: scale(1.06);
+}
+
+/* ==========================================================================
+   BUTTON EFFECTS — Magnetic + Shine + Glow + Ripple
+   ========================================================================== */
+.btn {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+  transition: all var(--dur-normal) var(--ease-smooth) !important;
+}
+
+/* Shine sweep */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -110%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  transform: skewX(-25deg);
+  z-index: 1;
+  transition: none;
+  pointer-events: none;
+}
+
+.btn:hover::before {
+  left: 160%;
+  transition: left 0.65s ease;
+}
+
+/* Primary button glow */
+.btn-primary:hover {
+  box-shadow: 0 8px 25px rgba(0, 136, 204, 0.3) !important;
+}
+
+/* Danger button glow */
+.btn-danger:hover {
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3) !important;
+}
+
+/* ==========================================================================
+   NAVIGATION — Glass Morphism Transition
+   ========================================================================== */
+.navbar {
+  transition: background 0.45s ease,
+              backdrop-filter 0.45s ease,
+              box-shadow 0.45s ease !important;
+}
+
+/* Nav link animated underline */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--blue, #0088cc);
+  border-radius: 2px;
+  transition: width 0.35s var(--ease-expo);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Mobile menu slide */
+.mobile-nav-drawer {
+  transition: transform 0.4s var(--ease-expo) !important;
+}
+
+/* ==========================================================================
+   3D SCENE CONTAINERS
+   ========================================================================== */
+.anim-3d-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Hotspot markers */
+.anim-3d-hotspot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.anim-3d-hotspot::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--accent-cyan);
+  border-radius: 50%;
+  animation: hotspotRing 2s ease-in-out infinite;
+}
+
+@keyframes hotspotRing {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.5); opacity: 0; }
+}
+
+/* 3D tooltip */
+.anim-3d-tooltip {
+  position: absolute;
+  background: rgba(3, 13, 26, 0.92);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+  z-index: 4;
+  white-space: nowrap;
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.anim-3d-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   PATIENT JOURNEY TIMELINE
+   ========================================================================== */
+.journey-step-item {
+  position: relative;
+  transition: transform 0.4s var(--ease-expo) !important;
+}
+
+.journey-step-item.jm-active {
+  transform: scale(1.03);
+}
+
+.journey-step-item.jm-active::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 2px solid rgba(0, 240, 255, 0.25);
+  border-radius: 16px;
+  animation: jmStepPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes jmStepPulse {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.04); }
+}
+
+/* ==========================================================================
+   CHATBOT ANIMATIONS
+   ========================================================================== */
+.chatbot-widget-container button {
+  will-change: transform;
+}
+
+.chatbot-panel {
+  transition: transform 0.35s var(--ease-spring), opacity 0.3s ease !important;
+}
+
+/* Typing indicator */
+.chat-typing-indicator {
+  display: inline-flex;
+  gap: 4px;
+  padding: 8px 14px;
+}
+
+.chat-typing-indicator span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue, #0088cc);
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+
+.chat-typing-indicator span:nth-child(2) { animation-delay: 0.15s; }
+.chat-typing-indicator span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+/* ==========================================================================
+   EMERGENCY CAPACITY MONITOR
+   ========================================================================== */
+.capacity-unit-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.capacity-unit-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s var(--ease-expo);
+}
+
+.capacity-chart-container {
+  transition: opacity 0.4s ease;
+}
+
+.capacity-chart-container svg text {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ==========================================================================
+   TESTIMONIALS — Depth Stack
+   ========================================================================== */
+.testimonial-card {
+  transition: transform 0.4s var(--ease-expo), box-shadow 0.4s ease !important;
+}
+
+.testimonial-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================================
+   AWARDS — Metallic Shine
+   ========================================================================== */
+.award-card, .accreditation-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.award-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.06), transparent);
+  transform: skewX(-25deg);
+  transition: none;
+}
+
+.award-card:hover::before {
+  left: 200%;
+  transition: left 0.8s ease;
+}
+
+/* ==========================================================================
+   FORM ANIMATIONS — Glassmorphism + Focus Glow
+   ========================================================================== */
+.appointment-form input,
+.appointment-form select,
+.appointment-form textarea,
+#chatbot-input {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.appointment-form input:focus,
+.appointment-form select:focus,
+.appointment-form textarea:focus,
+#chatbot-input:focus {
+  border-color: var(--accent-cyan) !important;
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1), 0 0 15px rgba(0, 240, 255, 0.05) !important;
+}
+
+/* ==========================================================================
+   IMAGES — Reveal + Zoom + Parallax
+   ========================================================================== */
+.facility-card img,
+.tech-showcase-container img {
+  transition: transform 0.8s var(--ease-expo) !important;
+  will-change: transform;
+}
+
+.facility-card:hover img {
+  transform: scale(1.06);
+}
+
+/* ==========================================================================
+   BACKGROUND EFFECTS
+   ========================================================================== */
+/* Noise overlay */
+.noise-bg-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+}
+
+/* ==========================================================================
+   ECG ANIMATION (Emergency Section)
+   ========================================================================== */
+@keyframes ecgDash {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes driveAmbulance {
+  0% { left: -80px; }
+  100% { left: calc(100% + 80px); }
+}
+
+/* ==========================================================================
+   ACCREDITATION BADGES SCROLL
+   ========================================================================== */
+.accreditation-track {
+  animation: scrollTrack 30s linear infinite;
+}
+
+@keyframes scrollTrack {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   RESPONSIVE — Reduce Animations on Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Reduce all animation durations */
+  :root {
+    --dur-slow: 0.4s;
+    --dur-slower: 0.6s;
+  }
+
+  /* Disable parallax and 3D effects */
+  .hero-section::after {
+    display: none;
+  }
+
+  .card-light-overlay {
+    display: none !important;
+  }
+
+  /* Simplify card hovers */
+  .doctor-card:hover,
+  .facility-card:hover,
+  .tech-card:hover {
+    outline: none;
+  }
+
+  .journey-step-item.jm-active {
+    transform: scale(1.01);
+  }
+
+  .anim-3d-tooltip {
+    display: none;
+  }
+
+  /* Reduce particle effects */
+  .med-sym {
+    display: none;
+  }
+
+  .med-sym:nth-child(-n+5) {
+    display: block;
+  }
+
+  /* Noise overlay off on mobile */
+  .noise-bg-canvas {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further reduce on smallest screens */
+  .hero-floating-gif-left,
+  .hero-floating-gif-right {
+    opacity: 0.6;
+  }
+
+  .journey-step-item.jm-active::after {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   MEDICAL GIF HOVER ZOOM-IN & ZOOM-OUT SYSTEM
+   ========================================================================== */
+.clinical-dept-gif-wrap,
+.specialty-icon-gif,
+.clinical-dept-center-circle {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, border-color 0.45s ease !important;
+}
+
+.clinical-dept-gif-wrap img,
+.specialty-icon-gif img,
+.clinical-dept-center-circle img {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform-origin: center center;
+}
+
+/* Hover Zoom-In to Big Size */
+.clinical-dept-item:hover .clinical-dept-gif-wrap,
+.specialty-card:hover .specialty-icon-gif {
+  transform: scale(1.22) translateY(-6px) !important;
+  box-shadow: 0 15px 35px rgba(0, 240, 255, 0.45), 0 0 25px rgba(0, 240, 255, 0.6) !important;
+  border-color: #00F0FF !important;
+  z-index: 10;
+}
+
+.clinical-dept-item:hover .clinical-dept-gif-wrap img,
+.specialty-card:hover .specialty-icon-gif img {
+  transform: scale(1.4) !important;
+}
+
+/* Center Circle Hover Zoom-In */
+.clinical-dept-center-circle:hover {
+  transform: scale(1.18) !important;
+  box-shadow: 0 0 50px rgba(0, 240, 255, 0.7), inset 0 0 20px rgba(0, 240, 255, 0.3) !important;
+}
+
+.clinical-dept-center-circle:hover img {
+  transform: scale(1.45) !important;
+}
+

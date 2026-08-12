@@ -23,6 +23,7 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css?v=3000" />
+  <link rel="stylesheet" href="animations.css?v=2" />
   <!-- Breadcrumb JSON-LD -->
   <script type="application/ld+json">
   {
@@ -133,44 +134,98 @@
       </div>
 
       <div class="facilities-grid">
+        <!-- ARTICLE 1 -->
         <article class="facility-card" data-category="ortho" data-aos="fade-up" data-aos-delay="100">
           <div class="facility-img-wrap">
-            <img src="images/misso-robot.jpg" alt="MISSO Robotic Knee Surgery Guide" />
+            <img src="images/MISSO_Robotic_Knee_Surgery.jpg" alt="MISSO 3D Robotic Knee Replacement Guide" />
           </div>
           <div class="facility-body">
             <span style="font-size: 0.8rem; font-weight: 700; color: var(--blue); text-transform: uppercase;">Orthopedics • Robotic Surgery</span>
-            <h3 class="facility-title" style="margin-top: 6px;">Understanding MISSO Robotic Joint Replacement</h3>
-            <p class="facility-desc">Discover how 3D anatomical pre-planning and robotic precision lead to minimal bone resection, less pain, and rapid recovery.</p>
-            <div style="margin-top: 16px;">
-              <button class="btn btn-secondary" data-open-modal="true" data-department="Orthopedics">Consult Robotic Surgeon</button>
+            <h3 class="facility-title" style="margin-top: 6px;">Understanding MISSO 3D Robotic Joint Replacement</h3>
+            <p class="facility-desc">By <strong>Dr. Krishna Sravanth Pakanati</strong> (Chief Consultant Orthopedic Surgeon). Discover how 3D anatomical pre-planning and sub-millimeter robotic precision lead to minimal bone resection, less pain, and rapid 24-hour walking recovery.</p>
+            <div style="font-size: 0.75rem; color: #64748b; margin-top: 8px;">📚 <em>Source: Journal of Arthroplasty & Robotic Surgery Guidelines 2026</em></div>
+            <div style="margin-top: 14px;">
+              <button class="btn btn-secondary" data-open-modal="true" data-doctor="Dr. Krishna Sravanth Pakanati" data-department="Orthopedics">Consult Robotic Surgeon</button>
             </div>
           </div>
         </article>
 
+        <!-- ARTICLE 2 -->
         <article class="facility-card" data-category="cardio" data-aos="fade-up" data-aos-delay="200">
           <div class="facility-img-wrap">
-            <img src="images/cath-lab.png" alt="Emergency Cardiac Angioplasty" />
+            <img src="images/Flat_Panel_Cath_Lab.png" alt="Emergency Cardiac Angioplasty Guide" />
           </div>
           <div class="facility-body">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--blue); text-transform: uppercase;">Cardiology • Golden Hour Care</span>
-            <h3 class="facility-title" style="margin-top: 6px;">Recognizing Heart Attack Symptoms Early</h3>
-            <p class="facility-desc">Why immediate transfer to a 24/7 Flat-Panel Cath Lab facility within the golden hour saves heart muscle and lives.</p>
-            <div style="margin-top: 16px;">
-              <button class="btn btn-secondary" data-open-modal="true" data-department="Cardiology">Book Cardiac Checkup</button>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--blue); text-transform: uppercase;">Cardiology • Golden Hour Emergency</span>
+            <h3 class="facility-title" style="margin-top: 6px;">Primary Angioplasty: The Golden Hour in Acute Heart Attacks</h3>
+            <p class="facility-desc">By <strong>Dr. Viswa Jyothi Yakkala</strong> & <strong>Dr. Guttikonda Bhanu Vijay</strong>. Why immediate transfer to a 24/7 Flat-Panel Cath Lab within 60 minutes saves heart muscle tissue and reduces mortality.</p>
+            <div style="font-size: 0.75rem; color: #64748b; margin-top: 8px;">📚 <em>Source: Indian Heart Association & Cardiology Emergency Protocol</em></div>
+            <div style="margin-top: 14px;">
+              <button class="btn btn-secondary" data-open-modal="true" data-doctor="Dr. Guttikonda Bhanu Vijay" data-department="Cardiology">Book Cardiac Checkup</button>
             </div>
           </div>
         </article>
 
-        <article class="facility-card" data-category="gastro" data-aos="fade-up" data-aos-delay="300">
+        <!-- ARTICLE 3 -->
+        <article class="facility-card" data-category="neuro" data-aos="fade-up" data-aos-delay="300">
           <div class="facility-img-wrap">
-            <img src="images/Endocolonobroncho.png" alt="Advanced Endoscopy Guide" />
+            <img src="images/128_Slice_CT_Scan.png" alt="Stroke Thrombolysis & 3T MRI Imaging" />
           </div>
           <div class="facility-body">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--blue); text-transform: uppercase;">Gastroenterology • Diagnostics</span>
-            <h3 class="facility-title" style="margin-top: 6px;">When Should You Get an Endoscopy?</h3>
-            <p class="facility-desc">Learn about upper GI endoscopy, colonoscopy, and HD video diagnostics for persistent acidity, ulcers, and digestive issues.</p>
-            <div style="margin-top: 16px;">
-              <button class="btn btn-secondary" data-open-modal="true" data-department="Gastroenterology">Consult Gastro Specialist</button>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--blue); text-transform: uppercase;">Neurology • Stroke Unit</span>
+            <h3 class="facility-title" style="margin-top: 6px;">Acute Stroke Management & 3T Neuro MRI Mapping</h3>
+            <p class="facility-desc">By <strong>Dr. Viswa Jyothi Yakkala</strong> (Stroke Specialist). Identifying FAST stroke symptoms (Face, Arm, Speech, Time) and immediate tissue-plasminogen activator (tPA) thrombolysis care.</p>
+            <div style="font-size: 0.75rem; color: #64748b; margin-top: 8px;">📚 <em>Source: World Stroke Organization & Neuro-ICU Guidelines</em></div>
+            <div style="margin-top: 14px;">
+              <button class="btn btn-secondary" data-open-modal="true" data-doctor="Dr. Viswa Jyothi Yakkala" data-department="Neurology">Consult Stroke Specialist</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ARTICLE 4 -->
+        <article class="facility-card" data-category="gastro" data-aos="fade-up" data-aos-delay="400">
+          <div class="facility-img-wrap">
+            <img src="images/Endoscopy_Colonoscopy_Suite.png" alt="Advanced Endoscopy GI Suite" />
+          </div>
+          <div class="facility-body">
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--blue); text-transform: uppercase;">Gastroenterology • HD Endoscopy</span>
+            <h3 class="facility-title" style="margin-top: 6px;">Early GI Cancer Detection via Narrow-Band Endoscopy</h3>
+            <p class="facility-desc">By <strong>Dr. Sai Krishna Katakam</strong> (Surgical Gastroenterologist). Diagnostic upper GI endoscopy, colonoscopy, and ERCP techniques for ulcers, acidity, and early tumor resection.</p>
+            <div style="font-size: 0.75rem; color: #64748b; margin-top: 8px;">📚 <em>Source: Society of Gastrointestinal Endoscopy of India</em></div>
+            <div style="margin-top: 14px;">
+              <button class="btn btn-secondary" data-open-modal="true" data-doctor="Dr. Sai Krishna Katakam" data-department="Gastroenterology">Consult Gastro Specialist</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ARTICLE 5 -->
+        <article class="facility-card" data-category="pediatrics" data-aos="fade-up" data-aos-delay="500">
+          <div class="facility-img-wrap">
+            <img src="images/100_Bed_Intensive_Care_Unit_ICU.png" alt="Level-III Neonatal NICU Care" />
+          </div>
+          <div class="facility-body">
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--blue); text-transform: uppercase;">Pediatrics • Level-III NICU</span>
+            <h3 class="facility-title" style="margin-top: 6px;">Care for Premature Newborns in Level-III NICU</h3>
+            <p class="facility-desc">By <strong>Dr. Farha Naaz Khatoon</strong> (Consultant Neonatologist). Specialized incubator care, surfactant therapy, phototherapy, and 24/7 pediatric emergency support.</p>
+            <div style="font-size: 0.75rem; color: #64748b; margin-top: 8px;">📚 <em>Source: Indian Academy of Pediatrics (IAP) Guidelines</em></div>
+            <div style="margin-top: 14px;">
+              <button class="btn btn-secondary" data-open-modal="true" data-doctor="Dr. Farha Naaz Khatoon" data-department="Pediatrics">Consult Neonatologist</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ARTICLE 6 -->
+        <article class="facility-card" data-category="urology" data-aos="fade-up" data-aos-delay="600">
+          <div class="facility-img-wrap">
+            <img src="images/Expert_Doctor_Medical_Seminar.jpg" alt="Laser Kidney Stone Dusting RIRS" />
+          </div>
+          <div class="facility-body">
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--blue); text-transform: uppercase;">Urology • Holmium Laser</span>
+            <h3 class="facility-title" style="margin-top: 6px;">Painless Laser Kidney Stone Removal (RIRS Procedure)</h3>
+            <p class="facility-desc">By <strong>Dr. Raghu Sarath Punukollu</strong> (Consultant Urologist). Retrograde Intrarenal Surgery (RIRS) using flexible ureteroscopy and Holmium laser for zero-incision kidney stone dusting.</p>
+            <div style="font-size: 0.75rem; color: #64748b; margin-top: 8px;">📚 <em>Source: Urological Society of India & Endourology Forum</em></div>
+            <div style="margin-top: 14px;">
+              <button class="btn btn-secondary" data-open-modal="true" data-doctor="Dr. Raghu Sarath Punukollu" data-department="Urology">Consult Urologist</button>
             </div>
           </div>
         </article>
@@ -346,6 +401,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
   <script src="script.js?v=17"></script>
+  <script src="animations.js?v=2"></script>
+  <!-- FIXED OVERALL BACKGROUND SMALL HOSPITAL LOGO WATERMARK -->
+  <img src="images/Aditya_Medicare_Hospital_Logo.png" alt="Aditya Medicare Logo Watermark" class="fixed-bg-hospital-logo" />
 </body>
 
 </html>

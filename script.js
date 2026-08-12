@@ -373,15 +373,24 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollProgressBar();
   initStepByStepModal();
   initFacilityTourGSAP();
-  initThreeJSMedicalVisualizationCanvas();
+  // The hero owns one Three.js renderer. A second renderer here used to stack
+  // an empty canvas over the first one and produced the blank animation state.
   initUniversalGSAPAnimations();
   initOrganNavigator();
   initGSAPHeroParallax();
-  initAnimatedStatCounters();
+  // initStatCounters owns the counters. Keeping a second GSAP counter here
+  // caused the visible values to be reset to 0 while the page was loading.
   initOrganicGlassHover();
   initNeuralNetworkBackground();
   initPageTransitionLoader();
-  initLanguageSwitcher();
+  initHumanAnatomyExplorer();
+  initDailyHealthTips();
+  initPatientTestimonialsCarousel();
+  initHighContrastToggle();
+  initVoiceSearch();
+  initHospitalFloorMap();
+  initCinematicVisualEffects();
+  initHeroEcgWave();
 });
 
 /* --------------------------------------------------------------------------
@@ -410,6 +419,12 @@ function initMobileMenu() {
 
   if (!toggleBtn || !drawer || !overlay) return;
 
+  if (window.innerWidth >= 768) {
+    drawer.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
   function openMenu() {
     drawer.classList.add('active');
     overlay.classList.add('active');
@@ -428,6 +443,12 @@ function initMobileMenu() {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer.classList.contains('active')) {
+      closeMenu();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && drawer.classList.contains('active')) {
       closeMenu();
     }
   });
@@ -534,7 +555,8 @@ function initAppointmentModal() {
 
       showToast(`Thank you, ${name}! Your appointment request has been received. Our team will contact you shortly.`);
       form.reset();
-      window.closeAppointmentModal();
+      // Don't close modal immediately — let animations.js success animation play
+      // window.closeAppointmentModal() is called by the animation engine after the checkmark sequence
     });
   }
 }
@@ -585,7 +607,15 @@ function initDoctorFilters() {
   }
 
   if (searchInput) {
-    searchInput.addEventListener('input', filterDoctors);
+    searchInput.addEventListener('input', () => {
+      filterDoctors();
+    });
+  }
+
+  // Preserve pre-rendered doctor HTML on initial load if pre-rendered cards exist
+  const hasPreRenderedCards = doctorGrid.querySelectorAll('.doctor-card').length > 0;
+  if (!hasPreRenderedCards) {
+    filterDoctors();
   }
 
   function renderDoctors(list) {
@@ -1299,76 +1329,72 @@ function init3DParticleCanvas() {
 }
 
 /* --------------------------------------------------------------------------
-   17. THREE.JS REAL WEBGL 3D MEDICAL MOLECULE SCENE
+   17. THREE.JS SUBTLE LOW-BRIGHTNESS 3D ANATOMICAL HEART BACKGROUND SCENE
    -------------------------------------------------------------------------- */
 function initThreeJSMedicalScene() {
   if (typeof THREE === 'undefined') return;
 
-  const heroVisual = document.querySelector('.hero-visual-wrap');
-  if (!heroVisual) return;
+  const container = document.getElementById('hero-3d-scene-container');
+  if (!container) return;
 
-  // Create canvas container
-  const canvasContainer = document.createElement('div');
-  canvasContainer.id = 'three-webgl-container';
-  canvasContainer.style.position = 'absolute';
-  canvasContainer.style.inset = '0';
-  canvasContainer.style.pointerEvents = 'none';
-  canvasContainer.style.zIndex = '5';
-  heroVisual.style.position = 'relative';
-  heroVisual.appendChild(canvasContainer);
-
-  const width = heroVisual.offsetWidth || 500;
-  const height = heroVisual.offsetHeight || 500;
+  const width = container.offsetWidth || window.innerWidth;
+  const height = container.offsetHeight || 600;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-  camera.position.z = 15;
+  camera.position.z = 18;
 
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(width, height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  canvasContainer.appendChild(renderer.domElement);
+  container.appendChild(renderer.domElement);
 
-  // 3D Icosahedron Medical Nucleus
-  const geometry = new THREE.IcosahedronGeometry(4, 2);
-  const material = new THREE.MeshBasicMaterial({
+  // Subtle 3D Heart Group (Low Brightness / Transparent Wireframe)
+  const heartGroup = new THREE.Group();
+
+  // Torus Knot Anatomical Ventricles
+  const heartGeo = new THREE.TorusKnotGeometry(3, 0.8, 64, 16);
+  const heartMat = new THREE.MeshBasicMaterial({
     color: 0x00F0FF,
     wireframe: true,
     transparent: true,
-    opacity: 0.35
+    opacity: 0.12
   });
-  const mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
+  const heartMesh = new THREE.Mesh(heartGeo, heartMat);
+  heartGroup.add(heartMesh);
 
-  // Inner glowing core
-  const coreGeo = new THREE.IcosahedronGeometry(2, 1);
-  const coreMat = new THREE.MeshBasicMaterial({
-    color: 0x087EA4,
-    wireframe: true,
-    transparent: true,
-    opacity: 0.6
-  });
-  const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-  scene.add(coreMesh);
+  // Subtle Orbit Ring 1
+  const ring1Geo = new THREE.TorusGeometry(5.2, 0.04, 16, 100);
+  const ringMat = new THREE.MeshBasicMaterial({ color: 0x00F0FF, transparent: true, opacity: 0.1 });
+  const ring1 = new THREE.Mesh(ring1Geo, ringMat);
+  ring1.rotation.x = Math.PI / 3;
+  heartGroup.add(ring1);
 
-  // Mouse interaction
-  let targetX = 0, targetY = 0;
+  // Subtle Orbit Ring 2
+  const ring2 = new THREE.Mesh(ring1Geo, ringMat);
+  ring2.rotation.y = Math.PI / 4;
+  heartGroup.add(ring2);
+
+  scene.add(heartGroup);
+
+  let mouseX = 0, mouseY = 0;
   window.addEventListener('mousemove', (e) => {
-    targetX = (e.clientX / window.innerWidth - 0.5) * 0.5;
-    targetY = (e.clientY / window.innerHeight - 0.5) * 0.5;
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 0.3;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 0.3;
   });
 
   function animate() {
     requestAnimationFrame(animate);
 
-    mesh.rotation.x += 0.003;
-    mesh.rotation.y += 0.005;
+    heartGroup.rotation.y += 0.005;
+    heartGroup.rotation.x += 0.002;
 
-    coreMesh.rotation.x -= 0.004;
-    coreMesh.rotation.y -= 0.006;
+    // Subtle Heartbeat pulse
+    const pulse = 1 + Math.sin(Date.now() * 0.004) * 0.04;
+    heartMesh.scale.set(pulse, pulse, pulse);
 
-    camera.position.x += (targetX * 5 - camera.position.x) * 0.05;
-    camera.position.y += (-targetY * 5 - camera.position.y) * 0.05;
+    camera.position.x += (mouseX * 4 - camera.position.x) * 0.05;
+    camera.position.y += (-mouseY * 4 - camera.position.y) * 0.05;
     camera.lookAt(scene.position);
 
     renderer.render(scene, camera);
@@ -1376,8 +1402,8 @@ function initThreeJSMedicalScene() {
   animate();
 
   window.addEventListener('resize', () => {
-    const newW = heroVisual.offsetWidth;
-    const newH = heroVisual.offsetHeight;
+    const newW = container.offsetWidth || window.innerWidth;
+    const newH = container.offsetHeight || 600;
     camera.aspect = newW / newH;
     camera.updateProjectionMatrix();
     renderer.setSize(newW, newH);
@@ -1393,36 +1419,25 @@ function initGSAPScrollAnimations() {
   gsap.registerPlugin(ScrollTrigger);
 
   // Hero entrance animation timeline
-  const heroTL = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1 } });
-  heroTL.from('.hero-badge', { y: -20, opacity: 0, delay: 0.2 })
-        .from('.hero h1', { y: 30, opacity: 0 }, '-=0.6')
-        .from('.hero-subtitle', { y: 20, opacity: 0 }, '-=0.6')
-        .from('.hero-actions .btn', { y: 20, opacity: 0, stagger: 0.15 }, '-=0.5')
-        .from('.hero-stats-wrapper .stat-item', { y: 20, opacity: 0, stagger: 0.1 }, '-=0.4');
-
-  // Parallax scroll on Hero Building visual
-  const heroImg = document.querySelector('.hero-img-overlay, .hero-img');
-  if (heroImg) {
-    gsap.to(heroImg, {
-      yPercent: 12,
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
+  if (document.querySelector('.hero-badge')) {
+    const heroTL = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1 } });
+    if (document.querySelector('.hero-badge')) heroTL.from('.hero-badge', { y: -20, opacity: 0, delay: 0.2 });
+    if (document.querySelector('.hero-title')) heroTL.from('.hero-title', { y: 30, opacity: 0 }, '-=0.6');
+    if (document.querySelector('.hero-subtitle')) heroTL.from('.hero-subtitle', { y: 20, opacity: 0 }, '-=0.6');
+    if (document.querySelector('.hero-actions .btn')) heroTL.from('.hero-actions .btn', { y: 20, opacity: 0, stagger: 0.15 }, '-=0.5');
   }
 
   // Continuous floating levitation on floating glass cards
-  gsap.to('.floating-card', {
-    y: '-=12',
-    duration: 2.5,
-    repeat: -1,
-    yoyo: true,
-    ease: 'sine.inOut',
-    stagger: 0.4
-  });
+  if (document.querySelector('.floating-card')) {
+    gsap.to('.floating-card', {
+      y: '-=12',
+      duration: 2.5,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      stagger: 0.4
+    });
+  }
 
   // Stagger reveal on Specialty Cards
   const specCards = document.querySelectorAll('.specialty-card');
@@ -1663,15 +1678,9 @@ function initThreeJSMedicalVisualizationCanvas() {
 function initUniversalGSAPAnimations() {
   if (typeof gsap === 'undefined') return;
 
-  // Animate Navigation Bar and Dropdown Menu Links
-  gsap.from('.navbar .nav-links > li', {
-    y: -15,
-    opacity: 0,
-    stagger: 0.08,
-    duration: 0.8,
-    ease: 'power2.out',
-    delay: 0.3
-  });
+  // Keep the header immediately usable. A staggered opacity intro made the
+  // navigation appear missing during slow loads and screenshots.
+  gsap.set('.navbar .nav-links > li', { clearProps: 'all' });
 
   // Animate Section Headers across all subpages
   const headers = document.querySelectorAll('.section-header, .subpage-hero-banner');
@@ -2016,6 +2025,492 @@ function initLanguageSwitcher() {
   });
 }
 
+/* --------------------------------------------------------------------------
+   32. THREE.JS 3D HUMAN ANATOMY EXPLORER
+   -------------------------------------------------------------------------- */
+function initHumanAnatomyExplorer() {
+  return; // Preserving high-quality animated medical GIF visualizers
+
+  const width = container.offsetWidth || 400;
+  const height = container.offsetHeight || 180;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+  camera.position.z = 12;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  // Simplified 3D Human Torso / Wireframe Organ Mesh
+  const bodyGroup = new THREE.Group();
+
+  // Torso wireframe cylinder
+  const torsoGeo = new THREE.CylinderGeometry(1.8, 1.2, 5, 16, 8, true);
+  const torsoMat = new THREE.MeshBasicMaterial({ color: 0x00F0FF, wireframe: true, transparent: true, opacity: 0.3 });
+  const torsoMesh = new THREE.Mesh(torsoGeo, torsoMat);
+  bodyGroup.add(torsoMesh);
+
+  // 3D Heart Sphere Node
+  const heartGeo = new THREE.SphereGeometry(0.7, 16, 16);
+  const heartMat = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+  const heartNode = new THREE.Mesh(heartGeo, heartMat);
+  heartNode.position.set(-0.3, 1, 0.2);
+  bodyGroup.add(heartNode);
+
+  // 3D Brain Sphere Node
+  const brainGeo = new THREE.SphereGeometry(0.8, 16, 16);
+  const brainMat = new THREE.MeshBasicMaterial({ color: 0xa855f7 });
+  const brainNode = new THREE.Mesh(brainGeo, brainMat);
+  brainNode.position.set(0, 3, 0);
+  bodyGroup.add(brainNode);
+
+  scene.add(bodyGroup);
+
+  let mouseX = 0;
+  window.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+  });
+
+  function animate() {
+    requestAnimationFrame(animate);
+    bodyGroup.rotation.y += 0.01;
+    heartNode.scale.setScalar(1 + Math.sin(Date.now() * 0.005) * 0.15);
+    camera.position.x += (mouseX * 4 - camera.position.x) * 0.05;
+    camera.lookAt(scene.position);
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    const newW = container.offsetWidth || 400;
+    const newH = container.offsetHeight || 180;
+    camera.aspect = newW / newH;
+    camera.updateProjectionMatrix();
+    renderer.setSize(newW, newH);
+  });
+}
+
+/* --------------------------------------------------------------------------
+   33. ROTATING DAILY HEALTH TIPS WITH LOCALSTORAGE MEMORY
+   -------------------------------------------------------------------------- */
+function initDailyHealthTips() {
+  const titleEl = document.getElementById('daily-tip-title');
+  const descEl = document.getElementById('daily-tip-desc');
+  const refreshBtn = document.getElementById('refresh-tip-btn');
+
+  if (!titleEl || !descEl) return;
+
+  const healthTips = [
+    {
+      title: '🫀 Cardiac Health: 30-Minute Daily Walk',
+      desc: 'Brisk walking for 30 minutes a day lowers bad LDL cholesterol, elevates HDL, and decreases systemic blood pressure by up to 10 mmHg.'
+    },
+    {
+      title: '🧠 Brain & Neuro Wellness: Prioritize 7-8 Hours Sleep',
+      desc: 'Quality REM sleep triggers the brain glymphatic system to clear metabolic waste and neurotoxic proteins accumulated during waking hours.'
+    },
+    {
+      title: '🦴 Joint Care: Sub-Millimeter MISSO Robotic Alignment',
+      desc: 'Maintaining proper quadriceps strength reduces mechanical joint stress on knee cartilage, prolonging natural knee articulation.'
+    },
+    {
+      title: '🧬 Digestive Health: High-Fiber & Hydration',
+      desc: 'Consuming 25-30g of dietary fiber daily with adequate hydration reduces gut inflammation and improves metabolic digestive motility.'
+    },
+    {
+      title: '🫁 Pulmonary Wellness: Deep Breathing & Clean Air',
+      desc: 'Practicing 5 minutes of diaphragmatic breathing exercises twice daily increases vital lung capacity and oxygen saturation levels.'
+    }
+  ];
+
+  let viewedIndices = JSON.parse(localStorage.getItem('aditya_viewed_tips') || '[]');
+  let currentIndex = 0;
+
+  function loadTip(index) {
+    const tip = healthTips[index];
+    titleEl.style.opacity = '0';
+    descEl.style.opacity = '0';
+    setTimeout(() => {
+      titleEl.textContent = tip.title;
+      descEl.textContent = tip.desc;
+      titleEl.style.opacity = '1';
+      descEl.style.opacity = '1';
+    }, 200);
+
+    if (!viewedIndices.includes(index)) {
+      viewedIndices.push(index);
+      if (viewedIndices.length >= healthTips.length) viewedIndices = [index];
+      localStorage.setItem('aditya_viewed_tips', JSON.stringify(viewedIndices));
+    }
+  }
+
+  // Load first unseen tip
+  const unseenIndex = healthTips.findIndex((_, idx) => !viewedIndices.includes(idx));
+  currentIndex = unseenIndex !== -1 ? unseenIndex : 0;
+  loadTip(currentIndex);
+
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % healthTips.length;
+      loadTip(currentIndex);
+    });
+  }
+}
+
+/* --------------------------------------------------------------------------
+   34. PATIENT TESTIMONIALS AUTO-SLIDING CAROUSEL
+   -------------------------------------------------------------------------- */
+function initPatientTestimonialsCarousel() {
+  const track = document.querySelector('.reviews-grid');
+  if (!track) return;
+
+  const slides = track.querySelectorAll('.review-card');
+  if (slides.length <= 1) return;
+
+  track.style.display = 'flex';
+  track.style.overflowX = 'hidden';
+  track.style.scrollBehavior = 'smooth';
+
+  let currentSlide = 0;
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    const slideWidth = slides[0].offsetWidth + 30;
+    track.scrollTo({ left: currentSlide * slideWidth, behavior: 'smooth' });
+  }, 5000);
+}
+
+/* --------------------------------------------------------------------------
+   35. WCAG HIGH-CONTRAST ACCESSIBILITY MODE TOGGLE
+   -------------------------------------------------------------------------- */
+function initHighContrastToggle() {
+  const toggleBtn = document.getElementById('high-contrast-toggle');
+  if (!toggleBtn) return;
+
+  const isHighContrast = localStorage.getItem('aditya_high_contrast') === 'true';
+  if (isHighContrast) {
+    document.body.classList.add('high-contrast');
+    toggleBtn.style.background = '#FFFF00';
+    toggleBtn.style.color = '#000000';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const active = document.body.classList.toggle('high-contrast');
+    localStorage.setItem('aditya_high_contrast', active);
+
+    if (active) {
+      toggleBtn.style.background = '#FFFF00';
+      toggleBtn.style.color = '#000000';
+      if (typeof showToast === 'function') showToast('High Contrast Mode Enabled (WCAG Compliant)');
+    } else {
+      toggleBtn.style.background = 'var(--white)';
+      toggleBtn.style.color = 'var(--navy)';
+      if (typeof showToast === 'function') showToast('High Contrast Mode Disabled');
+    }
+  });
+}
+
+/* --------------------------------------------------------------------------
+   36. VOICE RECOGNITION SEARCH ENGINE (SPEECHRECOGNITION API)
+   -------------------------------------------------------------------------- */
+function initVoiceSearch() {
+  const voiceBtn = document.getElementById('voice-search-btn');
+  const searchInput = document.getElementById('doctor-search-input');
+  if (!voiceBtn || !searchInput) return;
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (!SpeechRecognition) {
+    voiceBtn.style.display = 'none';
+    return;
+  }
+
+  const recognition = new SpeechRecognition();
+  recognition.continuous = false;
+  recognition.lang = 'en-US';
+
+  voiceBtn.addEventListener('click', () => {
+    try {
+      recognition.start();
+      voiceBtn.classList.add('listening');
+      if (typeof showToast === 'function') showToast('🎙️ Listening... Speak specialist or department name');
+    } catch (e) {
+      recognition.stop();
+      voiceBtn.classList.remove('listening');
+    }
+  });
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    searchInput.value = transcript;
+    searchInput.dispatchEvent(new Event('input'));
+    voiceBtn.classList.remove('listening');
+    if (typeof showToast === 'function') showToast(`Searching for: "${transcript}"`);
+  };
+
+  recognition.onerror = () => {
+    voiceBtn.classList.remove('listening');
+  };
+
+  recognition.onend = () => {
+    voiceBtn.classList.remove('listening');
+  };
+}
+
+/* --------------------------------------------------------------------------
+   37. INTERACTIVE HOSPITAL FLOOR MAP NAVIGATOR
+   -------------------------------------------------------------------------- */
+function initHospitalFloorMap() {
+  const btns = document.querySelectorAll('.floor-btn');
+  const title = document.getElementById('floor-title');
+  const desc = document.getElementById('floor-desc');
+
+  if (!btns.length || !title || !desc) return;
+
+  const floorData = {
+    '3': {
+      title: '3rd Floor: Executive Patient Suites & Deluxe Wards',
+      desc: 'Features 40 private executive suites, patient recovery lounges, 24/7 room service, physiotherapy rehab gym, and dedicated nursing stations.'
+    },
+    '2': {
+      title: '2nd Floor: 100-Bed Intensive Care Unit (ICU, NICU & PICU)',
+      desc: 'High-dependency critical care wing featuring 100 HEPA-filtered ICU beds, Level-III NICU for neonates, pediatric ICU (PICU), and central telemetry monitoring.'
+    },
+    '1': {
+      title: '1st Floor: 8 Modular OTs & 24/7 Cath Lab',
+      desc: 'Ultra-clean laminar airflow Operation Theatres, MISSO Surgical Robotics suite, and Flat-Panel Cath Lab for emergency cardiac angioplasty.'
+    },
+    '0': {
+      title: 'Ground Floor: Emergency Trauma Desk & Radiology Suite',
+      desc: 'Level-1 Emergency & Trauma reception, 3T MRI, 128-Slice CT Scan, Digital X-Ray, 24/7 Pharmacy, and Blood Bank.'
+    }
+  };
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => {
+        b.classList.remove('active');
+        b.style.background = 'rgba(255,255,255,0.05)';
+        b.style.border = '1px solid rgba(255,255,255,0.2)';
+      });
+
+      btn.classList.add('active');
+      btn.style.background = 'rgba(0,240,255,0.15)';
+      btn.style.border = '2px solid #00F0FF';
+
+      const floor = btn.getAttribute('data-floor');
+      if (floorData[floor]) {
+        title.style.opacity = '0';
+        desc.style.opacity = '0';
+        setTimeout(() => {
+          title.textContent = floorData[floor].title;
+          desc.textContent = floorData[floor].desc;
+          title.style.opacity = '1';
+          desc.style.opacity = '1';
+        }, 200);
+      }
+    });
+  });
+}
+/* --------------------------------------------------------------------------
+   32. ORGAN HEALTH NAVIGATOR GIF SWITCHER SYSTEM
+   -------------------------------------------------------------------------- */
+function initOrganNavigatorGifs() {
+  const organBtns = document.querySelectorAll('.organ-btn');
+  const activeGif = document.getElementById('organ-active-gif');
+  const activeEcg = document.getElementById('organ-active-ecg');
+  const cardTitle = document.getElementById('organ-card-title');
+  const cardDesc = document.getElementById('organ-card-desc');
+
+  if (!organBtns.length || !activeGif) return;
+
+  const organMap = {
+    'cardio': {
+      gif: 'images/gifs/CARDIOLOGY.gif',
+      ecg: 'images/gifs/heart beat line gif.gif',
+      title: 'Cardiovascular Care & Surgery',
+      desc: 'Full-fledged cardiac wing led by Dr. Viswa Jyothi & Dr. Guttikonda Bhanu Vijay. Operating a state-of-the-art Flat-Panel Cath Lab for emergency primary angioplasty, pacemaker implantations, and coronary interventions.'
+    },
+    'neuro': {
+      gif: 'images/gifs/brain.gif',
+      ecg: 'images/gifs/brainxray.gif',
+      title: 'Neuro Science & Brain Surgery',
+      desc: 'Comprehensive neuro care led by Dr. Viswa Jyothi. Equipped with Neuro ICU, 3T MRI, 128-Slice CT Scan for acute stroke thrombolysis, brain tumor surgery, and spine trauma.'
+    },
+    'ortho': {
+      gif: 'images/gifs/ORTHOPEDICS.gif',
+      ecg: 'images/gifs/heart beat line gif.gif',
+      title: 'Orthopedics & MISSO Robotic Surgery',
+      desc: 'Chief Consultant Dr. Krishna Sravanth Pakanati leads sub-millimeter 3D robotic joint replacement, complex fracture reconstruction, and keyhole sports arthroscopy.'
+    },
+    'gastro': {
+      gif: 'images/gifs/gastology.gif',
+      ecg: 'images/gifs/ClinicalServices.gif',
+      title: 'Surgical Gastroenterology & Endoscopy',
+      desc: 'Consultant Dr. Sai Krishna Katakam provides laparoscopic GI surgery, Narrow-Band HD upper GI endoscopy, colonoscopy, ERCP, and GI oncological procedures.'
+    }
+  };
+
+  organBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      organBtns.forEach(b => {
+        b.classList.remove('active');
+        b.style.background = 'var(--white)';
+        b.style.border = '1px solid var(--border-color)';
+      });
+
+      btn.classList.add('active');
+      btn.style.background = 'var(--white)';
+      btn.style.border = '2px solid var(--blue)';
+
+      const organ = btn.getAttribute('data-organ');
+      if (organMap[organ]) {
+        activeGif.style.opacity = '0.3';
+        if (cardTitle) cardTitle.style.opacity = '0';
+        if (cardDesc) cardDesc.style.opacity = '0';
+
+        setTimeout(() => {
+          activeGif.src = organMap[organ].gif;
+          if (activeEcg) activeEcg.src = organMap[organ].ecg;
+          if (cardTitle) cardTitle.textContent = organMap[organ].title;
+          if (cardDesc) cardDesc.textContent = organMap[organ].desc;
+
+          activeGif.style.opacity = '1';
+          if (cardTitle) cardTitle.style.opacity = '1';
+          if (cardDesc) cardDesc.style.opacity = '1';
+        }, 200);
+      }
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   33. THREE.JS 3D ROTATING HOSPITAL PHOTO CUBE (6 FACILITY SIDES)
+   -------------------------------------------------------------------------- */
+function initHospitalPhotoCube3D() {
+  if (typeof THREE === 'undefined') return;
+
+  const container = document.getElementById('hospital-3d-photo-cube');
+  if (!container) return;
+
+  const scene = new THREE.Scene();
+  const width = container.offsetWidth || 300;
+  const height = container.offsetHeight || 300;
+
+  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+  camera.position.z = 4.8;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  const loader = new THREE.TextureLoader();
+
+  // Load 6 actual hospital facility textures
+  const materials = [
+    new THREE.MeshBasicMaterial({ map: loader.load('images/Aditya_Medicare_Hospital_Building.jpg') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images/MISSO_Robotic_Knee_Surgery.jpg') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images/Flat_Panel_Cath_Lab.png') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images/100_Bed_Intensive_Care_Unit_ICU.png') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images/128_Slice_CT_Scan.png') }),
+    new THREE.MeshBasicMaterial({ map: loader.load('images/Modular_Operation_Theatre.png') })
+  ];
+
+  const geometry = new THREE.BoxGeometry(2.3, 2.3, 2.3);
+  const cube = new THREE.Mesh(geometry, materials);
+  scene.add(cube);
+
+  // Subtle ambient light
+  const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+  scene.add(ambientLight);
+
+  let isDragging = false;
+  let previousMousePosition = { x: 0, y: 0 };
+
+  container.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    previousMousePosition = { x: e.clientX, y: e.clientY };
+  });
+
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+
+  container.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const deltaMove = {
+      x: e.clientX - previousMousePosition.x,
+      y: e.clientY - previousMousePosition.y
+    };
+
+    cube.rotation.y += deltaMove.x * 0.01;
+    cube.rotation.x += deltaMove.y * 0.01;
+
+    previousMousePosition = { x: e.clientX, y: e.clientY };
+  });
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (!isDragging) {
+      cube.rotation.y += 0.008;
+      cube.rotation.x += 0.004;
+    }
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    const w = container.offsetWidth || 300;
+    const h = container.offsetHeight || 300;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initOrganNavigatorGifs();
+  initHospitalPhotoCube3D();
+});
+
+/* --------------------------------------------------------------------------
+   CINEMATIC VISUAL LAYER
+   Presentation-style reveals and media motion, kept lightweight and accessible.
+   -------------------------------------------------------------------------- */
+function initCinematicVisualEffects() {
+  const revealItems = document.querySelectorAll(
+    '.section-header, .facility-card, .doctor-card, .legacy-card, .tech-card, .review-card, .glass-panel, .journey-step-item'
+  );
+  if (!revealItems.length) return;
+
+  revealItems.forEach((item, index) => {
+    item.classList.add('cinematic-reveal');
+    item.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 55}ms`);
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    revealItems.forEach(item => item.classList.add('cinematic-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, instance) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('cinematic-visible');
+      instance.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+
+  revealItems.forEach(item => observer.observe(item));
+}
+
+function initHeroEcgWave() {
+  const wave = document.querySelector('.hero-ecg-visual');
+  if (!wave) return;
+  wave.classList.add('hero-ecg-ready');
+}
 
 
 

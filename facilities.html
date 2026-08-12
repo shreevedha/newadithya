@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -23,6 +23,7 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css?v=3000" />
+  <link rel="stylesheet" href="animations.css?v=2" />
   <!-- Breadcrumb JSON-LD -->
   <script type="application/ld+json">
   {
@@ -55,7 +56,7 @@
         <img src="images/Hospital-logo.png" alt="Aditya Medicare Logo" class="brand-logo" onerror="this.src='images/logo.png';" />
         <div class="brand-text">
           <span class="brand-title">Aditya Medicare</span>
-          <span class="brand-subtitle">Hospitals • Guntur</span>
+          <span class="brand-subtitle">Hospitals â€¢ Guntur</span>
         </div>
       </a>
 
@@ -90,7 +91,7 @@
   <div class="mobile-drawer" id="mobile-drawer">
     <div class="mobile-drawer-header">
       <div class="brand-title" style="font-size: 1.1rem;">Aditya Medicare</div>
-      <button class="mobile-drawer-close" id="mobile-drawer-close">✕</button>
+      <button class="mobile-drawer-close" id="mobile-drawer-close">âœ•</button>
     </div>
     <ul class="mobile-nav-links">
       <li><a href="index.html">Home</a></li>
@@ -111,7 +112,7 @@
   </div>
 
   <!-- PAGE HERO -->
-  <section class="section section-soft subpage-hero-banner">
+  <section class="section section-soft subpage-hero-banner" id="icu">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Infrastructure</span>
@@ -122,7 +123,44 @@
   </section>
 
   <!-- FACILITIES SHOWCASE -->
-  <section class="section section-white" data-aos="fade-up">
+  <!-- INTERACTIVE HOSPITAL FLOOR MAP COMPONENT -->
+  <section class="section" id="ot" data-aos="fade-up" style="background: #f8fafc; border-bottom: 1px solid var(--border-color); padding: 60px 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">3D Floor Directory</span>
+        <h2 class="section-title">Hospital Floor Map & Department Layout</h2>
+        <p class="section-subtitle">Select a floor level to locate emergency units, OTs, diagnostic suites, and patient wards.</p>
+      </div>
+
+      <div class="floor-map-container" style="display: grid; grid-template-columns: 300px 1fr; gap: 30px; align-items: center; background: var(--navy); color: var(--white); padding: 36px; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
+        <div class="floor-btn-list" style="display: flex; flex-direction: column; gap: 10px;">
+          <button class="floor-btn active" data-floor="3" style="padding: 16px 20px; background: rgba(0,240,255,0.15); border: 2px solid #00F0FF; color: var(--white); font-weight: 700; border-radius: var(--radius-md); text-align: left; cursor: pointer; transition: all 0.3s ease;">
+            ðŸ¢ 3rd Floor: Executive Wards
+          </button>
+          <button class="floor-btn" data-floor="2" style="padding: 16px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: var(--white); font-weight: 700; border-radius: var(--radius-md); text-align: left; cursor: pointer; transition: all 0.3s ease;">
+            ðŸ¥ 2nd Floor: 100-Bed ICU & NICU
+          </button>
+          <button class="floor-btn" data-floor="1" style="padding: 16px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: var(--white); font-weight: 700; border-radius: var(--radius-md); text-align: left; cursor: pointer; transition: all 0.3s ease;">
+            ðŸ”¬ 1st Floor: 8 OTs & Cath Lab
+          </button>
+          <button class="floor-btn" data-floor="0" style="padding: 16px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: var(--white); font-weight: 700; border-radius: var(--radius-md); text-align: left; cursor: pointer; transition: all 0.3s ease;">
+            ðŸš‘ Ground Floor: Emergency & Radiology
+          </button>
+        </div>
+
+        <div class="floor-layout-display" id="floor-layout-display" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(0,240,255,0.25); border-radius: var(--radius-lg); padding: 30px;">
+          <span style="background: rgba(0, 240, 255, 0.2); color: #00F0FF; padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 700;">FLOOR DIRECTORY</span>
+          <h3 id="floor-title" style="font-size: 1.8rem; color: var(--white); margin: 12px 0;">3rd Floor: Executive Patient Wards & Rehabilitation</h3>
+          <p id="floor-desc" style="color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.6; margin: 0;">
+            Features 40 private executive suites, patient recovery lounges, 24/7 room service, physiotherapy rehab gym, and dedicated nursing stations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN FACILITIES LIST -->
+  <section class="section section-white" id="technology" data-aos="fade-up">
     <div class="container">
       <!-- CATEGORY FILTER BAR -->
       <div class="facility-filter-bar" style="margin-bottom: 40px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
@@ -133,9 +171,20 @@
       </div>
 
       <div class="facilities-grid">
-        <div class="facility-card" data-category="icu" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="facility-card" data-category="ot" data-aos="fade-up" data-aos-delay="100">
           <div class="facility-img-wrap">
-            <img src="images/icu.png" alt="100-Bed Intensive Care Unit" />
+            <img src="images/MISSO_Robotic_Knee_Surgery.jpg" alt="MISSO 3D Robotic Knee & Joint Replacement Surgery" />
+          </div>
+          <div class="facility-body">
+            <h3 class="facility-title">MISSO 3D Robotic Knee & Joint Surgery</h3>
+            <p class="facility-desc">Next-generation sub-millimeter robotic precision knee replacement suite led by Dr. Krishna Sravanth Pakanati for rapid, painless recovery.</p>
+          </div>
+        </div>
+
+        <div class="facility-card" data-category="icu" data-aos="fade-up" data-aos-delay="150">
+          <div class="facility-img-wrap">
+            <img src="images/100_Bed_Intensive_Care_Unit_ICU.png" alt="100-Bed Intensive Care Unit" />
           </div>
           <div class="facility-body">
             <h3 class="facility-title">100-Bed Intensive Care Unit (ICU)</h3>
@@ -145,7 +194,7 @@
 
         <div class="facility-card" data-category="diagnostics" data-aos="fade-up" data-aos-delay="200">
           <div class="facility-img-wrap">
-            <img src="images/cath-lab.png" alt="Flat-Panel Digital Cath Lab" />
+            <img src="images/Flat_Panel_Cath_Lab.png" alt="Flat-Panel Digital Cath Lab" />
           </div>
           <div class="facility-body">
             <h3 class="facility-title">Flat-Panel Digital Cath Lab</h3>
@@ -155,7 +204,7 @@
 
         <div class="facility-card" data-category="ot" data-aos="fade-up" data-aos-delay="300">
           <div class="facility-img-wrap">
-            <img src="images/operation-theatre.png" alt="8 Modular Operation Theatres" />
+            <img src="images/Modular_Operation_Theatre.png" alt="8 Modular Operation Theatres" />
           </div>
           <div class="facility-body">
             <h3 class="facility-title">8 Modular Operation Theatres</h3>
@@ -165,17 +214,17 @@
 
         <div class="facility-card" data-category="diagnostics" data-aos="fade-up" data-aos-delay="400">
           <div class="facility-img-wrap">
-            <img src="images/CTscan.png" alt="3T MRI & 128-Slice CT Scan" />
+            <img src="images/128_Slice_CT_Scan.png" alt="3T Siemens MRI & 128-Slice CT Imaging" />
           </div>
           <div class="facility-body">
-            <h3 class="facility-title">3T MRI & 128-Slice CT Imaging</h3>
+            <h3 class="facility-title">3T Siemens MRI & 128-Slice CT Imaging</h3>
             <p class="facility-desc">High-resolution diagnostic radiology for neurological, cardiac, abdominal, vascular, and musculoskeletal imaging.</p>
           </div>
         </div>
 
         <div class="facility-card" data-category="diagnostics" data-aos="fade-up" data-aos-delay="500">
           <div class="facility-img-wrap">
-            <img src="images/Endocolonobroncho.png" alt="Advanced Endoscopy & GI Suite" />
+            <img src="images/Endoscopy_Colonoscopy_Suite.png" alt="Advanced Endoscopy & GI Suite" />
           </div>
           <div class="facility-body">
             <h3 class="facility-title">Advanced Endoscopy & GI Suite</h3>
@@ -185,10 +234,10 @@
 
         <div class="facility-card" data-category="icu" data-aos="fade-up" data-aos-delay="600">
           <div class="facility-img-wrap">
-            <img src="images/Hospital.Building.jpg" alt="24/7 Pharmacy & Emergency Care" />
+            <img src="images/Aditya_Medicare_Hospital_Building.jpg" alt="Aditya Medicare Hospital Facade" />
           </div>
           <div class="facility-body">
-            <h3 class="facility-title">24/7 In-House Pharmacy & Blood Storage</h3>
+            <h3 class="facility-title">24/7 In-House Pharmacy & Tertiary Care Facility</h3>
             <p class="facility-desc">Fully stocked 24/7 pharmacy, automated pathology lab testing, and blood storage facility for instant clinical emergency support.</p>
           </div>
         </div>
@@ -200,8 +249,8 @@
   <div class="modal-overlay" id="appointment-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title-heading">
     <div class="modal-container">
       <div class="modal-header">
-        <h3>📅 Book Doctor Appointment</h3>
-        <button class="modal-close" id="modal-close-btn">✕</button>
+        <h3>ðŸ“… Book Doctor Appointment</h3>
+        <button class="modal-close" id="modal-close-btn">âœ•</button>
       </div>
       <div class="modal-body">
         <form id="appointment-form">
@@ -364,6 +413,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
   <script src="script.js?v=17"></script>
+  <script src="animations.js?v=2"></script>
+  <!-- FIXED OVERALL BACKGROUND SMALL HOSPITAL LOGO WATERMARK -->
+  <img src="images/Aditya_Medicare_Hospital_Logo.png" alt="Aditya Medicare Logo Watermark" class="fixed-bg-hospital-logo" />
 </body>
 
 </html>

@@ -78,6 +78,9 @@
   <link rel="icon" type="image/png" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/favicon.png" />
   
+  <!-- Favicon -->
+  <link rel="icon" href="images/Hospital-logo.png" type="image/png" />
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -85,6 +88,8 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css?v=3000" />
+  <!-- Premium Animation Stylesheet -->
+  <link rel="stylesheet" href="animations.css?v=1" />
 </head>
 
 <body>
@@ -114,17 +119,19 @@
         <li><a href="doctors.html">Doctors</a></li>
         <li><a href="specialties.html">Specialties</a></li>
         <li><a href="facilities.html">Facilities</a></li>
+        <li><a href="health-card.html">Health Card</a></li>
         <li><a href="locations.html">Locations</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
 
-      <div class="nav-cta" style="display: flex; align-items: center; gap: 10px;">
-        <!-- REGIONAL LANGUAGE SWITCHER (EN / TELUGU) -->
-        <div class="lang-switcher" style="display: flex; gap: 2px; background: rgba(8, 126, 164, 0.12); padding: 3px; border-radius: 50px; border: 1px solid var(--border-color);">
-          <button class="lang-btn active" data-lang="en" style="padding: 4px 10px; border-radius: 50px; border: none; background: var(--blue); color: var(--white); font-weight: 700; font-size: 0.75rem; cursor: pointer; transition: all 0.2s ease;">EN</button>
-          <button class="lang-btn" data-lang="te" style="padding: 4px 10px; border-radius: 50px; border: none; background: transparent; color: var(--navy); font-weight: 700; font-size: 0.75rem; cursor: pointer; transition: all 0.2s ease;">తెలుగు</button>
-        </div>
+      <div class="nav-cta">
+        <!-- HIGH CONTRAST ACCESSIBILITY MODE TOGGLE -->
+        <button id="high-contrast-toggle" title="WCAG High Contrast Accessibility Mode" style="padding: 6px 12px; border-radius: 50px; border: 1px solid var(--border-color); background: var(--white); color: var(--navy); font-weight: 700; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+          👁️ High Contrast
+        </button>
+
+
 
         <a href="tel:08632944444" class="btn btn-danger">
           <svg class="btn-icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.03 21 3 13.97 3 5.48a1 1 0 011-1H7.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.27 1.11l-2.37 2.32z"/></svg>
@@ -153,6 +160,7 @@
       <li><a href="doctors.html">Doctors</a></li>
       <li><a href="specialties.html">Specialties</a></li>
       <li><a href="facilities.html">Facilities</a></li>
+      <li><a href="health-card.html">Health Card</a></li>
       <li><a href="locations.html">Locations</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -168,11 +176,18 @@
 
   <!-- HERO SECTION -->
   <section class="hero-section" style="position: relative;">
-    <div id="hero-3d-scene-container" style="position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden;"></div>
     <div class="hero-bg-media">
       <img src="images/Hospital.Building.jpg" alt="Aditya Medicare Hospital Building" />
     </div>
     <div class="container" style="position: relative; z-index: 3;">
+      <!-- Lightweight ECG wave: HTML + SVG + CSS animation, no GIF or 3D canvas. -->
+      <div class="hero-ecg-visual" aria-label="Animated ECG heartbeat line" role="img">
+        <span class="hero-ecg-label">24/7 cardiac monitoring</span>
+        <svg viewBox="0 0 900 120" preserveAspectRatio="none" aria-hidden="true">
+          <path class="hero-ecg-glow" d="M0 60 H150 L170 60 L188 28 L204 92 L220 12 L238 108 L255 60 H420 L440 60 L458 30 L474 90 L490 16 L508 104 L525 60 H690 L710 60 L728 28 L744 92 L760 12 L778 108 L795 60 H900" />
+          <path class="hero-ecg-line" d="M0 60 H150 L170 60 L188 28 L204 92 L220 12 L238 108 L255 60 H420 L440 60 L458 30 L474 90 L490 16 L508 104 L525 60 H690 L710 60 L728 28 L744 92 L760 12 L778 108 L795 60 H900" />
+        </svg>
+      </div>
       <div class="hero-content">
         <div class="hero-badge">🏥 Trusted Healthcare Leader in Guntur</div>
         <h1 class="hero-title">Advanced Multi-Speciality Care with <span>Compassion & Excellence</span></h1>
@@ -277,7 +292,7 @@
   </section>
 
   <!-- CENTERS OF EXCELLENCE SECTION -->
-  <section class="section section-soft" data-aos="fade-up">
+  <section class="section section-soft">
     <div class="container">
       <div class="section-header text-center">
         <span class="section-tag">Centers of Excellence</span>
@@ -345,82 +360,111 @@
   </section>
 
   <!-- CLINICAL DEPARTMENTS DIRECTORY -->
-  <section class="section clinical-depts-section" data-aos="fade-up">
+  <section class="section clinical-depts-section">
     <div class="container">
       <div class="section-header text-center">
-        <span class="section-tag">Clinical Departments</span>
-        <h2 class="section-title">Explore Our Clinical Care Wings</h2>
+        <span class="section-tag" style="color: #00F0FF; background: rgba(0, 240, 255, 0.1);">Clinical Departments</span>
+        <h2 class="section-title" style="color: #ffffff !important;">Explore Our Clinical Care Wings</h2>
         <p class="section-subtitle" style="color: #94a3b8;">Delivering full-spectrum tertiary healthcare consultations and critical services 24/7.</p>
       </div>
 
       <div class="clinical-depts-grid">
         <!-- Row 1 -->
         <a href="specialties.html?dept=cardiac" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="100">
-          <div class="clinical-dept-icon">🫀</div>
-          <div class="clinical-dept-name">Cardiology</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/CARDIOLOGY.gif" alt="Cardiology GIF" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='images/gifs/heart beat line gif.gif';" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Cardiology</div>
         </a>
         <a href="specialties.html?dept=cardiac" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="200">
-          <div class="clinical-dept-icon">🩺</div>
-          <div class="clinical-dept-name">Cardiothoracic</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/CARDIOTHORACIC.gif" alt="Cardiothoracic GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Cardiothoracic</div>
         </a>
         <a href="specialties.html?dept=neuro" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="300">
-          <div class="clinical-dept-icon">🧠</div>
-          <div class="clinical-dept-name">Neurosurgery</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/NEUROSURGERY.gif" alt="Neurosurgery GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Neurosurgery</div>
         </a>
         <a href="specialties.html?dept=neuro" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="400">
-          <div class="clinical-dept-icon">⚡</div>
-          <div class="clinical-dept-name">Neurology</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/NEUROLOGY.gif" alt="Neurology GIF" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='images/gifs/brain.gif';" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Neurology</div>
         </a>
         <a href="specialties.html?dept=nephro" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="500">
-          <div class="clinical-dept-icon">🔬</div>
-          <div class="clinical-dept-name">Nephrology</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/NEPHROLOGY.gif" alt="Nephrology GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Nephrology</div>
         </a>
 
         <!-- Row 2 -->
         <a href="specialties.html?dept=nephro" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="100">
-          <div class="clinical-dept-icon">🧪</div>
-          <div class="clinical-dept-name">Urology</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/Integrateddepartments.gif" alt="Urology GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Urology</div>
         </a>
         <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="200">
-          <div class="clinical-dept-icon">🧬</div>
-          <div class="clinical-dept-name">Gastroenterology</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/gastology.gif" alt="Gastroenterology GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Gastroenterology</div>
         </a>
         
         <!-- CENTER CIRCLE -->
-        <div class="clinical-dept-center-circle" data-aos="zoom-in">
-          <h3>Clinical Services</h3>
-          <p>Integrated departments with 24/7 care wings</p>
+        <div class="clinical-dept-center-circle" data-aos="zoom-in" style="background: radial-gradient(circle, rgba(0,240,255,0.15) 0%, rgba(12,30,53,0.9) 100%); border: 2px solid #00F0FF; box-shadow: 0 0 30px rgba(0,240,255,0.3);">
+          <img src="images/gifs/ClinicalServices.gif" alt="Clinical Services GIF" style="width: 65px; height: 65px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; border: 2px solid #00F0FF;" />
+          <h3 style="color: #ffffff; margin-bottom: 4px; font-size: 1.15rem;">Clinical Services</h3>
+          <p style="color: #cbd5e1; font-size: 0.82rem;">Integrated departments with 24/7 care wings</p>
         </div>
         
         <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="400">
-          <div class="clinical-dept-icon">🔪</div>
-          <div class="clinical-dept-name">Surgical Gastro</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/gastology.gif" alt="Surgical Gastro GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Surgical Gastro</div>
         </a>
         <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="500">
-          <div class="clinical-dept-icon">🌡️</div>
-          <div class="clinical-dept-name">General Medicine</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/generalmedicane.gif" alt="General Medicine GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">General Medicine</div>
         </a>
 
         <!-- Row 3 -->
         <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="100">
-          <div class="clinical-dept-icon">🫁</div>
-          <div class="clinical-dept-name">Pulmonology</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/pulumology.gif" alt="Pulmonology GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Pulmonology</div>
         </a>
         <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="200">
-          <div class="clinical-dept-icon">👶</div>
-          <div class="clinical-dept-name">Pediatrics</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/PEDIATRICS.gif" alt="Pediatrics GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Pediatrics</div>
         </a>
         <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="300">
-          <div class="clinical-dept-icon">🤱</div>
-          <div class="clinical-dept-name">Neonatology</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/NEONATOLOGY.gif" alt="Neonatology GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Neonatology</div>
         </a>
         <a href="specialties.html?dept=ortho" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="400">
-          <div class="clinical-dept-icon">🦴</div>
-          <div class="clinical-dept-name">Orthopedics</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/ORTHOPEDICS.gif" alt="Orthopedics GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Orthopedics</div>
         </a>
         <a href="specialties.html?dept=general" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="500">
-          <div class="clinical-dept-icon">🤰</div>
-          <div class="clinical-dept-name">Mother & Child</div>
+          <div class="clinical-dept-gif-wrap" style="width: 76px; height: 76px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); border: 2px solid rgba(0,240,255,0.4);">
+            <img src="images/gifs/babygif.gif" alt="Mother & Child GIF" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div class="clinical-dept-name" style="color: #ffffff; font-size: 0.95rem; font-weight: 600;">Mother & Child</div>
         </a>
       </div>
     </div>
@@ -473,7 +517,114 @@
       </div>
 
       <div class="doctors-grid" id="doctors-grid-container">
-        <!-- Dynamic doctor cards generated by script.js -->
+        <!-- 4 FEATURED DOCTOR CARDS PRE-RENDERED FOR INSTANT DISPLAY -->
+        <div class="doctor-card doctor-card-horizontal">
+          <div class="doctor-card-main">
+            <div class="doctor-photo-col">
+              <div class="doctor-photo-wrap">
+                <img src="images/doctors/krishna-sravanth.jpg" alt="Dr. Krishna Sravanth Pakanati" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
+              </div>
+              <div class="doctor-opd-badge-below"><span class="opd-dot"></span> OPD Mon - Sat</div>
+            </div>
+            <div class="doctor-details-wrap">
+              <div class="doctor-meta-header"><span class="doctor-dept-badge">Orthopedics</span></div>
+              <h3 class="doctor-name">Dr. Krishna Sravanth Pakanati</h3>
+              <div class="doctor-qualification">MBBS, DNB Orthopedics, MCh Ortho, FJR, FSS</div>
+              <div class="doctor-designation">Chief Consultant Orthopedic & Joint Replacement Surgeon</div>
+              <div class="doctor-treatments">
+                <span class="treatment-tag">MISSO Robotic Knee</span>
+                <span class="treatment-tag">Joint Replacement</span>
+                <span class="treatment-tag">Arthroscopy</span>
+              </div>
+            </div>
+          </div>
+          <div class="doctor-card-footer">
+            <button class="btn btn-primary doctor-card-action" data-open-modal="true" data-doctor="Dr. Krishna Sravanth Pakanati" data-department="Orthopedics">
+              <span>📅 Book Appointment</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="doctor-card doctor-card-horizontal">
+          <div class="doctor-card-main">
+            <div class="doctor-photo-col">
+              <div class="doctor-photo-wrap">
+                <img src="images/doctors/ramakoteswara-rao.jpg" alt="Dr. Ramakoteswara Rao K" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
+              </div>
+              <div class="doctor-opd-badge-below"><span class="opd-dot"></span> OPD Mon - Sat</div>
+            </div>
+            <div class="doctor-details-wrap">
+              <div class="doctor-meta-header"><span class="doctor-dept-badge">Orthopedics</span></div>
+              <h3 class="doctor-name">Dr. Ramakoteswara Rao K</h3>
+              <div class="doctor-qualification">MBBS, MS Orthopedics</div>
+              <div class="doctor-designation">Senior Consultant Orthopaedic Surgeon</div>
+              <div class="doctor-treatments">
+                <span class="treatment-tag">Trauma Surgery</span>
+                <span class="treatment-tag">Fracture Care</span>
+                <span class="treatment-tag">Bone Reconstruction</span>
+              </div>
+            </div>
+          </div>
+          <div class="doctor-card-footer">
+            <button class="btn btn-primary doctor-card-action" data-open-modal="true" data-doctor="Dr. Ramakoteswara Rao K" data-department="Orthopedics">
+              <span>📅 Book Appointment</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="doctor-card doctor-card-horizontal">
+          <div class="doctor-card-main">
+            <div class="doctor-photo-col">
+              <div class="doctor-photo-wrap">
+                <img src="images/doctors/dr-viswa-jyothi.jpeg" alt="Dr. Viswa Jyothi" loading="lazy" />
+              </div>
+              <div class="doctor-opd-badge-below"><span class="opd-dot"></span> OPD Mon - Sat</div>
+            </div>
+            <div class="doctor-details-wrap">
+              <div class="doctor-meta-header"><span class="doctor-dept-badge">Cardiology</span></div>
+              <h3 class="doctor-name">Dr. Viswa Jyothi</h3>
+              <div class="doctor-qualification">MBBS, MD General Medicine, DM Cardiology</div>
+              <div class="doctor-designation">Chief Interventional Cardiologist</div>
+              <div class="doctor-treatments">
+                <span class="treatment-tag">Primary Angioplasty</span>
+                <span class="treatment-tag">Cath Lab</span>
+                <span class="treatment-tag">Pacemaker</span>
+              </div>
+            </div>
+          </div>
+          <div class="doctor-card-footer">
+            <button class="btn btn-primary doctor-card-action" data-open-modal="true" data-doctor="Dr. Viswa Jyothi" data-department="Cardiology">
+              <span>📅 Book Appointment</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="doctor-card doctor-card-horizontal">
+          <div class="doctor-card-main">
+            <div class="doctor-photo-col">
+              <div class="doctor-photo-wrap">
+                <img src="images/doctor-placeholder.svg" alt="Dr. M. Sravan" loading="lazy" />
+              </div>
+              <div class="doctor-opd-badge-below"><span class="opd-dot"></span> OPD Mon - Sat</div>
+            </div>
+            <div class="doctor-details-wrap">
+              <div class="doctor-meta-header"><span class="doctor-dept-badge">Neurology</span></div>
+              <h3 class="doctor-name">Dr. M. Sravan</h3>
+              <div class="doctor-qualification">MBBS, MS General Surgery, MCh Neuro Surgery</div>
+              <div class="doctor-designation">Consultant Neuro & Spine Surgeon</div>
+              <div class="doctor-treatments">
+                <span class="treatment-tag">Brain Tumor</span>
+                <span class="treatment-tag">Spine Surgery</span>
+                <span class="treatment-tag">Stroke ICU</span>
+              </div>
+            </div>
+          </div>
+          <div class="doctor-card-footer">
+            <button class="btn btn-primary doctor-card-action" data-open-modal="true" data-doctor="Dr. M. Sravan" data-department="Neurology">
+              <span>📅 Book Appointment</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <div style="text-align: center; margin-top: 40px;">
@@ -560,7 +711,7 @@
   </section>
 
   <!-- ADVANCED MEDICAL TECHNOLOGY SHOWCASE (DARK CYBER-MEDICAL THEME) -->
-  <section class="section section-dark-tech" data-aos="fade-up">
+  <section class="section section-dark-tech">
     <div class="container">
       <div class="section-header text-center">
         <span class="section-tag" style="color: #00F0FF; background: rgba(0, 240, 255, 0.1);">Next-Gen Medical Tech</span>
@@ -630,7 +781,7 @@
   </section>
 
   <!-- PATIENT JOURNEY 5-STEP TIMELINE -->
-  <section class="section patient-journey-section" data-aos="fade-up">
+  <section class="section patient-journey-section">
     <div class="container">
       <div class="section-header text-center">
         <span class="section-tag">Patient Experience</span>
@@ -678,7 +829,7 @@
   </section>
 
   <!-- NEW SECTION 1: 3D ORGAN HEALTH NAVIGATOR -->
-  <section class="section section-white" id="section-organ-navigator" data-aos="fade-up" style="background: #f8fafc; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+  <section class="section section-white" id="section-organ-navigator" style="background: #f8fafc; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Interactive Clinical Navigator</span>
@@ -722,7 +873,20 @@
         </div>
 
         <div class="organ-detail-card" id="organ-detail-card" style="background: var(--navy); color: var(--white); padding: 40px; border-radius: var(--radius-xl); position: relative; overflow: hidden; box-shadow: var(--shadow-lg);">
-          <div style="position: absolute; top: -30px; right: -30px; font-size: 12rem; opacity: 0.08;">🫀</div>
+          <!-- ANIMATED MEDICAL GIF VISUALIZER -->
+          <div id="anatomy-3d-canvas-wrap" style="margin-bottom: 24px; min-height: 180px; display: flex; align-items: center; justify-content: center; gap: 20px; background: rgba(3, 13, 26, 0.7); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 16px; padding: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.4);">
+            <div class="organ-gif-box" style="position: relative; width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 3px solid #00F0FF; box-shadow: 0 0 20px rgba(0, 240, 255, 0.5); transition: transform 0.4s ease;" data-tilt>
+              <img id="organ-active-gif" src="images/gifs/CARDIOLOGY.gif" alt="Animated Organ Visualizer" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+            <div class="organ-gif-meta" style="flex: 1;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span class="opd-dot" style="background: #22c55e;"></span>
+                <span style="color: #00F0FF; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">REALTIME CLINICAL TELEMETRY</span>
+              </div>
+              <img id="organ-active-ecg" src="images/gifs/heart beat line gif.gif" alt="ECG Rhythm Waveform" style="width: 100%; max-width: 280px; height: 45px; object-fit: contain; filter: brightness(1.2) contrast(1.4);" />
+            </div>
+          </div>
+
           <span style="background: rgba(0, 240, 255, 0.2); color: #00F0FF; padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">24/7 Cardiac Emergency Unit</span>
           <h3 id="organ-card-title" style="font-size: 2rem; color: var(--white); margin: 16px 0 12px;">Cardiovascular Care & Surgery</h3>
           <p id="organ-card-desc" style="color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.6; margin-bottom: 24px;">
@@ -737,8 +901,106 @@
     </div>
   </section>
 
+  <!-- 3D MEDICAL VISUALIZATIONS & DYNAMIC GIF SHOWCASE -->
+  <section class="section section-dark-tech" id="section-3d-gif-showcase" style="background: #030d1a !important; color: #ffffff !important; padding: 80px 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" style="color: #00F0FF; background: rgba(0,240,255,0.15);">3D Medical Imaging & Diagnostics</span>
+        <h2 class="section-title" style="color: #ffffff !important;">High-Precision 3D Anatomical & Diagnostic Visualizations</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.85) !important;">Experience real-time 3D imaging, cardiac telemetry, genomic sequencing, and neuro-radiology at Aditya Medicare Hospitals.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+        <!-- FEATURE CARD: INTERACTIVE 3D HOSPITAL PHOTO CUBE -->
+        <div class="glass-panel" style="background: rgba(15,29,54,0.9); border: 2px solid #00F0FF; border-radius: var(--radius-xl); padding: 24px; text-align: center; box-shadow: 0 0 30px rgba(0, 240, 255, 0.25); grid-column: span 1;">
+          <div class="hospital-photo-cube-container" id="hospital-3d-photo-cube">
+            <!-- Three.js 3D Photo Cube initialized by initHospitalPhotoCube3D() -->
+          </div>
+          <span style="background: rgba(0,240,255,0.2); color: #00F0FF; padding: 4px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-top: 14px; display: inline-block;">INTERACTIVE 3D HOSPITAL TOUR</span>
+          <h3 style="font-size: 1.35rem; color: var(--white); margin: 10px 0 6px;">3D Interactive Hospital Facility Cube</h3>
+          <p style="color: rgba(255,255,255,0.85); font-size: 0.9rem; margin: 0;">Drag to rotate cube to view 6 key hospital wings: Building Facade, MISSO Robotic OT, Cath Lab, 100-Bed ICU, 3T MRI & Modular OT.</p>
+        </div>
+        <!-- Card 1: 3D DNA Genetics -->
+        <div class="glass-panel" style="background: rgba(15,29,54,0.8); border: 1px solid rgba(0,240,255,0.3); border-radius: var(--radius-xl); padding: 24px; text-align: center;">
+          <div style="width: 100%; height: 180px; overflow: hidden; border-radius: var(--radius-lg); margin-bottom: 16px; background: #000;">
+            <img src="images/gifs/DNA-Genetics.gif" alt="3D DNA Genetics Sequencing" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <span style="background: rgba(0,240,255,0.2); color: #00F0FF; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;">MOLECULAR GENETICS</span>
+          <h3 style="font-size: 1.3rem; color: var(--white); margin: 10px 0 6px;">3D DNA & Genomic Research</h3>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin: 0;">Targeted molecular oncology and personalized genetic diagnostics.</p>
+        </div>
+
+        <!-- Card 2: 3D Brain Neural Mapping -->
+        <div class="glass-panel" style="background: rgba(15,29,54,0.8); border: 1px solid rgba(0,240,255,0.3); border-radius: var(--radius-xl); padding: 24px; text-align: center;">
+          <div style="width: 100%; height: 180px; overflow: hidden; border-radius: var(--radius-lg); margin-bottom: 16px; background: #000;">
+            <img src="images/gifs/brain.gif" alt="3D Brain Neural Mapping" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <span style="background: rgba(168,85,247,0.2); color: #c084fc; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;">NEURO-SCIENCES</span>
+          <h3 style="font-size: 1.3rem; color: var(--white); margin: 10px 0 6px;">3D Brain Neural Mapping</h3>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin: 0;">Comprehensive brain tumor mapping, stroke intervention & neuro-ICU care.</p>
+        </div>
+
+        <!-- Card 3: Neuro X-Ray & CT Radiology -->
+        <div class="glass-panel" style="background: rgba(15,29,54,0.8); border: 1px solid rgba(0,240,255,0.3); border-radius: var(--radius-xl); padding: 24px; text-align: center;">
+          <div style="width: 100%; height: 180px; overflow: hidden; border-radius: var(--radius-lg); margin-bottom: 16px; background: #000;">
+            <img src="images/gifs/brainxray.gif" alt="3T MRI & CT Scan Radiology" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <span style="background: rgba(59,130,246,0.2); color: #60a5fa; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;">RADIOLOGY & IMAGING</span>
+          <h3 style="font-size: 1.3rem; color: var(--white); margin: 10px 0 6px;">3T MRI & 128-Slice CT Scan</h3>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin: 0;">High-resolution diagnostic radiology and volumetric 3D reconstruction.</p>
+        </div>
+
+        <!-- Card 4: Cardiac Telemetry Heartbeat -->
+        <div class="glass-panel" style="background: rgba(15,29,54,0.8); border: 1px solid rgba(0,240,255,0.3); border-radius: var(--radius-xl); padding: 24px; text-align: center;">
+          <div style="width: 100%; height: 180px; overflow: hidden; border-radius: var(--radius-lg); margin-bottom: 16px; background: #000;">
+            <img src="images/gifs/heart beat line gif.gif" alt="Real-Time ECG Telemetry" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <span style="background: rgba(239,68,68,0.2); color: #f87171; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;">CARDIAC EMERGENCY</span>
+          <h3 style="font-size: 1.3rem; color: var(--white); margin: 10px 0 6px;">24/7 ECG Telemetry & Cath Lab</h3>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin: 0;">Continuous cardiac monitoring, emergency primary angioplasty & stenting.</p>
+        </div>
+
+        <!-- Card 5: Neonatal Level-III NICU -->
+        <div class="glass-panel" style="background: rgba(15,29,54,0.8); border: 1px solid rgba(0,240,255,0.3); border-radius: var(--radius-xl); padding: 24px; text-align: center;">
+          <div style="width: 100%; height: 180px; overflow: hidden; border-radius: var(--radius-lg); margin-bottom: 16px; background: #000;">
+            <img src="images/gifs/babygif.gif" alt="Neonatal NICU Care" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <span style="background: rgba(236,72,153,0.2); color: #f472b6; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;">NEONATOLOGY & PEDIATRICS</span>
+          <h3 style="font-size: 1.3rem; color: var(--white); margin: 10px 0 6px;">Level-III NICU Neonatal Unit</h3>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin: 0;">Advanced premature baby care, phototherapy & pediatric intensive care.</p>
+        </div>
+
+        <!-- Card 6: Global Patient Desk -->
+        <div class="glass-panel" style="background: rgba(15,29,54,0.8); border: 1px solid rgba(0,240,255,0.3); border-radius: var(--radius-xl); padding: 24px; text-align: center;">
+          <div style="width: 100%; height: 180px; overflow: hidden; border-radius: var(--radius-lg); margin-bottom: 16px; background: #000;">
+            <img src="images/gifs/earth rotaitng gif.gif" alt="Global Healthcare Standards" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <span style="background: rgba(34,197,94,0.2); color: #4ade80; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;">GLOBAL STANDARDS</span>
+          <h3 style="font-size: 1.3rem; color: var(--white); margin: 10px 0 6px;">International Patient Desk</h3>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin: 0;">NABH-accredited tertiary care serving patients across India and abroad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAILY HEALTH TIPS COMPONENT -->
+  <section class="section section-white" id="section-daily-tips" style="padding: 60px 0;">
+    <div class="container">
+      <div class="daily-health-tip-card">
+        <div class="tip-badge">💡 DAILY WELLNESS INSIGHT & MEDICAL TIP</div>
+        <h3 id="daily-tip-title" style="font-size: 1.5rem; color: var(--white); margin-bottom: 10px;">Cardiovascular Wellness: Keep Moving</h3>
+        <p id="daily-tip-desc" style="color: rgba(255,255,255,0.88); font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px;">
+          30 minutes of brisk walking every day reduces your risk of ischemic heart disease by up to 35%. Maintain low-sodium nutrition and monitor blood pressure regularly.
+        </p>
+        <button id="refresh-tip-btn" style="background: rgba(0, 240, 255, 0.15); border: 1px solid #00F0FF; color: #00F0FF; padding: 10px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: all 0.3s ease;">
+          🔄 Next Wellness Tip
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- NEW SECTION 2: 24/7 EMERGENCY & RAPID RESPONSE DESK -->
-  <section class="section" id="section-emergency-desk" data-aos="zoom-in" style="background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); color: var(--white); padding: 70px 0; position: relative; overflow: hidden;">
+  <section class="section" id="section-emergency-desk" style="background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); color: var(--white); padding: 70px 0; position: relative; overflow: hidden;">
     <div class="container" style="position: relative; z-index: 2;">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
         <div style="max-width: 600px;">
@@ -746,9 +1008,34 @@
             <span style="width: 10px; height: 10px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse 1s infinite;"></span> LEVEL-I TRAUMA READY
           </div>
           <h2 style="font-size: 2.2rem; color: var(--white); margin-bottom: 12px;">24/7 Emergency & Critical Ambulance Line</h2>
-          <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin: 0;">
+          <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 20px;">
             Immediate cardiac, trauma, stroke, and pediatric emergency care with equipped ACLS ambulances stationed across Guntur.
           </p>
+
+          <!-- EMERGENCY CAPACITY MONITOR COMPONENT -->
+          <div class="capacity-monitor-card" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); padding: 20px; border-radius: var(--radius-lg);">
+            <div style="font-size: 0.85rem; font-weight: 700; color: #00F0FF; margin-bottom: 12px;">📊 LIVE ICU & EMERGENCY OCCUPANCY MONITOR</div>
+            
+            <div style="margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600;">
+                <span>Level-3 Intensive Care Unit (100 Beds)</span>
+                <span style="color: #22c55e;">78% Occupied (22 Available)</span>
+              </div>
+              <div class="capacity-unit-bar">
+                <div class="capacity-unit-fill" style="width: 78%; background: #22c55e;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600;">
+                <span>Modular Operation Theatres (8 OTs)</span>
+                <span style="color: #00F0FF;">62% Active (3 Ready for Emergency)</span>
+              </div>
+              <div class="capacity-unit-bar">
+                <div class="capacity-unit-fill" style="width: 62%; background: #00F0FF;"></div>
+              </div>
+            </div>
+          </div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 12px; min-width: 280px;">
           <a href="tel:08632944444" class="btn" style="background: var(--white); color: #991b1b; font-size: 1.2rem; font-weight: 800; padding: 16px 28px; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); text-align: center;">
@@ -771,7 +1058,7 @@
   </section>
 
   <!-- PATIENT TESTIMONIALS -->
-  <section class="section section-soft" data-aos="fade-up">
+  <section class="section section-soft">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Patient Stories</span>
@@ -826,17 +1113,17 @@
   </section>
 
   <!-- EXPERT TALKS & HEALTHY FAMILY -->
-  <section class="section expert-talks-section" data-aos="fade-up">
+  <section class="section expert-talks-section">
     <div class="container">
       <div class="expert-talks-split">
-        <div class="expert-talks-card" data-aos="fade-right">
+        <div class="expert-talks-card">
           <div class="section-header" style="margin-bottom: 20px;">
-            <span class="section-tag">Expert Talks</span>
-            <h2 class="section-title">Health Awareness & Insights</h2>
-            <p class="section-subtitle" style="margin-bottom: 0;">From prevention to treatment, our experts explain critical health topics to keep you informed.</p>
+            <span class="section-tag" style="color: var(--blue); background: rgba(0, 136, 204, 0.1);">Expert Talks</span>
+            <h2 class="section-title" style="color: var(--navy) !important;">Health Awareness & Insights</h2>
+            <p class="section-subtitle" style="color: #64748b !important; margin-bottom: 0;">From prevention to treatment, our experts explain critical health topics to keep you informed.</p>
           </div>
           <div class="expert-video-frame">
-            <img src="images/expert_doctor_talk.jpg" class="expert-video-placeholder-img" alt="Expert Doctor Talk Video Placeholder" />
+            <img src="images/Expert_Doctor_Medical_Seminar.jpg" class="expert-video-placeholder-img" alt="Aditya Medicare expert doctor health seminar" />
             <a href="https://www.youtube.com/@adityamedicare.institute" target="_blank" rel="noopener" class="expert-video-overlay-btn" aria-label="Play video"></a>
           </div>
           <div style="margin-top: 10px; text-align: center;">
@@ -846,11 +1133,11 @@
           </div>
         </div>
 
-        <div class="healthy-family-card" data-aos="fade-left">
+        <div class="healthy-family-card">
           <div class="section-header" style="margin-bottom: 20px;">
-            <span class="section-tag">Healthy Lifestyle</span>
-            <h2 class="section-title">Factors for a Healthy Family</h2>
-            <p class="section-subtitle" style="margin-bottom: 0;">A healthy family is built on active choices, preventive screenings, and balanced daily habits.</p>
+            <span class="section-tag" style="color: var(--blue); background: rgba(0, 136, 204, 0.1);">Healthy Lifestyle</span>
+            <h2 class="section-title" style="color: var(--navy) !important;">Factors for a Healthy Family</h2>
+            <p class="section-subtitle" style="color: #64748b !important; margin-bottom: 0;">A healthy family is built on active choices, preventive screenings, and balanced daily habits.</p>
           </div>
           <div class="healthy-family-grid">
             <div class="healthy-item">
@@ -884,7 +1171,7 @@
   </section>
 
   <!-- LEGACY SHOWCASE -->
-  <section class="section legacy-section" data-aos="fade-up">
+  <section class="section legacy-section">
     <div class="container">
       <div class="section-header text-center">
         <span class="section-tag">Our Legacy</span>
@@ -941,7 +1228,7 @@
   </section>
 
   <!-- LOCATION & CONTACT -->
-  <section class="section section-white" data-aos="fade-up">
+  <section class="section section-white">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Location & Contact</span>
@@ -1087,7 +1374,7 @@
   </div>
 
   <!-- HOSPITAL ACCREDITATIONS SHOWCASE -->
-  <section class="accreditations-section" data-aos="fade-up">
+  <section class="accreditations-section">
     <div class="container">
       <div class="accreditations-grid">
         <div class="accreditation-item">
@@ -1222,13 +1509,13 @@
   <!-- FLOATING AI ASSISTANT CHATBOT -->
   <div class="chatbot-widget-container">
     <button class="chatbot-trigger" id="chatbot-trigger" aria-label="Open AI Helpdesk">
-      <span class="chat-trigger-icon">💬</span>
+      <img class="chat-trigger-icon" src="Aditya_Medicare_Resources/hospital_logos_and_media/chatbot.gif" alt="Open AI Helpdesk" />
       <span class="chat-trigger-pulse"></span>
     </button>
 
     <div class="chatbot-panel" id="chatbot-panel">
       <div class="chatbot-header">
-        <div class="chat-header-avatar">🤖</div>
+        <img class="chat-header-avatar" src="Aditya_Medicare_Resources/hospital_logos_and_media/chatbot.gif" alt="Aditya AI Helpdesk" />
         <div class="chat-header-info">
           <h4>Aditya AI Helpdesk</h4>
           <span class="chat-status"><span class="chat-status-dot"></span> Online & Active</span>
@@ -1256,7 +1543,8 @@
     </div>
   </div>
 
-  <!-- 3RD PARTY 3D & ANIMATION LIBRARIES (THREE.JS, GSAP, SCROLLTRIGGER, VANILLA-TILT) -->
+  <!-- 3RD PARTY 3D & ANIMATION LIBRARIES (THREE.JS, GSAP, SCROLLTRIGGER, VANILLA-TILT, D3) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -1264,6 +1552,10 @@
 
   <!-- Main Application Script -->
   <script src="script.js?v=16"></script>
+  <!-- Premium Animation Engine -->
+  <script src="animations.js?v=1"></script>
+  <!-- FIXED OVERALL BACKGROUND SMALL HOSPITAL LOGO WATERMARK -->
+  <img src="images/Aditya_Medicare_Hospital_Logo.png" alt="Aditya Medicare Logo Watermark" class="fixed-bg-hospital-logo" />
 </body>
 
 </html>

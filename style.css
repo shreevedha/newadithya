@@ -4407,10 +4407,216 @@ body.high-contrast .btn {
   padding: 24px;
 }
 .clinical-dept-center-circle img { width: 104px !important; height: 104px !important; }
-.clinical-dept-center-circle h3 { font-size: clamp(1.35rem, 2vw, 1.7rem); margin-top: 4px; }
-.clinical-dept-center-circle p { max-width: 190px; font-size: .92rem; margin-top: 10px; }
-.clinical-dept-gif-wrap { width: 96px !important; height: 96px !important; margin-bottom: 14px !important; }
-.clinical-dept-item { min-height: 168px; padding: 26px 16px; }
+/* Clinical Department GIF Image & Center Circle Layout Fixes */
+.clinical-dept-item {
+  position: relative !important;
+  z-index: 2 !important;
+  min-height: 160px !important;
+  padding: 18px 12px !important;
+  overflow: hidden !important;
+}
+
+.clinical-dept-gif-wrap {
+  width: 72px !important;
+  height: 72px !important;
+  min-width: 72px !important;
+  min-height: 72px !important;
+  max-width: 72px !important;
+  max-height: 72px !important;
+  margin-bottom: 10px !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+}
+
+.clinical-dept-gif-wrap img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 14px !important;
+  transform: none !important;
+}
+
+.clinical-dept-item:hover .clinical-dept-gif-wrap {
+  transform: scale(1.05) !important;
+}
+
+.clinical-dept-item:hover .clinical-dept-gif-wrap img {
+  transform: none !important;
+  filter: brightness(1.15) contrast(1.1) !important;
+}
+
+.clinical-dept-name {
+  font-size: 0.9rem !important;
+  line-height: 1.25 !important;
+  margin-top: 4px !important;
+}
+
+.clinical-dept-center-circle {
+  min-width: 250px !important;
+  min-height: 250px !important;
+  max-width: 250px !important;
+  max-height: 250px !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.clinical-dept-center-circle img {
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 50% !important;
+  margin-bottom: 6px !important;
+  flex-shrink: 0 !important;
+}
+
+.clinical-dept-center-circle h3 {
+  font-size: 1.15rem !important;
+  line-height: 1.2 !important;
+  margin-top: 2px !important;
+  margin-bottom: 4px !important;
+  white-space: nowrap !important;
+}
+
+.clinical-dept-center-circle p {
+  max-width: 180px !important;
+  font-size: 0.75rem !important;
+  line-height: 1.3 !important;
+  margin: 0 auto !important;
+  opacity: 0.9 !important;
+}
+
+/* Zero Gap Void Guarantee & Tech Card Bullet Points */
+.section-header,
+.section-tag,
+.section-title,
+.section-subtitle,
+.highlights-ribbon,
+.hero-stats-wrapper {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+.section-header {
+  margin-bottom: 30px !important;
+  padding-top: 10px !important;
+}
+
+.highlights-ribbon {
+  padding: 24px 0 !important;
+  margin: 10px 0 20px 0 !important;
+}
+
+.tech-card-bullets {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 12px 0 0 0 !important;
+  text-align: left !important;
+}
+
+.tech-card-bullets li {
+  font-size: 0.84rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.tech-card-bullets li::before {
+  content: '⚡';
+  color: #00F0FF;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Centered Semi-Transparent Hospital Watermark Logo */
+.section-soft,
+.section-white,
+.patient-journey-section,
+.doctors-showcase-section,
+.highlights-ribbon {
+  position: relative !important;
+}
+
+.section-soft::before,
+.section-white::before,
+.patient-journey-section::before,
+.doctors-showcase-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 440px;
+  height: 440px;
+  background: url('images/Hospital-logo.png') no-repeat center center / contain;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Highlights Ribbon Alignment & Grid Fix */
+.highlights-ribbon {
+  background: #ffffff !important;
+  padding: 30px 0 !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.ribbon-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+  align-items: stretch !important;
+}
+
+.ribbon-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 18px 16px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+.ribbon-icon {
+  font-size: 1.6rem !important;
+  flex-shrink: 0 !important;
+}
+
+.ribbon-title {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: var(--navy) !important;
+  margin-bottom: 2px !important;
+}
+
+.ribbon-desc {
+  font-size: 0.82rem !important;
+  color: var(--text-muted) !important;
+  line-height: 1.3 !important;
+}
+
+@media (max-width: 1024px) {
+  .ribbon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .ribbon-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 
 /* Doctor Showcase Section Gap & Layout Fixes */
 .doctors-showcase-section,

@@ -487,19 +487,10 @@
     // Badge entrance
     if (badge) tl.from(badge, { y: -30, opacity: 0, scale: 0.9, duration: 0.7 }, 0.3);
 
-    // Title word-by-word with 3D rotation
+    // Title entrance without wiping innerHTML formatting
     if (title) {
-      const text = title.textContent;
-      title.innerHTML = '';
-      text.split(/\s+/).filter(Boolean).forEach(word => {
-        const s = D.createElement('span');
-        s.className = 'k-char';
-        s.textContent = word + ' ';
-        title.appendChild(s);
-      });
-      tl.from(title.querySelectorAll('.k-char'), {
-        y: 50, opacity: 0, rotationX: 40, transformOrigin: 'bottom center',
-        duration: 1, stagger: 0.06
+      tl.from(title, {
+        y: 35, opacity: 0, duration: 0.9
       }, 0.5);
     }
 
@@ -569,12 +560,15 @@
       const cards = grid.querySelectorAll(c);
       if (!cards.length) return;
 
-      gsap.from(cards, {
-        y: 60, opacity: 0, scale: 0.92, duration: 0.8,
-        stagger: { amount: 0.5, from: 'start' },
-        ease: 'power3.out',
-        scrollTrigger: { trigger: grid, start: 'top 82%' }
-      });
+      gsap.fromTo(cards, 
+        { y: 35, opacity: 0, scale: 0.96 },
+        {
+          y: 0, opacity: 1, scale: 1, duration: 0.7,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: grid, start: 'top 90%' }
+        }
+      );
     });
 
     // ── Dark section dramatic entrance ──
@@ -1065,25 +1059,10 @@
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
     D.querySelectorAll('.section-title').forEach(title => {
-      // Skip if hero title or card title (card headers animate whole)
-      if (title.closest('.hero-section') || title.closest('.subpage-hero-banner') || title.closest('.health-card-hero') || title.closest('.expert-talks-card') || title.closest('.healthy-family-card') || title.closest('.organ-detail-card') || title.closest('.daily-health-tip-card')) return;
-
-      const text = title.textContent.trim();
-      if (!text) return;
-
-      title.innerHTML = '';
-      text.split('').forEach(char => {
-        const span = D.createElement('span');
-        span.className = 'k-char';
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        title.appendChild(span);
-      });
-
-      gsap.from(title.querySelectorAll('.k-char'), {
-        y: 40, opacity: 0, rotationX: 30,
-        duration: 0.6, stagger: 0.015,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: title, start: 'top 85%' }
+      gsap.from(title, {
+        y: 30, opacity: 0,
+        duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: title, start: 'top 88%' }
       });
     });
   }
@@ -1879,38 +1858,18 @@
   function initSpringPhysicsStagger() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-    // Apply bouncy entrance to all major content sections (excluding hero banners)
-    D.querySelectorAll(
-      'section:not(.hero-section):not(.subpage-hero-banner):not(.health-card-hero):not(.footer)'
-    ).forEach(section => {
-      const inner = section.querySelector('.container');
-      if (!inner) return;
-
-      gsap.from(inner, {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: 'elastic.out(1, 0.5)',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 88%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
-
     // Ribbon items with individual spring bounce
     D.querySelectorAll('.ribbon-item').forEach((item, i) => {
       gsap.from(item, {
-        y: 40,
+        y: 30,
         opacity: 0,
-        scale: 0.9,
-        duration: 0.8,
-        delay: i * 0.08,
-        ease: 'back.out(2.5)',
+        scale: 0.95,
+        duration: 0.7,
+        delay: i * 0.06,
+        ease: 'back.out(1.8)',
         scrollTrigger: {
           trigger: item,
-          start: 'top 90%'
+          start: 'top 92%'
         }
       });
     });

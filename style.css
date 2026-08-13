@@ -5356,14 +5356,13 @@ body.high-contrast .btn {
 h1, h2, h3,
 .section-title,
 .neon-title,
-.subpage-hero-banner .section-title,
 .section-header .section-title {
   color: #0c1e35 !important;
   text-shadow: none !important;
   letter-spacing: -0.01em !important;
 }
 
-/* DARK CARD HEADINGS MUST ALWAYS BE SOLID PURE WHITE */
+/* DARK CARD & HERO HEADINGS MUST ALWAYS BE SOLID PURE WHITE */
 #organ-card-title,
 .organ-detail-card h3,
 .organ-detail-card #organ-card-title,
@@ -5371,7 +5370,11 @@ h1, h2, h3,
 .section-dark-tech h2,
 .section-dark-tech .section-title,
 .patient-journey-section .section-title,
-#section-3d-gif-showcase .section-title {
+#section-3d-gif-showcase .section-title,
+.subpage-hero-banner .section-title,
+.subpage-hero-banner h1,
+.subpage-hero-banner h2,
+.subpage-hero-banner h3 {
   color: #ffffff !important;
   text-shadow: none !important;
 }

@@ -2763,17 +2763,31 @@
       gsap.fromTo(legacyCards[3], { x: 160, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
     }
 
-    // 3. Pre-Footer Ribbon Ambulance Continuous Auto-Drive
+    // 3. Pre-Footer Ribbon Ambulance Scroll-Driven Movement
     const ribbonAmbulance = D.querySelector('#accreditation-ambulance-drive');
     const ribbonSec = D.querySelector('.ambulance-track-section');
     if (ribbonAmbulance && ribbonSec) {
-      const tl = gsap.timeline({ repeat: -1, yoyo: true });
-      tl.to(ribbonAmbulance, {
-        left: 'calc(100% - 320px)',
-        duration: 8,
-        ease: 'power1.inOut',
-        onStart: () => gsap.set(ribbonAmbulance, { scaleX: 1 }),
-        onRepeat: () => gsap.set(ribbonAmbulance, { scaleX: -1 })
+      let lastProgress = 0;
+      gsap.set(ribbonAmbulance, { left: '0%' });
+      ScrollTrigger.create({
+        trigger: ribbonSec,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.6,
+        onUpdate: self => {
+          const p = self.progress;
+          const leftVal = p * 80;
+          const isReversing = p < lastProgress;
+          lastProgress = p;
+          gsap.to(ribbonAmbulance, {
+            left: leftVal + '%',
+            scaleX: isReversing ? -1 : 1,
+            scaleY: 1,
+            duration: 0.3,
+            ease: 'power1.out',
+            overwrite: 'auto'
+          });
+        }
       });
     }
   }

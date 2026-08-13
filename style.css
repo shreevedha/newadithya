@@ -5151,6 +5151,29 @@ body.high-contrast .btn {
   .hero-ecg-line, .hero-ecg-glow { animation: none; stroke-dashoffset: 0; }
 }
 
+/* Single Fixed Centered Hospital Watermark Logo (40% Visibility) */
+.fixed-bg-hospital-logo {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: min(70vw, 680px) !important;
+  height: auto !important;
+  opacity: 0.4 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  filter: drop-shadow(0 0 40px rgba(0, 240, 255, 0.15)) !important;
+}
+
+/* Ensure page sections are layered above the watermark logo */
+body > header,
+body > section,
+body > div:not(.fixed-bg-hospital-logo),
+body > footer {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
 
 
 

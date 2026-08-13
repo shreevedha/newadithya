@@ -1451,11 +1451,12 @@
 
       item.addEventListener('mouseleave', () => {
         gsap.to(item, {
-          rotateX: 0, rotateY: 0, y: 0,
-          boxShadow: 'none',
+          rotateX: 0, rotateY: 0, y: 0, x: 0, scale: 1,
+          boxShadow: '0 6px 20px rgba(0, 240, 255, 0.12)',
           duration: 0.5,
           ease: 'elastic.out(1, 0.5)',
-          transformPerspective: 1200
+          transformPerspective: 1200,
+          clearProps: 'transform'
         });
         shine.style.opacity = '0';
       });

@@ -73,6 +73,7 @@
       safeRun(initSpringPhysicsStagger);
       safeRun(initHeroParallax);
       safeRun(initHealthCardAnimations);
+      safeRun(initScrollAmbulanceDrive);
     }
 
     // Layer 3: Enhanced
@@ -588,14 +589,23 @@
       });
     }
 
-    // ── Legacy section timeline draw ──
+    // ── Legacy section 4-card 2-left 2-right slide animation ──
     const legacyCards = D.querySelectorAll('.legacy-card');
-    if (legacyCards.length) {
-      gsap.from(legacyCards, {
-        x: -60, opacity: 0, duration: 0.7,
-        stagger: 0.15, ease: 'power2.out',
-        scrollTrigger: { trigger: legacyCards[0], start: 'top 80%' }
-      });
+    if (legacyCards.length >= 4) {
+      gsap.fromTo([legacyCards[0], legacyCards[1]], 
+        { x: -140, opacity: 0 },
+        {
+          x: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out',
+          scrollTrigger: { trigger: '.legacy-grid', start: 'top 85%' }
+        }
+      );
+      gsap.fromTo([legacyCards[2], legacyCards[3]], 
+        { x: 140, opacity: 0 },
+        {
+          x: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out',
+          scrollTrigger: { trigger: '.legacy-grid', start: 'top 85%' }
+        }
+      );
     }
   }
 
@@ -2651,6 +2661,44 @@
 
     if (D.body) createButton();
     else D.addEventListener('DOMContentLoaded', createButton);
+  }
+
+  /* ================================================================
+     36. HORIZONTAL SCROLL-LINKED AMBULANCE DRIVE
+     ================================================================ */
+  function initScrollAmbulanceDrive() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    const ambulance = D.querySelector('.moving-ambulance');
+    const emergencySec = D.querySelector('#section-emergency-desk');
+    if (!ambulance || !emergencySec) return;
+
+    // Remove CSS keyframe loop to let GSAP scrub horizontally
+    ambulance.style.animation = 'none';
+
+    let lastProgress = 0;
+
+    ScrollTrigger.create({
+      trigger: emergencySec,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 0.5,
+      onUpdate: self => {
+        const p = self.progress; // 0 to 1
+        const xPercent = p * 85;
+        const isReversing = p < lastProgress;
+        lastProgress = p;
+
+        gsap.to(ambulance, {
+          left: `${xPercent}%`,
+          scaleX: isReversing ? -1 : 1, // Horizontal flip when scrolling up (going back)
+          scaleY: 1,                    // NEVER flip upside down
+          duration: 0.2,
+          ease: 'power1.out',
+          overwrite: 'auto'
+        });
+      }
+    });
   }
 
 })();

@@ -2975,6 +2975,123 @@
         });
       }
     }
+
+    // 4. Expert Talks & Healthy Lifestyle Scroll-Driven Parallax and Reveals
+    const talksSec = D.querySelector('.expert-talks-section');
+    const leftCard = D.querySelector('.expert-talks-card');
+    const rightCard = D.querySelector('.healthy-family-card');
+    const ytBtn = D.querySelector('.youtube-btn');
+    const lifestyleItems = D.querySelectorAll('.healthy-item');
+
+    if (talksSec && leftCard && rightCard) {
+      // Respect prefers-reduced-motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        // Fallback: simple opacity reveal
+        gsap.fromTo([leftCard, rightCard], { opacity: 0 }, {
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: talksSec,
+            start: 'top 85%',
+            end: 'top 40%',
+            scrub: 1.0
+          }
+        });
+      } else {
+        // Create the composite scrub-linked timeline
+        const talksTL = gsap.timeline({
+          scrollTrigger: {
+            trigger: talksSec,
+            start: 'top 90%',
+            end: 'top 20%',
+            scrub: 1.0,
+            invalidateOnRefresh: true
+          }
+        });
+
+        // Step 1: Section Split Reveal & Scroll Parallax
+        // Left card slides in from the left and has a subtle negative vertical parallax offset
+        talksTL.fromTo(leftCard, {
+          x: -120,
+          y: 20,
+          opacity: 0,
+          scale: 0.94
+        }, {
+          x: 0,
+          y: -10, // vertical parallax
+          opacity: 1,
+          scale: 1,
+          duration: 1
+        }, 0);
+
+        // Right card slides in from the right and has a subtle positive vertical parallax offset
+        talksTL.fromTo(rightCard, {
+          x: 120,
+          y: -20,
+          opacity: 0,
+          scale: 0.94
+        }, {
+          x: 0,
+          y: 8, // vertical parallax
+          opacity: 1,
+          scale: 1,
+          duration: 1
+        }, 0);
+
+        // Heading Reveal for Left Card
+        const leftTag = leftCard.querySelector('.section-tag');
+        const leftTitle = leftCard.querySelector('.section-title');
+        const leftSub = leftCard.querySelector('.section-subtitle');
+        if (leftTag && leftTitle && leftSub) {
+          talksTL.fromTo(leftTag, { opacity: 0, scale: 0.9, filter: 'blur(2px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.4 }, 0.2);
+          talksTL.fromTo(leftTitle, { y: 20, opacity: 0, filter: 'blur(4px)' }, { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.6 }, 0.3);
+          talksTL.fromTo(leftSub, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, 0.45);
+        }
+
+        // Heading Reveal for Right Card
+        const rightTag = rightCard.querySelector('.section-tag');
+        const rightTitle = rightCard.querySelector('.section-title');
+        const rightSub = rightCard.querySelector('.section-subtitle');
+        if (rightTag && rightTitle && rightSub) {
+          talksTL.fromTo(rightTag, { opacity: 0, scale: 0.9, filter: 'blur(2px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.4 }, 0.2);
+          talksTL.fromTo(rightTitle, { y: 20, opacity: 0, filter: 'blur(4px)' }, { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.6 }, 0.3);
+          talksTL.fromTo(rightSub, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, 0.45);
+        }
+
+        // Video Frame Image zoom-to-settle
+        const videoImg = leftCard.querySelector('.expert-video-placeholder-img');
+        if (videoImg) {
+          // Tweens from zoomed 1.08 to standard 1.0 as scroll reaches focus
+          talksTL.fromTo(videoImg, { scale: 1.08 }, { scale: 1.0, duration: 0.8 }, 0.1);
+        }
+
+        // YouTube button slide upward reveal
+        if (ytBtn) {
+          talksTL.fromTo(ytBtn, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.6);
+        }
+
+        // Healthy Lifestyle Cards staggered grid entrance
+        if (lifestyleItems.length > 0) {
+          lifestyleItems.forEach((item, index) => {
+            // Apply grid stagger positioning inside scroll trigger timeline
+            talksTL.fromTo(item, {
+              opacity: 0,
+              y: 32,
+              scale: 0.95,
+              filter: 'blur(3px)'
+            }, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              filter: 'blur(0px)',
+              duration: 0.6
+            }, 0.35 + index * 0.08); // staggered delay
+          });
+        }
+      }
+    }
   }
 
 })();

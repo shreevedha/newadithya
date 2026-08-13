@@ -5805,6 +5805,212 @@ main > section,
   margin-bottom: 48px !important;
 }
 
+/* ==========================================================================
+   LOCATION MAP & CONTACT SECTION — EQUAL HEIGHT CARDS & COMPACT SPACING
+   ========================================================================== */
+.contact-layout {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 32px !important;
+  align-items: stretch !important;
+}
+
+.contact-info-card,
+.map-container {
+  flex: 1 1 450px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+  min-height: 520px !important;
+  max-height: none !important;
+  border-radius: var(--radius-xl) !important;
+  border: 1px solid rgba(0, 240, 255, 0.4) !important;
+  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.15) !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.contact-info-card:hover,
+.map-container:hover {
+  border-color: #00F0FF !important;
+  box-shadow: 0 12px 36px rgba(0, 240, 255, 0.3), 0 0 20px rgba(0, 240, 255, 0.2) !important;
+}
+
+.map-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 520px !important;
+  border: 0 !important;
+  border-radius: var(--radius-xl) !important;
+  flex-grow: 1 !important;
+}
+
+/* REDUCED GAP BEFORE MAP SECTION */
+.section:has(.contact-layout) {
+  padding: 36px 0 60px 0 !important;
+}
+
+/* ==========================================================================
+   ACCREDITATIONS NEON HOVER SWEEP & MOVING AMBULANCE CAR ANIMATION
+   ========================================================================== */
+.accreditations-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+
+.accreditation-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  padding: 20px 24px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 240, 255, 0.4) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.12) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+.accreditation-item:hover {
+  transform: translateY(-4px) scale(1.02) !important;
+  border-color: #00F0FF !important;
+  box-shadow: 0 12px 32px rgba(0, 240, 255, 0.35), 0 0 18px rgba(0, 240, 255, 0.25) !important;
+}
+
+.accreditation-item::after {
+  content: '' !important;
+  position: absolute !important;
+  top: -50% !important;
+  left: -50% !important;
+  width: 200% !important;
+  height: 200% !important;
+  background: linear-gradient(60deg, transparent 40%, rgba(0, 240, 255, 0.2) 50%, transparent 60%) !important;
+  transform: rotate(30deg) !important;
+  transition: transform 0.8s ease !important;
+  pointer-events: none !important;
+}
+
+.accreditation-item:hover::after {
+  transform: rotate(30deg) translate(80%, 80%) !important;
+}
+
+.ambulance-track-section {
+  background: #030d1a !important;
+  padding: 28px 0 !important;
+  border-top: 1px solid rgba(0, 240, 255, 0.3) !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+.accreditation-ambulance-track {
+  width: 100% !important;
+  height: 64px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background: rgba(0, 240, 255, 0.08) !important;
+  border: 1.5px dashed rgba(0, 240, 255, 0.45) !important;
+  border-radius: 50px !important;
+  box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.2), 0 0 25px rgba(0, 240, 255, 0.15) !important;
+}
+
+@keyframes driveAmbulanceTrack {
+  0% {
+    left: 10px;
+    transform: translateY(-50%) scaleX(1);
+  }
+  48% {
+    left: calc(100% - 330px);
+    transform: translateY(-50%) scaleX(1);
+  }
+  50% {
+    left: calc(100% - 330px);
+    transform: translateY(-50%) scaleX(-1);
+  }
+  98% {
+    left: 10px;
+    transform: translateY(-50%) scaleX(-1);
+  }
+  100% {
+    left: 10px;
+    transform: translateY(-50%) scaleX(1);
+  }
+}
+
+.accreditation-ambulance-drive {
+  position: absolute !important;
+  top: 50% !important;
+  left: 10px !important;
+  transform: translateY(-50%) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%) !important;
+  padding: 10px 24px !important;
+  border-radius: 50px !important;
+  border: 2px solid #00F0FF !important;
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+  white-space: nowrap !important;
+  animation: driveAmbulanceTrack 14s ease-in-out infinite !important;
+  will-change: left, transform !important;
+}
+
+@media (max-width: 768px) {
+  .accreditations-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  @keyframes driveAmbulanceTrack {
+    0% { left: 5px; transform: translateY(-50%) scaleX(1); }
+    48% { left: calc(100% - 250px); transform: translateY(-50%) scaleX(1); }
+    50% { left: calc(100% - 250px); transform: translateY(-50%) scaleX(-1); }
+    98% { left: 5px; transform: translateY(-50%) scaleX(-1); }
+    100% { left: 5px; transform: translateY(-50%) scaleX(1); }
+  }
+  
+  .accreditation-ambulance-drive {
+    padding: 6px 14px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ==========================================================================
+   PERMANENT HIGH-CONTRAST VISIBILITY FOR SUBPAGE HERO TITLES & TEXT
+   ========================================================================== */
+.subpage-hero-banner,
+.subpage-hero-banner *,
+.subpage-hero-banner .section-title,
+.subpage-hero-banner h1,
+.subpage-hero-banner h2,
+.subpage-hero-banner .section-subtitle,
+.subpage-hero-banner p,
+.subpage-hero-banner .subpage-breadcrumb {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* FLOOR DIRECTORY TITLE HIGH CONTRAST WHITE */
+#floor-title,
+.floor-info-card h3,
+.floor-card h3,
+.floor-details h3 {
+  color: #ffffff !important;
+  text-shadow: none !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+}
+
+#floor-desc,
+.floor-info-card p,
+.floor-card p,
+.floor-details p {
+  color: #cbd5e1 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+}
+
 
 
 

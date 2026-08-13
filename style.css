@@ -5165,6 +5165,28 @@ body.high-contrast .btn {
   filter: drop-shadow(0 0 40px rgba(0, 240, 255, 0.15)) !important;
 }
 
+/* Neon Cyber-Medical Style for Headings */
+.section-tag {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(9, 45, 116, 0.15)) !important;
+  color: #0088cc !important;
+  border: 1px solid rgba(0, 240, 255, 0.4) !important;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  font-weight: 700 !important;
+}
+
+.section-title {
+  color: #0c1e35 !important;
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.25), 0 0 24px rgba(0, 240, 255, 0.12) !important;
+}
+
+.section-dark-tech .section-title,
+.neon-title {
+  color: #ffffff !important;
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.7), 0 0 30px rgba(0, 240, 255, 0.4) !important;
+}
+
 /* Ensure page sections are layered above the watermark logo */
 body > header,
 body > section,

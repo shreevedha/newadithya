@@ -589,21 +589,44 @@
       });
     }
 
-    // ── Legacy section 4-card 2-left 2-right slide animation ──
+    // ── Legacy section 4-card 2-left 2-right scrubbed slide animation ──
     const legacyCards = D.querySelectorAll('.legacy-card');
     if (legacyCards.length >= 4) {
       gsap.fromTo([legacyCards[0], legacyCards[1]], 
-        { x: -140, opacity: 0 },
+        { x: -160, opacity: 0 },
         {
-          x: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out',
-          scrollTrigger: { trigger: '.legacy-grid', start: 'top 85%' }
+          x: 0, opacity: 1, ease: 'power2.out',
+          scrollTrigger: { trigger: '.legacy-grid', start: 'top 92%', end: 'top 50%', scrub: 1 }
         }
       );
       gsap.fromTo([legacyCards[2], legacyCards[3]], 
-        { x: 140, opacity: 0 },
+        { x: 160, opacity: 0 },
         {
-          x: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out',
-          scrollTrigger: { trigger: '.legacy-grid', start: 'top 85%' }
+          x: 0, opacity: 1, ease: 'power2.out',
+          scrollTrigger: { trigger: '.legacy-grid', start: 'top 92%', end: 'top 50%', scrub: 1 }
+        }
+      );
+    }
+
+    // ── Doctors Showcase scrubbed side-slide animation ──
+    const docCards = D.querySelectorAll('#doctors-grid-container .doctor-card');
+    if (docCards.length >= 2) {
+      const half = Math.ceil(docCards.length / 2);
+      const leftDocs = Array.from(docCards).slice(0, half);
+      const rightDocs = Array.from(docCards).slice(half);
+
+      gsap.fromTo(leftDocs,
+        { x: -160, opacity: 0 },
+        {
+          x: 0, opacity: 1, ease: 'power2.out',
+          scrollTrigger: { trigger: '#doctors-grid-container', start: 'top 92%', end: 'top 45%', scrub: 1 }
+        }
+      );
+      gsap.fromTo(rightDocs,
+        { x: 160, opacity: 0 },
+        {
+          x: 0, opacity: 1, ease: 'power2.out',
+          scrollTrigger: { trigger: '#doctors-grid-container', start: 'top 92%', end: 'top 45%', scrub: 1 }
         }
       );
     }

@@ -3000,6 +3000,11 @@ body {
   .clinical-dept-center-circle {
     grid-column: span 3;
   }
+  /* 1st cell at Row 1 Column 3, rest flow normally from Row 2 */
+  .clinical-depts-grid .clinical-dept-item:first-of-type {
+    grid-column: 3;
+    grid-row: 1;
+  }
   .healthy-family-grid {
     grid-template-columns: 1fr;
   }

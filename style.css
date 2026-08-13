@@ -5239,24 +5239,53 @@ body.high-contrast .btn {
   }
 }
 
-@media (max-width: 1140px) {
+@media (max-width: 1024px) {
   .nav-links {
     display: none !important;
   }
   .nav-cta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
     margin-left: auto !important;
+  }
+  #high-contrast-toggle {
+    display: none !important;
+  }
+  .nav-cta .btn {
+    padding: 6px 10px !important;
+    font-size: 0.75rem !important;
   }
   .nav-toggle {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    margin-left: 8px !important;
+    flex-shrink: 0 !important;
+    z-index: 105 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-subtitle {
+    display: none !important;
+  }
+  .brand-title {
+    font-size: 0.95rem !important;
+  }
+  .nav-cta a.btn-danger {
+    display: none !important;
+  }
+  .nav-cta .btn-primary {
+    padding: 6px 10px !important;
+    font-size: 0.72rem !important;
   }
 }
 
 @media (max-width: 768px) {
-  .nav-inner { height: 74px !important; }
-  .brand-logo { width: 44px !important; height: 44px !important; }
-  .brand-title { font-size: 1.05rem !important; }
+  .nav-inner { height: 68px !important; padding: 0 12px !important; }
+  .brand-logo { width: 40px !important; height: 40px !important; }
+  .brand-title { font-size: 1.02rem !important; }
   .brand-subtitle { font-size: .62rem !important; letter-spacing: .08em !important; }
   .clinical-dept-center-circle { min-width: 0; min-height: 220px; }
   .doctors-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 16px !important; }
@@ -5268,7 +5297,7 @@ body.high-contrast .btn {
 }
 
 /* --------------------------------------------------------------------------
-   CINEMATIC PRESENTATION EFFECTS
+   CINEMATIC PRESENTATION EFFECTS & NEON COMPONENT BORDERS
    -------------------------------------------------------------------------- */
 :root {
   --cinema-ease: cubic-bezier(.22, .61, .36, 1);
@@ -5313,21 +5342,28 @@ body.high-contrast .btn {
 .facility-card, .doctor-card, .legacy-card, .tech-card, .review-card, .glass-panel {
   isolation: isolate;
   overflow: hidden;
+  border: 1px solid rgba(0, 240, 255, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 0 12px rgba(0, 240, 255, 0.15) !important;
+  transition: all 0.35s ease !important;
 }
 
-/* CYBER-MEDICAL NEON GLOW STYLE FOR ALL MAIN HEADINGS & SECTION HEADINGS */
+.facility-card:hover, .doctor-card:hover, .legacy-card:hover, .tech-card:hover, .review-card:hover {
+  border-color: rgba(0, 240, 255, 0.8) !important;
+  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.25), 0 0 20px rgba(0, 240, 255, 0.3) !important;
+}
+
+/* REVERTED CLEAN HEADINGS (NO FUZZY TEXT SHADOW) */
 h1, h2, h3,
 .section-title,
-.hero-title,
 .neon-title,
 .subpage-hero-banner .section-title,
 .section-header .section-title {
   color: #0c1e35 !important;
-  text-shadow: 0 0 12px rgba(0, 240, 255, 0.45), 0 0 25px rgba(0, 240, 255, 0.2) !important;
+  text-shadow: none !important;
   letter-spacing: -0.01em !important;
 }
 
-/* DARK CARD HEADINGS MUST ALWAYS BE PURE WHITE */
+/* DARK CARD HEADINGS MUST ALWAYS BE SOLID PURE WHITE */
 #organ-card-title,
 .organ-detail-card h3,
 .organ-detail-card #organ-card-title,
@@ -5335,10 +5371,14 @@ h1, h2, h3,
 .section-dark-tech h2,
 .section-dark-tech .section-title,
 .patient-journey-section .section-title,
-#section-3d-gif-showcase .section-title,
+#section-3d-gif-showcase .section-title {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
 .hero-title {
   color: #ffffff !important;
-  text-shadow: 0 0 15px rgba(0, 240, 255, 0.8), 0 0 30px rgba(0, 240, 255, 0.45), 0 0 45px rgba(0, 240, 255, 0.25) !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
 }
 
 .section-tag {

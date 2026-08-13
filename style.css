@@ -6011,6 +6011,87 @@ main > section,
   line-height: 1.6 !important;
 }
 
+/* ==========================================================================
+   PROMINENT MOBILE HAMBURGER MENU TOGGLE BUTTON (☰)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .nav-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #0c1e35 !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(0, 240, 255, 0.5) !important;
+    border-radius: 8px !important;
+    padding: 6px 12px !important;
+    margin-left: 10px !important;
+    cursor: pointer !important;
+    z-index: 1005 !important;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.2) !important;
+    transition: background 0.2s, border-color 0.2s !important;
+  }
+
+  .nav-toggle:hover {
+    background: #0088cc !important;
+    border-color: #00F0FF !important;
+  }
+
+  .nav-toggle svg {
+    width: 24px !important;
+    height: 24px !important;
+    stroke: #ffffff !important;
+    stroke-width: 2.5 !important;
+    stroke-linecap: round !important;
+    fill: none !important;
+  }
+}
+
+/* ==========================================================================
+   SUBPAGE HERO BANNER HIGH CONTRAST & ZERO-HIDING RULE
+   ========================================================================== */
+.subpage-hero-banner {
+  background: linear-gradient(135deg, #071322 0%, #0c1e35 50%, #061e38 100%) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.subpage-hero-banner .container,
+.subpage-hero-banner .section-header,
+.subpage-hero-banner .section-title,
+.subpage-hero-banner h1,
+.subpage-hero-banner h2,
+.subpage-hero-banner .section-subtitle,
+.subpage-hero-banner p,
+.subpage-hero-banner .subpage-breadcrumb,
+.subpage-hero-banner .subpage-hero-badges {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+.subpage-hero-banner .section-title,
+.subpage-hero-banner h1,
+.subpage-hero-banner h2 {
+  color: #ffffff !important;
+  text-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+.subpage-hero-banner .section-subtitle,
+.subpage-hero-banner p {
+  color: #cbd5e1 !important;
+}
+
+.subpage-hero-banner .section-tag {
+  color: #00F0FF !important;
+  background: rgba(0, 240, 255, 0.1) !important;
+  border: 1px solid rgba(0, 240, 255, 0.3) !important;
+}
+
 
 
 

@@ -4571,32 +4571,6 @@ body.high-contrast .btn {
   flex-shrink: 0;
 }
 
-/* Centered Semi-Transparent Hospital Watermark Logo */
-.section-soft,
-.section-white,
-.patient-journey-section,
-.doctors-showcase-section,
-.highlights-ribbon {
-  position: relative !important;
-}
-
-.section-soft::before,
-.section-white::before,
-.patient-journey-section::before,
-.doctors-showcase-section::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 440px;
-  height: 440px;
-  background: url('images/Hospital-logo.png') no-repeat center center / contain;
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
-}
-
 /* Highlights Ribbon Alignment & Grid Fix */
 .highlights-ribbon {
   background: #ffffff !important;
@@ -5185,18 +5159,33 @@ body.high-contrast .btn {
   .hero-ecg-line, .hero-ecg-glow { animation: none; stroke-dashoffset: 0; }
 }
 
-/* Single Fixed Centered Hospital Watermark Logo (40% Visibility) */
+/* Single Fixed Centered Hospital Watermark Logo (25% Transparency, Behind Content) */
 .fixed-bg-hospital-logo {
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  width: min(70vw, 680px) !important;
+  width: min(65vw, 620px) !important;
   height: auto !important;
-  opacity: 0.4 !important;
-  z-index: 0 !important;
+  opacity: 0.25 !important;
+  z-index: -1 !important;
   pointer-events: none !important;
-  filter: drop-shadow(0 0 40px rgba(0, 240, 255, 0.15)) !important;
+  filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.1)) !important;
+}
+
+/* Ensure Header, Main Content, and Footer completely obscure watermark */
+.navbar,
+header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  background: #ffffff !important;
+}
+
+.footer {
+  position: relative !important;
+  z-index: 10 !important;
+  background: #061428 !important;
 }
 
 /* Neon Cyber-Medical Style for Headings */

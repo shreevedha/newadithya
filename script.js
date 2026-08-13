@@ -612,11 +612,8 @@ function initDoctorFilters() {
     });
   }
 
-  // Preserve pre-rendered doctor HTML on initial load if pre-rendered cards exist
-  const hasPreRenderedCards = doctorGrid.querySelectorAll('.doctor-card').length > 0;
-  if (!hasPreRenderedCards) {
-    filterDoctors();
-  }
+  // Initial render of doctors into grid
+  filterDoctors();
 
   function renderDoctors(list) {
     if (list.length === 0) {
@@ -629,30 +626,20 @@ function initDoctorFilters() {
     }
 
     doctorGrid.innerHTML = list.map(doc => `
-      <div class="doctor-card doctor-card-horizontal">
-        <div class="doctor-card-main">
-          <div class="doctor-photo-col">
-            <div class="doctor-photo-wrap">
-              <img src="${doc.image}" alt="${doc.name}" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
-            </div>
-            <div class="doctor-opd-badge-below">
-              <span class="opd-dot"></span> OPD Mon - Sat
-            </div>
-          </div>
-
-          <div class="doctor-details-wrap">
-            <div class="doctor-meta-header">
-              <span class="doctor-dept-badge">${doc.department}</span>
-            </div>
-            <h3 class="doctor-name">${doc.name}</h3>
-            <div class="doctor-qualification">${doc.qualification}</div>
-            <div class="doctor-designation">${doc.designation}</div>
-            <div class="doctor-treatments">
-              ${doc.treatments.slice(0, 3).map(t => `<span class="treatment-tag">${t}</span>`).join('')}
-            </div>
+      <div class="doctor-card" data-department="${doc.department}">
+        <div class="doctor-photo-container">
+          <img src="${doc.image}" alt="${doc.name}" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
+          <span class="doctor-opd-badge">OPD Mon - Sat</span>
+        </div>
+        <div class="doctor-card-content">
+          <span class="doctor-dept-badge">${doc.department}</span>
+          <h3 class="doctor-name">${doc.name}</h3>
+          <p class="doctor-qualification">${doc.qualification}</p>
+          <p class="doctor-designation">${doc.designation}</p>
+          <div class="doctor-treatments">
+            ${doc.treatments.slice(0, 3).map(t => `<span class="treatment-tag">${t}</span>`).join('')}
           </div>
         </div>
-
         <div class="doctor-card-footer">
           <button class="btn btn-primary doctor-card-action" data-open-modal="true" data-doctor="${doc.name}" data-department="${doc.department}">
             <span>📅 Book Appointment</span>

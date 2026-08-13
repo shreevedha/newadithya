@@ -378,6 +378,63 @@
     </div>
   </footer>
 
+  <!-- FLOATING SIDE ACTION RAIL -->
+  <div class="side-action-rail">
+    <a href="tel:08632944444" class="rail-item rail-call" aria-label="Call Hospital">
+      <span class="rail-icon">📞</span>
+      <span class="rail-label">Call Hospital</span>
+    </a>
+    <a href="https://wa.me/918632944444" target="_blank" rel="noopener" class="rail-item rail-whatsapp" aria-label="WhatsApp Us">
+      <span class="rail-icon">💬</span>
+      <span class="rail-label">WhatsApp Us</span>
+    </a>
+    <a href="https://maps.google.com/?q=Aditya+Medicare+Hospitals+Guntur" target="_blank" rel="noopener" class="rail-item rail-location" aria-label="Get Directions">
+      <span class="rail-icon">📍</span>
+      <span class="rail-label">Get Directions</span>
+    </a>
+    <button class="rail-item rail-appointment" data-open-modal="true" aria-label="Book Appointment">
+      <span class="rail-icon">📅</span>
+      <span class="rail-label">Book Appointment</span>
+    </button>
+  </div>
+
+  <!-- FLOATING AI ASSISTANT CHATBOT -->
+  <div class="chatbot-widget-container">
+    <button class="chatbot-trigger" id="chatbot-trigger" aria-label="Open AI Helpdesk">
+      <img class="chat-trigger-icon" src="images/gifs/chatbot.gif" alt="Open AI Helpdesk" onerror="this.src='images/logo.png';" />
+      <span class="chat-trigger-pulse"></span>
+    </button>
+
+    <div class="chatbot-panel" id="chatbot-panel">
+      <div class="chatbot-header">
+        <img class="chat-header-avatar" src="images/gifs/chatbot.gif" alt="Aditya AI Helpdesk" onerror="this.src='images/logo.png';" />
+        <div class="chat-header-info">
+          <h4>Aditya AI Helpdesk</h4>
+          <span class="chat-status"><span class="chat-status-dot"></span> Online & Active</span>
+        </div>
+        <button class="chat-close-btn" id="chatbot-close" aria-label="Close Chat">✕</button>
+      </div>
+
+      <div class="chatbot-body" id="chatbot-body">
+        <div class="chat-msg bot-msg">
+          Hello! How can I assist you with your health enquiries today?
+        </div>
+      </div>
+
+      <div class="chatbot-suggestions">
+        <button class="suggestion-chip" data-query="Book an Appointment">📅 Book Appointment</button>
+        <button class="suggestion-chip" data-query="Find a Doctor">🩺 Find Doctor</button>
+        <button class="suggestion-chip" data-query="Emergency Services">🚨 Emergency Info</button>
+        <button class="suggestion-chip" data-query="Operating Hours">⏰ Operating Hours</button>
+      </div>
+
+      <div class="chatbot-footer">
+        <input type="text" id="chatbot-input" placeholder="Type your health enquiry..." aria-label="Chat input" />
+        <button id="chatbot-send-btn" aria-label="Send message">➔</button>
+      </div>
+    </div>
+  </div>
+
   <!-- 3RD PARTY 3D & ANIMATION LIBRARIES (THREE.JS, GSAP, SCROLLTRIGGER, VANILLA-TILT) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

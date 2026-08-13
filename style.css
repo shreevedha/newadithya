@@ -4141,6 +4141,12 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
+.daily-health-tip-card h3,
+#daily-tip-title {
+  color: #00F0FF !important;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.25) !important;
+}
+
 .tip-badge {
   display: inline-flex;
   align-items: center;

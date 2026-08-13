@@ -1462,17 +1462,7 @@
       });
     });
 
-    // Scroll-triggered stagger entrance
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      const grid = D.querySelector('.accreditations-grid');
-      if (grid) {
-        gsap.from(items, {
-          y: 50, opacity: 0, scale: 0.9, rotateX: 15,
-          duration: 0.7, stagger: 0.12, ease: 'power3.out',
-          scrollTrigger: { trigger: grid, start: 'top 82%' }
-        });
-      }
-    }
+    // Scroll-triggered stagger entrance removed to prevent card alignment/offset bugs
   }
 
   /* ================================================================
@@ -2763,11 +2753,10 @@
       gsap.fromTo(legacyCards[3], { x: 160, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
     }
 
-    // 3. Pre-Footer Ribbon Ambulance Scroll-Driven Movement
+    // 3. Pre-Footer Ribbon Ambulance Scroll-Driven Movement (Left/Right to Center)
     const ribbonAmbulance = D.querySelector('#accreditation-ambulance-drive');
     const ribbonSec = D.querySelector('.ambulance-track-section');
     if (ribbonAmbulance && ribbonSec) {
-      let lastProgress = 0;
       gsap.set(ribbonAmbulance, { left: '0%' });
       ScrollTrigger.create({
         trigger: ribbonSec,
@@ -2776,9 +2765,20 @@
         scrub: 0.6,
         onUpdate: self => {
           const p = self.progress;
-          const leftVal = p * 80;
-          const isReversing = p < lastProgress;
-          lastProgress = p;
+          const dir = self.direction; // 1 = down, -1 = up
+          let leftVal = 40; // center by default
+          let isReversing = false;
+
+          if (dir === 1) {
+            // Scrolling down: move from 0% to 40% (center) and stay there
+            leftVal = Math.min(p * 2 * 40, 40);
+            isReversing = false;
+          } else {
+            // Scrolling up: move from 80% to 40% (center) and stay there
+            leftVal = Math.max(40, 80 - (1 - p) * 2 * 40);
+            isReversing = true;
+          }
+
           gsap.to(ribbonAmbulance, {
             left: leftVal + '%',
             scaleX: isReversing ? -1 : 1,

@@ -3842,15 +3842,19 @@ body {
 }
 
 .accreditations-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 24px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
   align-items: stretch !important;
+  gap: 24px !important;
+  width: 100% !important;
 }
 
 @media (max-width: 768px) {
   .accreditations-grid {
-    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 }
 
@@ -4317,13 +4321,13 @@ body.high-contrast .btn {
 }
 
 #section-organ-navigator {
-  padding: 45px 0 !important;
+  padding: 24px 0 !important;
 }
 
 .organ-detail-card {
   position: relative !important;
   overflow: hidden !important;
-  padding: 24px 28px !important;
+  padding: 16px 20px !important;
   background: #041022 !important;
   color: #ffffff !important;
   border-radius: var(--radius-xl) !important;
@@ -4334,9 +4338,9 @@ body.high-contrast .btn {
 .organ-detail-card h3,
 .organ-detail-card #organ-card-title {
   color: #ffffff !important;
-  font-size: 1.85rem !important;
+  font-size: 1.6rem !important;
   font-weight: 700 !important;
-  margin: 12px 0 10px 0 !important;
+  margin: 10px 0 8px 0 !important;
   text-shadow: 0 0 16px rgba(0, 240, 255, 0.8), 0 0 32px rgba(0, 240, 255, 0.4) !important;
 }
 
@@ -4346,23 +4350,13 @@ body.high-contrast .btn {
 
 #organ-card-desc {
   color: #e2e8f0 !important;
-  font-size: 0.95rem !important;
-  line-height: 1.55 !important;
-  margin-bottom: 18px !important;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  margin-bottom: 14px !important;
 }
 
 .organ-detail-card::after {
-  content: '' !important;
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: 300px !important;
-  height: 300px !important;
-  background: url('images/Aditya_Medicare_Hospital_Logo_transparent.png') no-repeat center center / contain !important;
-  opacity: 0.04 !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
+  display: none !important;
 }
 
 /* EXPERT TALKS & HEALTHY FAMILY CARDS */
@@ -5855,10 +5849,13 @@ main > section,
    ACCREDITATIONS NEON HOVER SWEEP & MOVING AMBULANCE CAR ANIMATION
    ========================================================================== */
 .accreditations-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 24px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
   align-items: stretch !important;
+  gap: 24px !important;
+  width: 100% !important;
 }
 
 .accreditation-item {
@@ -5873,6 +5870,8 @@ main > section,
   position: relative !important;
   overflow: hidden !important;
   transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
+  flex: 1 1 320px !important;
+  max-width: 380px !important;
 }
 
 .accreditation-item:hover {
@@ -5960,7 +5959,12 @@ main > section,
 
 @media (max-width: 768px) {
   .accreditations-grid {
-    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .accreditation-item {
+    max-width: 100% !important;
+    width: 100% !important;
   }
   
   @keyframes driveAmbulanceTrack {

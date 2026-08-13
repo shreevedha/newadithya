@@ -3046,14 +3046,14 @@ body {
 
 /* PERSISTENT FLOATING ACTION RAIL (RIGHT SIDE) */
 .side-action-rail {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 999;
+  position: fixed !important;
+  right: 15px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  z-index: 9999 !important;
 }
 
 .rail-item {
@@ -3067,7 +3067,7 @@ body {
   justify-content: flex-start;
   overflow: hidden;
   text-decoration: none;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   white-space: nowrap;
   cursor: pointer;
@@ -3085,19 +3085,31 @@ body {
 
 .rail-label {
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.82rem !important;
   font-weight: 700;
   color: var(--navy);
-  padding-right: 18px;
+  padding-right: 16px !important;
   opacity: 0;
   transition: opacity 0.3s ease;
+  white-space: nowrap !important;
 }
 
-/* Hover effect: Expand horizontally */
+/* Hover effect: Expand horizontally safely */
 .rail-item:hover {
-  width: 170px;
+  width: 190px !important;
   background: var(--navy);
   border-color: var(--navy);
+}
+
+.rail-item.rail-appointment:hover {
+  width: 205px !important;
+  background: #65a30d !important;
+  border-color: #65a30d !important;
+}
+
+.rail-item:hover .rail-label {
+  opacity: 1;
+  color: var(--white);
 }
 
 .rail-item:hover .rail-label {
@@ -4297,6 +4309,30 @@ body.high-contrast .btn {
 .daily-health-tip-card {
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+#section-organ-navigator {
+  padding: 45px 0 !important;
+}
+
+.organ-detail-card {
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 35px 36px !important;
+}
+
+.organ-detail-card::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 320px !important;
+  height: 320px !important;
+  background: url('images/Aditya_Medicare_Hospital_Logo_transparent.png') no-repeat center center / contain !important;
+  opacity: 0.08 !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
 }
 
 /* EXPERT TALKS & HEALTHY FAMILY CARDS */

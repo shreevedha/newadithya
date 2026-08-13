@@ -3688,81 +3688,128 @@ body {
   position: relative;
 }
 
+.journey-timeline-grid::before {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 8%;
+  right: 8%;
+  height: 4px;
+  background: rgba(226, 232, 240, 0.8);
+  border-radius: 4px;
+  z-index: 0;
+}
+
+.journey-timeline-grid::after {
+  content: '';
+  position: absolute;
+  top: 49px;
+  left: 8%;
+  height: 6px;
+  width: 84%;
+  background: linear-gradient(90deg, #0088cc 0%, #00F0FF 50%, #0088cc 100%);
+  background-size: 200% 100%;
+  border-radius: 50px;
+  box-shadow: 0 0 15px #00F0FF, 0 0 30px #00F0FF;
+  z-index: 1;
+  animation: neonLineSweep 3.5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes neonLineSweep {
+  0% { background-position: 200% 0; opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { background-position: -200% 0; opacity: 0.6; }
+}
+
 @media (max-width: 992px) {
   .journey-timeline-grid {
     grid-template-columns: 1fr;
     gap: 30px;
   }
+  .journey-timeline-grid::before,
+  .journey-timeline-grid::after {
+    display: none;
+  }
 }
 
 .journey-step-item {
-  background: var(--soft-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 30px 20px;
-  text-align: center;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  cursor: pointer;
+  background: #ffffff !important;
+  border: 1.5px solid rgba(0, 240, 255, 0.25) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 32px 20px 24px 20px !important;
+  text-align: center !important;
+  position: relative !important;
+  z-index: 2 !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
 }
 
 .journey-step-number {
   font-family: var(--font-title);
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: rgba(12, 30, 53, 0.15);
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgba(0, 136, 204, 0.25);
   position: absolute;
-  top: 15px;
-  right: 20px;
-  transition: color 0.3s ease;
+  top: 14px;
+  right: 18px;
+  transition: all 0.3s ease;
 }
 
 .journey-step-icon {
-  width: 60px;
-  height: 60px;
-  background: var(--white);
+  width: 62px;
+  height: 62px;
+  background: #f0f7ff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
-  margin: 0 auto 20px auto;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.3s ease;
+  font-size: 1.7rem;
+  margin: 0 auto 18px auto;
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 240, 255, 0.3);
 }
 
 .journey-step-title {
   font-family: var(--font-title);
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--navy);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .journey-step-desc {
   font-size: 0.85rem;
   color: #64748b;
-  line-height: 1.5;
+  line-height: 1.55;
+  margin: 0;
 }
 
-.journey-step-item:hover,
-.journey-step-item.active {
-  background: var(--white);
-  border-color: var(--blue);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-6px);
+.journey-step-item.neon-lit,
+.journey-step-item.active,
+.journey-step-item:hover {
+  background: #ffffff !important;
+  border-color: #00F0FF !important;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.45), 0 12px 35px rgba(0, 136, 204, 0.18), inset 0 0 15px rgba(0, 240, 255, 0.12) !important;
+  transform: translateY(-8px) scale(1.03) !important;
 }
 
-.journey-step-item:hover .journey-step-number,
-.journey-step-item.active .journey-step-number {
-  color: var(--blue);
+.journey-step-item.neon-lit .journey-step-number,
+.journey-step-item.active .journey-step-number,
+.journey-step-item:hover .journey-step-number {
+  color: #0088cc !important;
+  text-shadow: 0 0 14px rgba(0, 240, 255, 0.7) !important;
 }
 
-.journey-step-item:hover .journey-step-icon,
-.journey-step-item.active .journey-step-icon {
-  transform: scale(1.1);
-  background: var(--blue);
-  color: var(--white);
+.journey-step-item.neon-lit .journey-step-icon,
+.journey-step-item.active .journey-step-icon,
+.journey-step-item:hover .journey-step-icon {
+  background: linear-gradient(135deg, #0088cc, #00F0FF) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.7) !important;
+  transform: scale(1.15) rotate(4deg) !important;
 }
 
 /* ==========================================================================

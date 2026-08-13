@@ -67,6 +67,7 @@
       safeRun(initStatCounterAnimation);
       safeRun(initNavigationGlass);
       safeRun(initCareJourneyMap);
+      safeRun(initPatientJourneyAnimation);
       safeRun(initImageEffects);
       safeRun(initChatbotMotion);
       safeRun(initFooterReveal);
@@ -1184,6 +1185,37 @@
 
     // Pulse animation
     gsap.fromTo(dot, { scale: 1 }, { scale: 1.3, repeat: 5, yoyo: true, duration: 0.5, ease: 'power1.inOut', onComplete: () => { gsap.to(dot, { opacity: 0, duration: 0.3, onComplete: () => dot.remove() }); } });
+  }
+
+  /* ================================================================
+     15. PATIENT JOURNEY SEQUENTIAL NEON CELL LIGHTING
+     ================================================================ */
+  function initPatientJourneyAnimation() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    const journeyGrid = D.querySelector('.journey-timeline-grid');
+    if (!journeyGrid) return;
+
+    const steps = journeyGrid.querySelectorAll('.journey-step-item');
+    if (!steps.length) return;
+
+    ScrollTrigger.create({
+      trigger: journeyGrid,
+      start: 'top 85%',
+      end: 'bottom 35%',
+      scrub: 0.5,
+      onUpdate: self => {
+        const p = self.progress;
+        const activeCount = Math.min(steps.length, Math.floor(p * (steps.length + 1)));
+        steps.forEach((step, idx) => {
+          if (idx < activeCount) {
+            step.classList.add('neon-lit');
+          } else {
+            step.classList.remove('neon-lit');
+          }
+        });
+      }
+    });
   }
 
   /* ================================================================

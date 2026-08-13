@@ -5159,64 +5159,79 @@ body.high-contrast .btn {
   .hero-ecg-line, .hero-ecg-glow { animation: none; stroke-dashoffset: 0; }
 }
 
-/* Single Fixed Centered Hospital Watermark Logo (25% Transparency, Behind Content) */
+/* Universal Visibility & Zero Empty Section Gap Fix */
+section,
+.section,
+[data-aos],
+.specialty-card,
+.facility-card,
+.doctor-card,
+.blog-card,
+.location-card,
+.tech-card,
+.subpage-hero-banner,
+.section-header,
+.section-tag,
+.section-title,
+.section-subtitle,
+.highlights-ribbon,
+.hero-stats-wrapper {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* Single Fixed Centered Hospital Watermark Logo (25% Transparency) */
 .fixed-bg-hospital-logo {
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  width: min(65vw, 620px) !important;
+  width: min(60vw, 550px) !important;
   height: auto !important;
-  opacity: 0.25 !important;
-  z-index: -1 !important;
+  opacity: 0.18 !important;
+  z-index: 0 !important;
   pointer-events: none !important;
-  filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.1)) !important;
+  filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.08)) !important;
 }
 
-/* Ensure Header, Main Content, and Footer completely obscure watermark */
+/* Header & Footer Stack Context */
 .navbar,
 header {
   position: sticky !important;
   top: 0 !important;
   z-index: 1000 !important;
   background: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
 }
 
+footer,
 .footer {
   position: relative !important;
-  z-index: 10 !important;
+  z-index: 100 !important;
   background: #061428 !important;
 }
 
-/* Neon Cyber-Medical Style for Headings */
-.section-tag {
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(9, 45, 116, 0.15)) !important;
-  color: #0088cc !important;
-  border: 1px solid rgba(0, 240, 255, 0.4) !important;
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25) !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.12em !important;
-  font-weight: 700 !important;
-}
-
-.section-title {
-  color: #0c1e35 !important;
-  text-shadow: 0 0 12px rgba(0, 240, 255, 0.25), 0 0 24px rgba(0, 240, 255, 0.12) !important;
-}
-
-.section-dark-tech .section-title,
-.neon-title {
-  color: #ffffff !important;
-  text-shadow: 0 0 15px rgba(0, 240, 255, 0.7), 0 0 30px rgba(0, 240, 255, 0.4) !important;
-}
-
-/* Ensure page sections are layered above the watermark logo */
-body > header,
+/* Page Section Backgrounds & Content Layering */
 body > section,
-body > div:not(.fixed-bg-hospital-logo),
-body > footer {
+main > section,
+.section {
   position: relative !important;
-  z-index: 1 !important;
+  z-index: 2 !important;
+}
+
+.section-white {
+  background: rgba(255, 255, 255, 0.94) !important;
+}
+
+.section-soft {
+  background: rgba(245, 248, 252, 0.92) !important;
+}
+
+.subpage-hero-banner {
+  background: linear-gradient(135deg, rgba(235, 243, 255, 0.95), rgba(245, 248, 252, 0.95)) !important;
+  padding: 50px 0 35px 0 !important;
+  border-bottom: 1px solid var(--border-color) !important;
 }
 
 

@@ -526,9 +526,9 @@
         const title = header.querySelector('.section-title');
         const sub = header.querySelector('.section-subtitle');
         const tl = gsap.timeline();
-        if (tag) tl.fromTo(tag, { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, 0.1);
-        if (title) tl.fromTo(title, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 0.25);
-        if (sub) tl.fromTo(sub, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.45);
+        if (tag) tl.fromTo(tag, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.5 }, 0.1);
+        if (title) tl.fromTo(title, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.7 }, 0.25);
+        if (sub) tl.fromTo(sub, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.6 }, 0.45);
         return;
       }
 
@@ -537,12 +537,12 @@
       const sub = header.querySelector('.section-subtitle');
 
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: header, start: 'top 88%', toggleActions: 'play none none none' }
+        scrollTrigger: { trigger: header, start: 'top 95%', toggleActions: 'play none none none' }
       });
 
-      if (tag) tl.fromTo(tag, { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, 0);
-      if (title) tl.fromTo(title, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 0.15);
-      if (sub) tl.fromTo(sub, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.35);
+      if (tag) tl.fromTo(tag, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.5 }, 0);
+      if (title) tl.fromTo(title, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.7 }, 0.15);
+      if (sub) tl.fromTo(sub, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.6 }, 0.35);
     });
 
     // ── Staggered Card Grids ──
@@ -562,12 +562,12 @@
       if (!cards.length) return;
 
       gsap.fromTo(cards, 
-        { y: 35, opacity: 0, scale: 0.96 },
+        { y: 0, opacity: 1, scale: 1 },
         {
           y: 0, opacity: 1, scale: 1, duration: 0.7,
-          stagger: 0.08,
+          stagger: 0.05,
           ease: 'power2.out',
-          scrollTrigger: { trigger: grid, start: 'top 90%' }
+          scrollTrigger: { trigger: grid, start: 'top 95%' }
         }
       );
     });
@@ -589,26 +589,26 @@
       });
     }
 
-    // ── Legacy section 4-card 2-left 2-right scrubbed slide animation ──
+    // ── Legacy section 4-card 2-left 2-right slide animation (Always Visible) ──
     const legacyCards = D.querySelectorAll('.legacy-card');
     if (legacyCards.length >= 4) {
       gsap.fromTo([legacyCards[0], legacyCards[1]], 
-        { x: -160, opacity: 0 },
+        { x: -60, opacity: 1 },
         {
-          x: 0, opacity: 1, ease: 'power2.out',
-          scrollTrigger: { trigger: '.legacy-grid', start: 'top 92%', end: 'top 50%', scrub: 1 }
+          x: 0, opacity: 1, ease: 'power2.out', duration: 0.8,
+          scrollTrigger: { trigger: '.legacy-grid', start: 'top 92%', toggleActions: 'play none none reverse' }
         }
       );
       gsap.fromTo([legacyCards[2], legacyCards[3]], 
-        { x: 160, opacity: 0 },
+        { x: 60, opacity: 1 },
         {
-          x: 0, opacity: 1, ease: 'power2.out',
-          scrollTrigger: { trigger: '.legacy-grid', start: 'top 92%', end: 'top 50%', scrub: 1 }
+          x: 0, opacity: 1, ease: 'power2.out', duration: 0.8,
+          scrollTrigger: { trigger: '.legacy-grid', start: 'top 92%', toggleActions: 'play none none reverse' }
         }
       );
     }
 
-    // ── Doctors Showcase scrubbed side-slide animation ──
+    // ── Doctors Showcase side-slide animation (Always Visible) ──
     const docCards = D.querySelectorAll('#doctors-grid-container .doctor-card');
     if (docCards.length >= 2) {
       const half = Math.ceil(docCards.length / 2);
@@ -616,17 +616,17 @@
       const rightDocs = Array.from(docCards).slice(half);
 
       gsap.fromTo(leftDocs,
-        { x: -160, opacity: 0 },
+        { x: -50, opacity: 1 },
         {
-          x: 0, opacity: 1, ease: 'power2.out',
-          scrollTrigger: { trigger: '#doctors-grid-container', start: 'top 92%', end: 'top 45%', scrub: 1 }
+          x: 0, opacity: 1, ease: 'power2.out', duration: 0.8,
+          scrollTrigger: { trigger: '#doctors-grid-container', start: 'top 92%', toggleActions: 'play none none reverse' }
         }
       );
       gsap.fromTo(rightDocs,
-        { x: 160, opacity: 0 },
+        { x: 50, opacity: 1 },
         {
-          x: 0, opacity: 1, ease: 'power2.out',
-          scrollTrigger: { trigger: '#doctors-grid-container', start: 'top 92%', end: 'top 45%', scrub: 1 }
+          x: 0, opacity: 1, ease: 'power2.out', duration: 0.8,
+          scrollTrigger: { trigger: '#doctors-grid-container', start: 'top 92%', toggleActions: 'play none none reverse' }
         }
       );
     }

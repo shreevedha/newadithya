@@ -4318,7 +4318,32 @@ body.high-contrast .btn {
 .organ-detail-card {
   position: relative !important;
   overflow: hidden !important;
-  padding: 35px 36px !important;
+  padding: 24px 28px !important;
+  background: #041022 !important;
+  color: #ffffff !important;
+  border-radius: var(--radius-xl) !important;
+  border: 1px solid rgba(0, 240, 255, 0.3) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4) !important;
+}
+
+.organ-detail-card h3,
+.organ-detail-card #organ-card-title {
+  color: #ffffff !important;
+  font-size: 1.85rem !important;
+  font-weight: 700 !important;
+  margin: 12px 0 10px 0 !important;
+  text-shadow: 0 0 16px rgba(0, 240, 255, 0.8), 0 0 32px rgba(0, 240, 255, 0.4) !important;
+}
+
+.organ-gif-meta div {
+  color: #cbd5e1 !important;
+}
+
+#organ-card-desc {
+  color: #e2e8f0 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.55 !important;
+  margin-bottom: 18px !important;
 }
 
 .organ-detail-card::after {
@@ -4327,10 +4352,10 @@ body.high-contrast .btn {
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  width: 320px !important;
-  height: 320px !important;
+  width: 300px !important;
+  height: 300px !important;
   background: url('images/Aditya_Medicare_Hospital_Logo_transparent.png') no-repeat center center / contain !important;
-  opacity: 0.08 !important;
+  opacity: 0.04 !important;
   pointer-events: none !important;
   z-index: 0 !important;
 }
@@ -5302,6 +5327,12 @@ h1, h2, h3,
   letter-spacing: -0.01em !important;
 }
 
+/* DARK CARD HEADINGS MUST ALWAYS BE PURE WHITE */
+#organ-card-title,
+.organ-detail-card h3,
+.organ-detail-card #organ-card-title,
+.section-dark-tech h3,
+.section-dark-tech h2,
 .section-dark-tech .section-title,
 .patient-journey-section .section-title,
 #section-3d-gif-showcase .section-title,

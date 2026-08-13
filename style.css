@@ -5811,12 +5811,12 @@ main > section,
   width: 100% !important;
 }
 
-/* AMPLE SPACIOUS GAP BETWEEN HERO INFO BAR AND 50,000+ STATS GRID */
+/* OVERLAY HERO STATS WRAPPER ON TOP OF HERO BACKGROUND IMAGE */
 .hero-stats-wrapper {
   position: relative !important;
   z-index: 10 !important;
-  margin-top: 48px !important;
-  margin-bottom: 48px !important;
+  margin-top: -58px !important;
+  margin-bottom: 36px !important;
 }
 
 /* ==========================================================================
@@ -5960,7 +5960,6 @@ main > section,
 .accreditation-ambulance-drive {
   position: absolute !important;
   top: 50% !important;
-  left: 10px !important;
   transform: translateY(-50%) !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -5971,7 +5970,6 @@ main > section,
   border: 2px solid #00F0FF !important;
   box-shadow: 0 0 24px rgba(0, 240, 255, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3) !important;
   white-space: nowrap !important;
-  animation: driveAmbulanceTrack 14s ease-in-out infinite !important;
   will-change: left, transform !important;
 }
 

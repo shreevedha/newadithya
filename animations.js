@@ -2743,14 +2743,156 @@
       });
     }
 
-    // 2. Legacy Doctors Convergence Animation (2 from left, 2 from right)
+    // 2. Legacy Doctors 3D Convergence Animation (Responsive & Scrubbed)
     const legacyCards = D.querySelectorAll('.legacy-card');
     const legacyGrid = D.querySelector('.legacy-grid');
+    const legacySection = D.querySelector('.legacy-section') || legacyGrid;
+
     if (legacyGrid && legacyCards.length >= 4) {
-      gsap.fromTo(legacyCards[0], { x: -160, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
-      gsap.fromTo(legacyCards[1], { x: -90, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, delay: 0.15, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
-      gsap.fromTo(legacyCards[2], { x: 90, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, delay: 0.15, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
-      gsap.fromTo(legacyCards[3], { x: 160, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
+      // Respect prefers-reduced-motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        // Fallback simple opacity fade
+        gsap.fromTo(legacyCards, 
+          { opacity: 0 }, 
+          { 
+            opacity: 1, 
+            duration: 1, 
+            stagger: 0.15, 
+            scrollTrigger: {
+              trigger: legacySection,
+              start: 'top 80%',
+              end: 'top 30%',
+              scrub: 1.0
+            }
+          }
+        );
+      } else {
+        // Compute translations based on viewport responsive width
+        const wWidth = window.innerWidth;
+        let startX1 = -300, startX2 = -180, startX3 = 180, startX4 = 300;
+        let leftRot = -8, rightRot = 8;
+        let startY = 20;
+
+        if (wWidth < 768) {
+          // Mobile single-column: slide alternately from left and right
+          startX1 = -80;
+          startX2 = 80;
+          startX3 = -80;
+          startX4 = 80;
+          leftRot = -3;
+          rightRot = 3;
+          startY = 0; // no vertical parallax on mobile to preserve single column scroll flow
+        } else if (wWidth < 992) {
+          // Tablet width: reduce translation distance to prevent overlap
+          startX1 = -120;
+          startX2 = -60;
+          startX3 = 60;
+          startX4 = 120;
+          leftRot = -4;
+          rightRot = 4;
+          startY = 12;
+        }
+
+        // Set perspective on container to ensure smooth 3D depth rendering
+        gsap.set(legacyGrid, { perspective: 1200, transformStyle: 'preserve-3d' });
+
+        // Create the scrub-synchronized GSAP timeline
+        const legacyTL = gsap.timeline({
+          scrollTrigger: {
+            trigger: legacySection,
+            start: 'top 80%',
+            end: 'top 25%',
+            scrub: 1.0,
+            invalidateOnRefresh: true
+          }
+        });
+
+        // Card 1: Leftmost card (starts moving first)
+        legacyTL.fromTo(legacyCards[0], {
+          x: startX1,
+          y: -startY,
+          z: -100,
+          rotateY: leftRot,
+          scale: 0.88,
+          opacity: 0.4,
+          filter: 'blur(4px)',
+          transformPerspective: 1000
+        }, {
+          x: 0,
+          y: 0,
+          z: 0,
+          rotateY: 0,
+          scale: 1,
+          opacity: 1,
+          filter: 'blur(0px)',
+          duration: 1
+        }, 0);
+
+        // Card 2: Left-middle card (starts moving with 0.08 delay)
+        legacyTL.fromTo(legacyCards[1], {
+          x: startX2,
+          y: startY,
+          z: -60,
+          rotateY: leftRot,
+          scale: 0.93,
+          opacity: 0.55,
+          filter: 'blur(2.5px)',
+          transformPerspective: 1000
+        }, {
+          x: 0,
+          y: 0,
+          z: 0,
+          rotateY: 0,
+          scale: 1,
+          opacity: 1,
+          filter: 'blur(0px)',
+          duration: 1
+        }, 0.08);
+
+        // Card 3: Right-middle card (starts moving with 0.16 delay)
+        legacyTL.fromTo(legacyCards[2], {
+          x: startX3,
+          y: -startY,
+          z: -60,
+          rotateY: rightRot,
+          scale: 0.93,
+          opacity: 0.55,
+          filter: 'blur(2.5px)',
+          transformPerspective: 1000
+        }, {
+          x: 0,
+          y: 0,
+          z: 0,
+          rotateY: 0,
+          scale: 1,
+          opacity: 1,
+          filter: 'blur(0px)',
+          duration: 1
+        }, 0.16);
+
+        // Card 4: Rightmost card (starts moving with 0.24 delay)
+        legacyTL.fromTo(legacyCards[3], {
+          x: startX4,
+          y: startY,
+          z: -100,
+          rotateY: rightRot,
+          scale: 0.88,
+          opacity: 0.4,
+          filter: 'blur(4px)',
+          transformPerspective: 1000
+        }, {
+          x: 0,
+          y: 0,
+          z: 0,
+          rotateY: 0,
+          scale: 1,
+          opacity: 1,
+          filter: 'blur(0px)',
+          duration: 1
+        }, 0.24);
+      }
     }
 
     // 3. Pre-Footer Ribbon Ambulance Scroll-Driven Movement (Full Left to Right on Scroll)

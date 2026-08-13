@@ -2907,6 +2907,8 @@ body {
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   margin-top: 40px;
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
 .legacy-card {
@@ -2915,13 +2917,15 @@ body {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: var(--transition);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
   display: flex;
   flex-direction: column;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
 }
 
 .legacy-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) !important;
   box-shadow: var(--shadow-lg);
   border-color: rgba(0, 136, 204, 0.15);
 }

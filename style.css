@@ -2625,11 +2625,12 @@ body {
 }
 
 .clinical-depts-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 22px;
-  align-items: center;
-  margin-top: 40px;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  grid-auto-flow: dense !important;
+  align-items: stretch !important;
+  margin-top: 40px !important;
 }
 
 .clinical-dept-item {
@@ -2707,16 +2708,17 @@ body {
 }
 
 .clinical-dept-center-circle {
-  grid-column: 3;
-  grid-row: 2;
-  min-width: 230px;
-  min-height: 230px;
-  width: 100%;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  min-width: 100% !important;
+  min-height: 175px !important;
+  width: 100% !important;
+  height: 100% !important;
   justify-self: center;
-  background: radial-gradient(circle at 35% 35%, rgba(0, 240, 255, 0.22) 0%, rgba(6, 20, 40, 0.95) 75%);
-  border: 3px solid #00F0FF;
-  border-radius: 50%;
-  aspect-ratio: 1/1;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.22) 0%, rgba(6, 20, 40, 0.95) 75%) !important;
+  border: 2px solid #00F0FF !important;
+  border-radius: 20px !important;
+  aspect-ratio: auto !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2981,13 +2983,13 @@ body {
 /* Responsiveness for new templates */
 @media (max-width: 992px) {
   .clinical-depts-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
   }
   .clinical-dept-center-circle {
-    grid-column: span 2;
-    grid-row: auto;
-    aspect-ratio: auto;
-    border-radius: var(--radius-lg);
+    grid-column: auto !important;
+    grid-row: auto !important;
+    border-radius: 20px !important;
   }
   .expert-talks-split {
     grid-template-columns: 1fr;
@@ -2999,15 +3001,12 @@ body {
 
 @media (max-width: 768px) {
   .clinical-depts-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
   }
   .clinical-dept-center-circle {
-    grid-column: span 3;
-  }
-  /* 1st cell at Row 1 Column 3, rest flow normally from Row 2 */
-  .clinical-depts-grid .clinical-dept-item:first-of-type {
-    grid-column: 3;
-    grid-row: 1;
+    grid-column: auto !important;
+    grid-row: auto !important;
   }
   .healthy-family-grid {
     grid-template-columns: 1fr;
@@ -3016,10 +3015,11 @@ body {
 
 @media (max-width: 480px) {
   .clinical-depts-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr !important;
   }
   .clinical-dept-center-circle {
-    grid-column: span 2;
+    grid-column: auto !important;
+    grid-row: auto !important;
   }
   .legacy-grid {
     grid-template-columns: 1fr;
@@ -4608,10 +4608,13 @@ body.high-contrast .btn {
 }
 
 .clinical-dept-center-circle {
-  min-width: 250px !important;
-  min-height: 250px !important;
-  max-width: 250px !important;
-  max-height: 250px !important;
+  min-width: 100% !important;
+  min-height: 175px !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 20px !important;
   padding: 16px !important;
   box-sizing: border-box !important;
   overflow: hidden !important;

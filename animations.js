@@ -2752,31 +2752,27 @@
       });
     }
 
-    // 2. Pre-Footer Ribbon Ambulance Drive Track
+    // 2. Legacy Doctors Convergence Animation (2 from left, 2 from right)
+    const legacyCards = D.querySelectorAll('.legacy-card');
+    const legacyGrid = D.querySelector('.legacy-grid');
+    if (legacyGrid && legacyCards.length >= 4) {
+      gsap.fromTo(legacyCards[0], { x: -160, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
+      gsap.fromTo(legacyCards[1], { x: -90, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, delay: 0.15, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
+      gsap.fromTo(legacyCards[2], { x: 90, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, delay: 0.15, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
+      gsap.fromTo(legacyCards[3], { x: 160, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
+    }
+
+    // 3. Pre-Footer Ribbon Ambulance Continuous Auto-Drive
     const ribbonAmbulance = D.querySelector('#accreditation-ambulance-drive');
-    const ribbonSec = D.querySelector('.accreditations-section');
+    const ribbonSec = D.querySelector('.ambulance-track-section');
     if (ribbonAmbulance && ribbonSec) {
-      let lastP2 = 0;
-      const ambIcon = ribbonAmbulance.querySelector('.accreditation-badge');
-      ScrollTrigger.create({
-        trigger: ribbonSec,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 0.5,
-        onUpdate: self => {
-          const p = self.progress;
-          const xPercent = p * 75; // Drives left to right across track, coming right to center at 45%
-          const isReversing = p < lastP2;
-          lastP2 = p;
-          gsap.to(ribbonAmbulance, {
-            left: `${xPercent}%`,
-            scaleX: isReversing ? -1 : 1,
-            scaleY: 1,
-            duration: 0.2,
-            ease: 'power1.out',
-            overwrite: 'auto'
-          });
-        }
+      const tl = gsap.timeline({ repeat: -1, yoyo: true });
+      tl.to(ribbonAmbulance, {
+        left: 'calc(100% - 320px)',
+        duration: 8,
+        ease: 'power1.inOut',
+        onStart: () => gsap.set(ribbonAmbulance, { scaleX: 1 }),
+        onRepeat: () => gsap.set(ribbonAmbulance, { scaleX: -1 })
       });
     }
   }

@@ -6220,32 +6220,6 @@ main > section,
   }
 }
 
-/* ==========================================================================
-   CUSTOM CLINICAL DEPARTMENTS GRID ALIGNMENT (1st cell at Row 1 Col 3)
-   ========================================================================== */
-@media (min-width: 993px) {
-  .clinical-depts-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 20px !important;
-  }
-
-  /* 1st cell (Surgical Gastro) placed at Row 1, Column 3 */
-  .clinical-depts-grid .clinical-dept-item:nth-of-type(1) {
-    grid-column: 3 !important;
-    grid-row: 1 !important;
-  }
-
-  /* Remaining 6 cells fill Row 2 and Row 3 smoothly (3 per row) */
-  .clinical-depts-grid .clinical-dept-item:nth-of-type(2) { grid-column: 1 !important; grid-row: 2 !important; }
-  .clinical-depts-grid .clinical-dept-item:nth-of-type(3) { grid-column: 2 !important; grid-row: 2 !important; }
-  .clinical-depts-grid .clinical-dept-item:nth-of-type(4) { grid-column: 3 !important; grid-row: 2 !important; }
-
-  .clinical-depts-grid .clinical-dept-item:nth-of-type(5) { grid-column: 1 !important; grid-row: 3 !important; }
-  .clinical-depts-grid .clinical-dept-item:nth-of-type(6) { grid-column: 2 !important; grid-row: 3 !important; }
-  .clinical-depts-grid .clinical-dept-item:nth-of-type(7) { grid-column: 3 !important; grid-row: 3 !important; }
-}
-
 /* HERO INFO BAR TEXT PERMANENT HIGH CONTRAST */
 .hero-info-bar,
 .hero-info-item,
@@ -6267,6 +6241,43 @@ main > section,
   color: #ffffff !important;
   font-size: 0.95rem !important;
   font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   ORGAN NAVIGATOR COMPACT PADDING (REALTIME CLINICAL TELEMETRY)
+   ========================================================================== */
+#section-organ-navigator,
+.organ-navigator-section {
+  padding: 32px 0 36px 0 !important;
+}
+
+.organ-navigator-section .section-header {
+  margin-bottom: 24px !important;
+}
+
+.organ-showcase-card {
+  margin-top: 16px !important;
+  margin-bottom: 16px !important;
+}
+
+/* ==========================================================================
+   TECHNOLOGY SHOWCASE CONTAINER TABS LAYOUT
+   ========================================================================== */
+.tech-showcase-container {
+  margin-top: 40px !important;
+  position: relative !important;
+}
+
+.tech-showcase-container .tech-radio-tabs {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0 auto 28px auto !important;
+  width: 100% !important;
+  position: relative !important;
+  z-index: 15 !important;
 }
 
 

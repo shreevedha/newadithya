@@ -903,9 +903,9 @@
         <p class="section-subtitle">Select an organ system to view our diagnostic capabilities, specialist consultants, and treatment technologies.</p>
       </div>
 
-      <div class="organ-navigator-grid" style="display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: center;">
-        <div class="organ-pill-list" style="display: flex; flex-direction: column; gap: 12px;">
-          <button class="organ-btn active" data-organ="cardio" style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 2px solid var(--blue); border-radius: var(--radius-md); font-weight: 700; color: var(--navy); cursor: pointer; text-align: left; transition: all 0.3s ease;">
+      <div class="organ-navigator-grid">
+        <div class="organ-pill-list">
+          <button class="organ-btn active" data-organ="cardio">
             <span style="font-size: 1.8rem;">🫀</span>
             <div>
               <div style="font-size: 1.05rem;">Cardiovascular System</div>
@@ -913,7 +913,7 @@
             </div>
           </button>
 
-          <button class="organ-btn" data-organ="neuro" style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-weight: 700; color: var(--navy); cursor: pointer; text-align: left; transition: all 0.3s ease;">
+          <button class="organ-btn" data-organ="neuro">
             <span style="font-size: 1.8rem;">🧠</span>
             <div>
               <div style="font-size: 1.05rem;">Brain & Neuro System</div>
@@ -921,7 +921,7 @@
             </div>
           </button>
 
-          <button class="organ-btn" data-organ="ortho" style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-weight: 700; color: var(--navy); cursor: pointer; text-align: left; transition: all 0.3s ease;">
+          <button class="organ-btn" data-organ="ortho">
             <span style="font-size: 1.8rem;">🦴</span>
             <div>
               <div style="font-size: 1.05rem;">Bones & Joint System</div>
@@ -929,7 +929,7 @@
             </div>
           </button>
 
-          <button class="organ-btn" data-organ="gastro" style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-weight: 700; color: var(--navy); cursor: pointer; text-align: left; transition: all 0.3s ease;">
+          <button class="organ-btn" data-organ="gastro">
             <span style="font-size: 1.8rem;">🧬</span>
             <div>
               <div style="font-size: 1.05rem;">Digestive & GI System</div>
@@ -938,7 +938,7 @@
           </button>
         </div>
 
-        <div class="organ-detail-card" id="organ-detail-card" style="background: var(--navy); color: var(--white); border-radius: var(--radius-xl); position: relative; overflow: hidden; box-shadow: var(--shadow-lg);">
+        <div class="organ-detail-card" id="organ-detail-card">
           <!-- ANIMATED MEDICAL GIF VISUALIZER -->
           <div id="anatomy-3d-canvas-wrap" style="margin-bottom: 24px; min-height: 180px; display: flex; align-items: center; justify-content: center; gap: 20px; background: rgba(3, 13, 26, 0.7); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 16px; padding: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.4);">
             <div class="organ-gif-box" style="position: relative; width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 3px solid #00F0FF; box-shadow: 0 0 20px rgba(0, 240, 255, 0.5); transition: transform 0.4s ease;" data-tilt>

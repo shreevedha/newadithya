@@ -5436,20 +5436,7 @@ h1, h2, h3,
 }
 
 /* Hero ECG wave replacement for the removed GIF and 3D cube. */
-.hero-ecg-visual {
-  position: absolute;
-  left: 50%;
-  bottom: 34px;
-  z-index: 3;
-  width: min(900px, calc(100% - 48px));
-  height: 92px;
-  transform: translateX(-50%);
-  opacity: 0.9;
-  transition: opacity .6s ease;
-  pointer-events: none;
-  overflow: hidden !important;
-}
-.hero-ecg-ready { opacity: 0.9; }
+/* Duplicate absolute positioned rules removed. Using relative flow below hero title. */
 /* 3D PARALLAX LAYERED ECG CARDIAC MONITOR BACKGROUND */
 .hero-ecg-parallax-bg {
   position: absolute;

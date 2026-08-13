@@ -2655,7 +2655,183 @@ if (document.readyState === 'loading') {
   initTechShowcaseTabs();
 }
 
+/* --------------------------------------------------------------------------
+   34. DYNAMIC CANVAS REAL-TIME PARALLAX ECG MONITOR WAVEFORM
+   -------------------------------------------------------------------------- */
+function initHeroEcgWave() {
+  const container = document.querySelector('.hero-ecg-parallax-bg');
+  if (!container) return;
 
+  // Render canvas inside background container
+  container.innerHTML = `
+    <div class="ecg-monitor-grid"></div>
+    <canvas id="hero-ecg-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+  `;
+  
+  const canvas = document.getElementById('hero-ecg-canvas');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
 
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+    canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  }
+  
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
 
+  function getEcgY(phase, amplitude) {
+    if (phase < 0.1) {
+      return Math.sin((phase / 0.1) * Math.PI) * 4 * amplitude; // P wave
+    }
+    if (phase < 0.15) {
+      return 0; // PR baseline
+    }
+    if (phase < 0.18) {
+      return -((phase - 0.15) / 0.03) * 3 * amplitude; // Q wave
+    }
+    if (phase < 0.22) {
+      // R spike
+      const rPhase = (phase - 0.18) / 0.04;
+      if (rPhase < 0.5) {
+        return (-3 + rPhase * 2 * 35) * amplitude;
+      } else {
+        return (32 - (rPhase - 0.5) * 2 * 38) * amplitude;
+      }
+    }
+    if (phase < 0.26) {
+      return (-6 + ((phase - 0.22) / 0.04) * 6) * amplitude; // S wave
+    }
+    if (phase < 0.32) {
+      return 0; // ST segment
+    }
+    if (phase < 0.45) {
+      return Math.sin(((phase - 0.32) / 0.13) * Math.PI) * 6 * amplitude; // T wave
+    }
+    return 0; // TP baseline
+  }
 
+  class EcgLayer {
+    constructor(speed, opacity, color, blur, baselineOffset, scaleFactor) {
+      this.speed = speed;
+      this.opacity = opacity;
+      this.color = color;
+      this.blur = blur;
+      this.baselineOffset = baselineOffset;
+      this.scaleFactor = scaleFactor;
+      this.points = [];
+      this.isBeating = false;
+      this.cyclePosition = 0;
+      this.beatDuration = 45;
+      this.amplitude = 1.0;
+      this.pauseRemaining = 20;
+    }
+
+    updatePoints(width) {
+      while (this.points.length < width) {
+        this.points.push(0);
+      }
+      while (this.points.length > width) {
+        this.points.shift();
+      }
+
+      const steps = Math.ceil(this.speed);
+      for (let s = 0; s < steps; s++) {
+        let newY = 0;
+        if (this.isBeating) {
+          const phase = this.cyclePosition / this.beatDuration;
+          newY = getEcgY(phase, this.amplitude) * this.scaleFactor;
+          this.cyclePosition++;
+          if (this.cyclePosition >= this.beatDuration) {
+            this.isBeating = false;
+            this.pauseRemaining = Math.floor(50 + Math.random() * 70);
+          }
+        } else {
+          this.pauseRemaining--;
+          if (this.pauseRemaining <= 0) {
+            this.isBeating = true;
+            this.cyclePosition = 0;
+            this.beatDuration = Math.floor(40 + Math.random() * 15);
+            this.amplitude = 0.88 + Math.random() * 0.2;
+          }
+        }
+        this.points.push(newY);
+        this.points.shift();
+      }
+    }
+
+    draw(ctx, w, h) {
+      const centerY = h / 2 + this.baselineOffset;
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = this.speed > 2 ? 2.2 : 1.3;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      
+      if (this.blur > 0) {
+        ctx.filter = `blur(${this.blur}px)`;
+      }
+
+      ctx.beginPath();
+      for (let i = 0; i < this.points.length; i++) {
+        const x = i;
+        const y = centerY - this.points[i];
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  const isMobile = window.innerWidth < 768;
+  const scaleMult = isMobile ? 0.7 : 1.1;
+
+  const layers = [
+    new EcgLayer(1.1, 0.08, '#00f0ff', 3.5, -20, 0.9 * scaleMult),
+    new EcgLayer(1.8, 0.20, '#00f0ff', 1.5, 20, 1.0 * scaleMult),
+    new EcgLayer(2.8, 0.45, '#00f0ff', 0, 0, 1.25 * scaleMult)
+  ];
+
+  function draw() {
+    const w = canvas.width / window.devicePixelRatio;
+    const h = canvas.height / window.devicePixelRatio;
+    ctx.clearRect(0, 0, w, h);
+
+    layers.forEach(layer => {
+      layer.updatePoints(w);
+      layer.draw(ctx, w, h);
+    });
+
+    const primary = layers[2];
+    const centerY = h / 2 + primary.baselineOffset;
+    const scannerX = w - 5;
+    const scannerY = centerY - primary.points[primary.points.length - 1];
+
+    ctx.save();
+    ctx.globalAlpha = 0.85;
+    ctx.fillStyle = '#00f0ff';
+    ctx.shadowColor = '#00f0ff';
+    ctx.shadowBlur = 10;
+    ctx.beginPath();
+    ctx.arc(scannerX, scannerY, 4.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    requestAnimationFrame(draw);
+  }
+
+  const startW = canvas.width / window.devicePixelRatio;
+  for (let i = 0; i < startW; i++) {
+    layers.forEach(layer => layer.updatePoints(startW));
+  }
+
+  draw();
+}

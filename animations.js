@@ -2753,10 +2753,11 @@
       gsap.fromTo(legacyCards[3], { x: 160, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: legacyGrid, start: 'top 85%' } });
     }
 
-    // 3. Pre-Footer Ribbon Ambulance Scroll-Driven Movement (Left/Right to Center)
+    // 3. Pre-Footer Ribbon Ambulance Scroll-Driven Movement (Full Left to Right on Scroll)
     const ribbonAmbulance = D.querySelector('#accreditation-ambulance-drive');
     const ribbonSec = D.querySelector('.ambulance-track-section');
     if (ribbonAmbulance && ribbonSec) {
+      let lastProgress = 0;
       gsap.set(ribbonAmbulance, { left: '0%' });
       ScrollTrigger.create({
         trigger: ribbonSec,
@@ -2765,19 +2766,9 @@
         scrub: 0.6,
         onUpdate: self => {
           const p = self.progress;
-          const dir = self.direction; // 1 = down, -1 = up
-          let leftVal = 40; // center by default
-          let isReversing = false;
-
-          if (dir === 1) {
-            // Scrolling down: move from 0% to 40% (center) and stay there
-            leftVal = Math.min(p * 2 * 40, 40);
-            isReversing = false;
-          } else {
-            // Scrolling up: move from 80% to 40% (center) and stay there
-            leftVal = Math.max(40, 80 - (1 - p) * 2 * 40);
-            isReversing = true;
-          }
+          const leftVal = p * 80; // 0% (left) to 40% (center) to 80% (right)
+          const isReversing = p < lastProgress;
+          lastProgress = p;
 
           gsap.to(ribbonAmbulance, {
             left: leftVal + '%',

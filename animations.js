@@ -2687,41 +2687,65 @@
   }
 
   /* ================================================================
-     36. HORIZONTAL SCROLL-LINKED AMBULANCE DRIVE
+     36. HORIZONTAL SCROLL-LINKED AMBULANCE DRIVE (Emergency & Pre-Footer Ribbon)
      ================================================================ */
   function initScrollAmbulanceDrive() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
+    // 1. Emergency Section Ambulance Drive
     const ambulance = D.querySelector('.moving-ambulance');
     const emergencySec = D.querySelector('#section-emergency-desk');
-    if (!ambulance || !emergencySec) return;
+    if (ambulance && emergencySec) {
+      ambulance.style.animation = 'none';
+      let lastP1 = 0;
+      ScrollTrigger.create({
+        trigger: emergencySec,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.5,
+        onUpdate: self => {
+          const p = self.progress;
+          const xPercent = p * 85;
+          const isReversing = p < lastP1;
+          lastP1 = p;
+          gsap.to(ambulance, {
+            left: `${xPercent}%`,
+            scaleX: isReversing ? -1 : 1,
+            scaleY: 1,
+            duration: 0.2,
+            ease: 'power1.out',
+            overwrite: 'auto'
+          });
+        }
+      });
+    }
 
-    // Remove CSS keyframe loop to let GSAP scrub horizontally
-    ambulance.style.animation = 'none';
-
-    let lastProgress = 0;
-
-    ScrollTrigger.create({
-      trigger: emergencySec,
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: 0.5,
-      onUpdate: self => {
-        const p = self.progress; // 0 to 1
-        const xPercent = p * 85;
-        const isReversing = p < lastProgress;
-        lastProgress = p;
-
-        gsap.to(ambulance, {
-          left: `${xPercent}%`,
-          scaleX: isReversing ? -1 : 1, // Horizontal flip when scrolling up (going back)
-          scaleY: 1,                    // NEVER flip upside down
-          duration: 0.2,
-          ease: 'power1.out',
-          overwrite: 'auto'
-        });
-      }
-    });
+    // 2. Pre-Footer Ribbon Ambulance Drive Track
+    const ribbonAmbulance = D.querySelector('#accreditation-ambulance-drive');
+    const ribbonSec = D.querySelector('.accreditations-section');
+    if (ribbonAmbulance && ribbonSec) {
+      let lastP2 = 0;
+      ScrollTrigger.create({
+        trigger: ribbonSec,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.5,
+        onUpdate: self => {
+          const p = self.progress;
+          const xPercent = p * 75; // Drives left to right across track, coming right to center at 45%
+          const isReversing = p < lastP2;
+          lastP2 = p;
+          gsap.to(ribbonAmbulance, {
+            left: `${xPercent}%`,
+            scaleX: isReversing ? -1 : 1,
+            scaleY: 1,
+            duration: 0.2,
+            ease: 'power1.out',
+            overwrite: 'auto'
+          });
+        }
+      });
+    }
   }
 
 })();

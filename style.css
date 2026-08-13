@@ -6092,6 +6092,183 @@ main > section,
   border: 1px solid rgba(0, 240, 255, 0.3) !important;
 }
 
+/* ==========================================================================
+   TECHNOLOGY SHOWCASE INTERACTIVE RADIO TAB SELECTOR
+   ========================================================================== */
+.tech-radio-tabs {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 36px 0 24px 0 !important;
+}
+
+.tech-radio-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 10px 20px !important;
+  background: rgba(12, 30, 53, 0.8) !important;
+  border: 1.5px solid rgba(0, 240, 255, 0.3) !important;
+  border-radius: 50px !important;
+  color: #cbd5e1 !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(8px) !important;
+  transition: all 0.3s ease !important;
+}
+
+.tech-radio-btn .radio-dot {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  border: 2px solid #00F0FF !important;
+  background: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.tech-radio-btn:hover {
+  background: rgba(0, 240, 255, 0.15) !important;
+  border-color: #00F0FF !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+}
+
+.tech-radio-btn.active {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.25) 0%, rgba(0, 136, 204, 0.3) 100%) !important;
+  border-color: #00F0FF !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.4) !important;
+}
+
+.tech-radio-btn.active .radio-dot {
+  background: #00F0FF !important;
+  box-shadow: 0 0 8px #00F0FF !important;
+}
+
+/* HERO BUTTONS PERMANENT VISIBILITY & ECG POINTER EVENTS FIX */
+.hero-ecg-visual {
+  pointer-events: none !important;
+}
+
+.hero-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 24px auto 32px auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative !important;
+  z-index: 15 !important;
+}
+
+.hero-actions .btn,
+.hero-actions button,
+.hero-actions a {
+  display: inline-flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* ==========================================================================
+   DEFINITIVE MOBILE HAMBURGER MENU BUTTON (☰) DISPLAY GUARANTEE
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .nav-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    background: #0c1e35 !important;
+    color: #ffffff !important;
+    border: 2px solid #00F0FF !important;
+    border-radius: 8px !important;
+    margin-left: 12px !important;
+    cursor: pointer !important;
+    z-index: 9999 !important;
+    box-shadow: 0 0 14px rgba(0, 240, 255, 0.4) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .nav-toggle svg {
+    width: 26px !important;
+    height: 26px !important;
+    stroke: #ffffff !important;
+    stroke-width: 2.8 !important;
+    stroke-linecap: round !important;
+    fill: none !important;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
+
+/* ==========================================================================
+   CUSTOM CLINICAL DEPARTMENTS GRID ALIGNMENT (1st cell at Row 1 Col 3)
+   ========================================================================== */
+@media (min-width: 993px) {
+  .clinical-depts-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+  }
+
+  /* 1st cell (Surgical Gastro) placed at Row 1, Column 3 */
+  .clinical-depts-grid .clinical-dept-item:nth-of-type(1) {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+  }
+
+  /* Remaining 6 cells fill Row 2 and Row 3 smoothly (3 per row) */
+  .clinical-depts-grid .clinical-dept-item:nth-of-type(2) { grid-column: 1 !important; grid-row: 2 !important; }
+  .clinical-depts-grid .clinical-dept-item:nth-of-type(3) { grid-column: 2 !important; grid-row: 2 !important; }
+  .clinical-depts-grid .clinical-dept-item:nth-of-type(4) { grid-column: 3 !important; grid-row: 2 !important; }
+
+  .clinical-depts-grid .clinical-dept-item:nth-of-type(5) { grid-column: 1 !important; grid-row: 3 !important; }
+  .clinical-depts-grid .clinical-dept-item:nth-of-type(6) { grid-column: 2 !important; grid-row: 3 !important; }
+  .clinical-depts-grid .clinical-dept-item:nth-of-type(7) { grid-column: 3 !important; grid-row: 3 !important; }
+}
+
+/* HERO INFO BAR TEXT PERMANENT HIGH CONTRAST */
+.hero-info-bar,
+.hero-info-item,
+.hero-info-label,
+.hero-info-val {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.hero-info-label {
+  color: #00F0FF !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.hero-info-val {
+  color: #ffffff !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+}
+
 
 
 

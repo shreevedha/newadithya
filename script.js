@@ -2569,6 +2569,92 @@ if (document.readyState === 'loading') {
   initDoctorPhotoLightbox();
 }
 
+/* --------------------------------------------------------------------------
+   38. INTERACTIVE MEDICAL TECHNOLOGY SHOWCASE TABS (SIDE RADIO SELECTOR)
+   -------------------------------------------------------------------------- */
+function initTechShowcaseTabs() {
+  const btns = document.querySelectorAll('.tech-radio-btn');
+  const img = document.querySelector('.tech-showcase-img');
+  if (!btns.length || !img) return;
+
+  const techData = {
+    'ctscan': {
+      img: 'images/CTscan.png',
+      alt: '128-Slice CT Scan System',
+      pins: [
+        { top: '40%', left: '35%', title: '128-Slice Ultra-Fast CT Scanner', desc: 'Provides 0.28-second full-cardiac scanning for immediate emergency coronary triage.' },
+        { top: '55%', left: '65%', title: '3D Diagnostic Workstation', desc: 'Real-time multiplanar anatomical reconstruction for precision surgical planning.' }
+      ]
+    },
+    'mri': {
+      img: 'images/mri.png',
+      alt: '3T Siemens MRI Scanner',
+      pins: [
+        { top: '35%', left: '42%', title: '3.0 Tesla High-Field Magnet', desc: 'Delivers ultra-crisp structural brain, spine, and joint imaging with zero radiation.' },
+        { top: '60%', left: '70%', title: 'Quiet-Suite Acoustic Shielding', desc: '70% acoustic noise reduction for patient comfort during neuro scans.' }
+      ]
+    },
+    'cathlab': {
+      img: 'images/Flat_Panel_Cath_Lab.png',
+      alt: 'Flat-Panel Digital Cath Lab',
+      pins: [
+        { top: '30%', left: '50%', title: 'Flat-Panel Fluoroscopy C-Arm', desc: 'Operates 24/7 for primary emergency angioplasties and complex stenting.' },
+        { top: '58%', left: '30%', title: 'DoseReduction AI Software', desc: 'Sub-second vascular access with optimized low radiation exposure.' }
+      ]
+    },
+    'robotic': {
+      img: 'images/MISSO_Robotic_Knee_Surgery.jpg',
+      alt: 'MISSO Robotic Knee Surgery System',
+      pins: [
+        { top: '45%', left: '45%', title: 'MISSO Surgical Robotic Arm', desc: 'Sub-millimeter anatomical precision for 100% custom joint replacement.' },
+        { top: '65%', left: '75%', title: 'Sub-Millimeter Pre-Planning', desc: 'Minimal bone resection, less pain, and faster 24-hour mobility recovery.' }
+      ]
+    }
+  };
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const techKey = btn.getAttribute('data-tech');
+      const data = techData[techKey];
+      if (data) {
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = data.img;
+          img.alt = data.alt;
+          img.style.opacity = '1';
+          
+          const container = img.closest('.tech-showcase-container');
+          if (container) {
+            const oldPins = container.querySelectorAll('.tech-hotspot-pin');
+            oldPins.forEach(p => p.remove());
+            
+            data.pins.forEach(pin => {
+              const pinEl = document.createElement('div');
+              pinEl.className = 'tech-hotspot-pin';
+              pinEl.style.top = pin.top;
+              pinEl.style.left = pin.left;
+              pinEl.innerHTML = `
+                <div class="tech-hotspot-tooltip">
+                  <strong>${pin.title}</strong><br/>${pin.desc}
+                </div>
+              `;
+              container.appendChild(pinEl);
+            });
+          }
+        }, 200);
+      }
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTechShowcaseTabs);
+} else {
+  initTechShowcaseTabs();
+}
+
 
 
 

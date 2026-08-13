@@ -627,9 +627,10 @@ function initDoctorFilters() {
 
     doctorGrid.innerHTML = list.map(doc => `
       <div class="doctor-card" data-department="${doc.department}">
-        <div class="doctor-photo-container">
+        <div class="doctor-photo-container" data-zoom-img="${doc.image}" data-zoom-name="${doc.name}" data-zoom-dept="${doc.department}" data-zoom-qual="${doc.qualification}" data-zoom-desig="${doc.designation}">
           <img src="${doc.image}" alt="${doc.name}" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
           <span class="doctor-opd-badge">OPD Mon - Sat</span>
+          <div class="doctor-photo-zoom-hint">🔍 Click to Expand</div>
         </div>
         <div class="doctor-card-content">
           <span class="doctor-dept-badge">${doc.department}</span>
@@ -2493,10 +2494,79 @@ function initCinematicVisualEffects() {
   revealItems.forEach(item => observer.observe(item));
 }
 
-function initHeroEcgWave() {
-  const wave = document.querySelector('.hero-ecg-visual');
-  if (!wave) return;
-  wave.classList.add('hero-ecg-ready');
+function initDoctorPhotoLightbox() {
+  // Create Lightbox overlay DOM container if not already present
+  let lightbox = document.getElementById('doctor-lightbox-modal');
+  if (!lightbox) {
+    lightbox = document.createElement('div');
+    lightbox.id = 'doctor-lightbox-modal';
+    lightbox.className = 'doctor-lightbox-overlay';
+    lightbox.innerHTML = `
+      <div class="doctor-lightbox-card">
+        <button class="doctor-lightbox-close" id="doctor-lightbox-close-btn" aria-label="Close Lightbox">✕</button>
+        <div class="doctor-lightbox-img-wrap">
+          <img id="lightbox-doc-img" src="" alt="Doctor Expanded View" />
+        </div>
+        <div class="doctor-lightbox-info">
+          <span class="doctor-dept-badge" id="lightbox-doc-dept">Specialty</span>
+          <h3 id="lightbox-doc-name">Doctor Name</h3>
+          <p id="lightbox-doc-qual">Qualifications & Designation</p>
+          <button class="btn btn-primary" id="lightbox-book-btn" style="width:100%; border-radius: 50px;">📅 Book Appointment</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(lightbox);
+
+    // Event listener to close
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target.closest('#doctor-lightbox-close-btn')) {
+        lightbox.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        lightbox.classList.remove('active');
+      }
+    });
+  }
+
+  // Delegated click handler on photo containers
+  document.addEventListener('click', (e) => {
+    const photoContainer = e.target.closest('.doctor-photo-container');
+    if (!photoContainer) return;
+
+    const img = photoContainer.getAttribute('data-zoom-img') || photoContainer.querySelector('img')?.src;
+    const name = photoContainer.getAttribute('data-zoom-name') || photoContainer.closest('.doctor-card')?.querySelector('.doctor-name')?.textContent || 'Doctor Specialist';
+    const dept = photoContainer.getAttribute('data-zoom-dept') || photoContainer.closest('.doctor-card')?.querySelector('.doctor-dept-badge')?.textContent || 'Specialty Care';
+    const qual = photoContainer.getAttribute('data-zoom-qual') || photoContainer.closest('.doctor-card')?.querySelector('.doctor-qualification')?.textContent || '';
+    const desig = photoContainer.getAttribute('data-zoom-desig') || photoContainer.closest('.doctor-card')?.querySelector('.doctor-designation')?.textContent || '';
+
+    if (!img) return;
+
+    document.getElementById('lightbox-doc-img').src = img;
+    document.getElementById('lightbox-doc-dept').textContent = dept;
+    document.getElementById('lightbox-doc-name').textContent = name;
+    document.getElementById('lightbox-doc-qual').textContent = qual + (desig ? ' — ' + desig : '');
+
+    const bookBtn = document.getElementById('lightbox-book-btn');
+    if (bookBtn) {
+      bookBtn.onclick = () => {
+        lightbox.classList.remove('active');
+        const modalBtn = document.querySelector(`[data-open-modal="true"][data-doctor="${name}"]`) || document.querySelector('[data-open-modal="true"]');
+        if (modalBtn) modalBtn.click();
+      };
+    }
+
+    lightbox.classList.add('active');
+  });
+}
+
+// Auto Boot Lightbox
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initDoctorPhotoLightbox);
+} else {
+  initDoctorPhotoLightbox();
 }
 
 

@@ -593,17 +593,17 @@
     const legacyCards = D.querySelectorAll('.legacy-card');
     if (legacyCards.length >= 4) {
       gsap.fromTo([legacyCards[0], legacyCards[1]], 
-        { x: -60, opacity: 1 },
+        { x: -250, opacity: 1 },
         {
-          x: 0, opacity: 1, ease: 'power2.out', duration: 0.8,
-          scrollTrigger: { trigger: '.legacy-grid', start: 'top 92%', toggleActions: 'play none none reverse' }
+          x: 0, opacity: 1, ease: 'power2.out',
+          scrollTrigger: { trigger: '.legacy-grid', start: 'top 95%', end: 'top 40%', scrub: 1 }
         }
       );
       gsap.fromTo([legacyCards[2], legacyCards[3]], 
-        { x: 60, opacity: 1 },
+        { x: 250, opacity: 1 },
         {
-          x: 0, opacity: 1, ease: 'power2.out', duration: 0.8,
-          scrollTrigger: { trigger: '.legacy-grid', start: 'top 92%', toggleActions: 'play none none reverse' }
+          x: 0, opacity: 1, ease: 'power2.out',
+          scrollTrigger: { trigger: '.legacy-grid', start: 'top 95%', end: 'top 40%', scrub: 1 }
         }
       );
     }
@@ -2041,7 +2041,7 @@
      26. DISPLACEMENT TRANSITION — WebGL liquid page morph
      ================================================================ */
   function initDisplacementTransition() {
-    if (typeof THREE === 'undefined') return;
+    return; // Disabled to prevent page transition curtain glitches
 
     // Create fullscreen transition curtain
     const curtain = D.createElement('div');
@@ -2725,6 +2725,7 @@
     const ribbonSec = D.querySelector('.accreditations-section');
     if (ribbonAmbulance && ribbonSec) {
       let lastP2 = 0;
+      const ambIcon = ribbonAmbulance.querySelector('.accreditation-badge');
       ScrollTrigger.create({
         trigger: ribbonSec,
         start: 'top bottom',

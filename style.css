@@ -3770,16 +3770,18 @@ body {
    ========================================================================== */
 .accreditations-section {
   background: var(--soft-bg);
-  padding: 60px 0;
+  padding: 50px 0 60px 0 !important;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
+  position: relative !important;
 }
 
 .accreditations-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  align-items: center;
+  gap: 24px;
+  align-items: stretch !important;
+  margin-bottom: 35px !important;
 }
 
 @media (max-width: 768px) {
@@ -3788,16 +3790,56 @@ body {
   }
 }
 
+.accreditation-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 1 !important;
+  padding: 16px 20px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+  min-height: 80px !important;
+  box-sizing: border-box !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accreditation-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 136, 204, 0.1) !important;
+  border-color: rgba(0, 136, 204, 0.4) !important;
+}
+
+.accreditation-badge {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+
+.accreditation-text h4 {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 2px 0;
+}
+
+.accreditation-text p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
 .accreditation-ambulance-track {
   width: 100%;
-  height: 64px;
-  margin-top: 24px;
+  height: 60px;
+  margin-top: 25px !important;
   position: relative;
   overflow: hidden;
   background: rgba(0, 240, 255, 0.05);
-  border-top: 1px dashed rgba(0, 240, 255, 0.3);
-  border-bottom: 1px dashed rgba(0, 240, 255, 0.3);
+  border: 1px dashed rgba(0, 240, 255, 0.3);
   border-radius: var(--radius-full);
+  clear: both !important;
 }
 
 .accreditation-ambulance-drive {
@@ -3816,28 +3858,6 @@ body {
   white-space: nowrap;
   will-change: transform, left;
 }
-
-.accreditation-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  opacity: 0.85;
-  transition: opacity 0.3s ease;
-}
-
-.accreditation-item:hover {
-  opacity: 1;
-}
-
-.accreditation-badge {
-  font-size: 2.2rem;
-}
-
-.accreditation-text h4 {
-  font-family: var(--font-title);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--navy);
   margin-bottom: 2px;
 }
 
@@ -4649,18 +4669,149 @@ body.high-contrast .btn {
 }
 
 .doctor-photo-container {
-  height: 220px !important;
+  height: 260px !important;
   width: 100% !important;
   position: relative !important;
-  background: #f1f5f9 !important;
+  background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%) !important;
   overflow: hidden !important;
+  cursor: pointer !important;
 }
 
 .doctor-photo-container img {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: top center !important;
+  object-position: center 15% !important;
+  transition: transform 0.4s ease !important;
+}
+
+.doctor-photo-container:hover img {
+  transform: scale(1.05) !important;
+}
+
+.doctor-photo-zoom-hint {
+  position: absolute !important;
+  bottom: 8px !important;
+  right: 8px !important;
+  background: rgba(12, 30, 53, 0.75) !important;
+  color: #ffffff !important;
+  padding: 4px 10px !important;
+  border-radius: 50px !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  backdrop-filter: blur(4px) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  pointer-events: none !important;
+}
+
+.doctor-photo-container:hover .doctor-photo-zoom-hint {
+  opacity: 1 !important;
+}
+
+/* DOCTOR PHOTO EXPANDED LIGHTBOX MODAL */
+.doctor-lightbox-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(6, 20, 40, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.doctor-lightbox-overlay.active {
+  opacity: 1 !important;
+  pointer-events: all !important;
+}
+
+.doctor-lightbox-card {
+  background: #ffffff !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  max-width: min(50vw, 540px) !important;
+  width: 100% !important;
+  max-height: 85vh !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 240, 255, 0.3) !important;
+  border: 1px solid rgba(0, 240, 255, 0.4) !important;
+  position: relative !important;
+  transform: scale(0.85) !important;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.doctor-lightbox-overlay.active .doctor-lightbox-card {
+  transform: scale(1) !important;
+}
+
+@media (max-width: 768px) {
+  .doctor-lightbox-card {
+    max-width: 92vw !important;
+  }
+}
+
+.doctor-lightbox-img-wrap {
+  width: 100% !important;
+  height: 340px !important;
+  background: #0c1e35 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.doctor-lightbox-img-wrap img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 15% !important;
+}
+
+.doctor-lightbox-close {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  font-size: 1.2rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  transition: all 0.2s ease !important;
+}
+
+.doctor-lightbox-close:hover {
+  background: #dc2626 !important;
+  transform: scale(1.1) !important;
+}
+
+.doctor-lightbox-info {
+  padding: 20px 24px !important;
+  text-align: center !important;
+}
+
+.doctor-lightbox-info h3 {
+  margin: 6px 0 4px 0 !important;
+  font-size: 1.35rem !important;
+  color: #0c1e35 !important;
+}
+
+.doctor-lightbox-info p {
+  margin: 0 0 14px 0 !important;
+  color: #0088cc !important;
+  font-weight: 600 !important;
+  font-size: 0.92rem !important;
 }
 
 .doctor-card-content {
@@ -5047,6 +5198,37 @@ body.high-contrast .btn {
   overflow: hidden;
 }
 
+/* CYBER-MEDICAL NEON GLOW STYLE FOR ALL MAIN HEADINGS & SECTION HEADINGS */
+h1, h2, h3,
+.section-title,
+.hero-title,
+.neon-title,
+.subpage-hero-banner .section-title,
+.section-header .section-title {
+  color: #0c1e35 !important;
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.45), 0 0 25px rgba(0, 240, 255, 0.2) !important;
+  letter-spacing: -0.01em !important;
+}
+
+.section-dark-tech .section-title,
+.patient-journey-section .section-title,
+#section-3d-gif-showcase .section-title,
+.hero-title {
+  color: #ffffff !important;
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.8), 0 0 30px rgba(0, 240, 255, 0.45), 0 0 45px rgba(0, 240, 255, 0.25) !important;
+}
+
+.section-tag {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(9, 45, 116, 0.2)) !important;
+  color: #0088cc !important;
+  border: 1px solid rgba(0, 240, 255, 0.5) !important;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.3) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 700 !important;
+  display: inline-block !important;
+}
+
 .facility-card::after, .doctor-card::after, .legacy-card::after, .tech-card::after, .glass-panel::after {
   content: '';
   position: absolute;
@@ -5181,18 +5363,29 @@ section,
   transform: none !important;
 }
 
-/* Single Fixed Centered Hospital Watermark Logo (25% Transparency) */
+/* Completely Remove Page Transition Curtain to prevent dark blue bar glitches */
+#page-transition-curtain {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Single Fixed Centered Hospital Watermark Logo (Pure Logo Symbol, No White Box) */
 .fixed-bg-hospital-logo {
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  width: min(60vw, 550px) !important;
+  width: min(55vw, 500px) !important;
   height: auto !important;
-  opacity: 0.18 !important;
-  z-index: 0 !important;
+  opacity: 0.15 !important;
+  z-index: -1 !important;
   pointer-events: none !important;
-  filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.08)) !important;
+  mix-blend-mode: multiply !important;
+  filter: contrast(1.1) drop-shadow(0 0 20px rgba(0, 240, 255, 0.15)) !important;
 }
 
 /* Header & Footer Stack Context */

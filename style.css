@@ -4786,10 +4786,10 @@ body.high-contrast .btn {
 }
 
 .doctor-photo-container {
-  height: 260px !important;
+  height: 280px !important;
   width: 100% !important;
   position: relative !important;
-  background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%) !important;
+  background: #ffffff !important;
   overflow: hidden !important;
   cursor: pointer !important;
 }
@@ -4798,7 +4798,7 @@ body.high-contrast .btn {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: top center !important;
+  object-position: center top !important;
   transition: transform 0.4s ease !important;
 }
 

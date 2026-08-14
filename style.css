@@ -2783,6 +2783,14 @@ body {
   animation: cyberCenterPulse 3s ease-in-out infinite alternate;
 }
 
+@media (min-width: 992px) {
+  .clinical-dept-center-circle {
+    grid-column: 1 / -1 !important;
+    max-width: 340px !important;
+    margin: 12px auto !important;
+  }
+}
+
 @keyframes cyberCenterPulse {
   0% {
     box-shadow: 0 0 35px rgba(0, 240, 255, 0.35), inset 0 0 20px rgba(0, 240, 255, 0.15);
@@ -6930,8 +6938,8 @@ main > section,
   }
   
   .clinical-dept-center-circle {
-    grid-column: 2 !important;
-    grid-row: 3 !important;
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
     border-radius: 50% !important;
     aspect-ratio: 1 / 1 !important;
     width: 250px !important;

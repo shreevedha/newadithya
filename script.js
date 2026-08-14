@@ -362,6 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAOS();
   initCoETabs();
   initChatbot();
+  initSideRailToggle();
   initFacilityFilters();
   initBlogFilters();
   init3DTilt();
@@ -1017,6 +1018,20 @@ function initChatbot() {
         appendMessage(query, 'user');
         handleBotResponse(query);
       });
+    });
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9B. FLOATING SIDE ACTION RAIL SLIDE TOGGLE ENGINE
+   -------------------------------------------------------------------------- */
+function initSideRailToggle() {
+  const toggleBtn = document.getElementById('rail-toggle-btn');
+  const container = document.getElementById('side-rail-container');
+  if (toggleBtn && container) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      container.classList.toggle('rail-open');
     });
   }
 }

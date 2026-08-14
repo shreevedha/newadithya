@@ -1671,24 +1671,29 @@
     </div>
   </footer>
 
-  <!-- FLOATING SIDE ACTION RAIL -->
-  <div class="side-action-rail">
-    <a href="tel:08632944444" class="rail-item rail-call" aria-label="Call Hospital">
-      <span class="rail-icon">📞</span>
-      <span class="rail-label">Call Hospital</span>
-    </a>
-    <a href="https://wa.me/918632944444" target="_blank" rel="noopener" class="rail-item rail-whatsapp" aria-label="WhatsApp Us">
-      <span class="rail-icon">💬</span>
-      <span class="rail-label">WhatsApp Us</span>
-    </a>
-    <a href="https://maps.google.com/?q=Aditya+Medicare+Hospitals+Guntur" target="_blank" rel="noopener" class="rail-item rail-location" aria-label="Get Directions">
-      <span class="rail-icon">📍</span>
-      <span class="rail-label">Get Directions</span>
-    </a>
-    <button class="rail-item rail-appointment" data-open-modal="true" aria-label="Book Appointment">
-      <span class="rail-icon">📅</span>
-      <span class="rail-label">Book Appointment</span>
+  <!-- FLOATING SIDE ACTION RAIL WITH SLIDE IN/OUT TOGGLE -->
+  <div class="side-action-rail-container rail-open" id="side-rail-container">
+    <button class="rail-toggle-btn" id="rail-toggle-btn" aria-label="Toggle Quick Actions Menu" title="Quick Actions Menu">
+      <span class="rail-toggle-icon">❯</span>
     </button>
+    <div class="side-action-rail" id="side-action-rail">
+      <a href="tel:08632944444" class="rail-item rail-call" aria-label="Call Hospital">
+        <span class="rail-icon">📞</span>
+        <span class="rail-label">Call Hospital</span>
+      </a>
+      <a href="https://wa.me/918632944444" target="_blank" rel="noopener" class="rail-item rail-whatsapp" aria-label="WhatsApp Us">
+        <span class="rail-icon">💬</span>
+        <span class="rail-label">WhatsApp Us</span>
+      </a>
+      <a href="https://maps.google.com/?q=Aditya+Medicare+Hospitals+Guntur" target="_blank" rel="noopener" class="rail-item rail-location" aria-label="Get Directions">
+        <span class="rail-icon">📍</span>
+        <span class="rail-label">Get Directions</span>
+      </a>
+      <button class="rail-item rail-appointment" data-open-modal="true" aria-label="Book Appointment">
+        <span class="rail-icon">📅</span>
+        <span class="rail-label">Book Appointment</span>
+      </button>
+    </div>
   </div>
 
   <!-- FLOATING AI ASSISTANT CHATBOT -->

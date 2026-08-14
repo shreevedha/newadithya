@@ -3263,17 +3263,81 @@ body {
    9. PERSISTENT FLOATING SIDE ACTION RAIL & AI ASSISTANT CHATBOT
    ========================================================================== */
 
-/* PERSISTENT FLOATING ACTION RAIL (RIGHT SIDE) */
-.side-action-rail {
+/* PERSISTENT FLOATING ACTION RAIL WITH SLIDE IN/OUT TOGGLE */
+.side-action-rail-container {
   position: fixed !important;
-  left: 15px !important;
-  right: auto !important;
+  left: 0 !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  align-items: center !important;
+  pointer-events: none !important;
+}
+
+.side-action-rail-container * {
+  pointer-events: auto !important;
+}
+
+.rail-toggle-btn {
+  width: 30px !important;
+  height: 52px !important;
+  background: linear-gradient(135deg, #041022 0%, #0c2040 100%) !important;
+  border: 1.5px solid #00F0FF !important;
+  border-left: none !important;
+  border-radius: 0 14px 14px 0 !important;
+  color: #00F0FF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 4px 0 18px rgba(0, 240, 255, 0.4) !important;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  z-index: 10001 !important;
+  padding: 0 !important;
+  outline: none !important;
+}
+
+.rail-toggle-btn:hover {
+  background: #00F0FF !important;
+  color: #041022 !important;
+  box-shadow: 6px 0 24px rgba(0, 240, 255, 0.7) !important;
+  width: 34px !important;
+}
+
+.rail-toggle-icon {
+  font-size: 1.15rem !important;
+  font-weight: 900 !important;
+  display: inline-block !important;
+  transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  line-height: 1 !important;
+}
+
+.side-action-rail {
   display: flex !important;
   flex-direction: column !important;
   gap: 12px !important;
-  z-index: 9999 !important;
+  margin-left: 10px !important;
+  transform: translateX(-150%) scale(0.85) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease, visibility 0.35s ease !important;
+}
+
+/* OPEN STATE (WHEN TOGGLED OPEN) */
+.side-action-rail-container.rail-open .side-action-rail {
+  transform: translateX(0) scale(1) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.side-action-rail-container.rail-open .rail-toggle-icon {
+  transform: rotate(180deg) !important;
+}
+
+.side-action-rail-container.rail-open .rail-toggle-btn {
+  border-color: rgba(0, 240, 255, 0.6) !important;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3) !important;
 }
 
 .rail-item {

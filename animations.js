@@ -2685,11 +2685,11 @@
           }
           @media (max-width: 768px) {
             .whatsapp-float-pulse {
-              bottom: 140px !important;
-              left: 16px !important;
+              bottom: 148px !important;
+              left: 20px !important;
               right: auto !important;
-              width: 50px !important;
-              height: 50px !important;
+              width: 52px !important;
+              height: 52px !important;
             }
           }
         `;

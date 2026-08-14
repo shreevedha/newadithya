@@ -2785,7 +2785,7 @@ body {
 
 @media (min-width: 992px) {
   .clinical-dept-center-circle {
-    grid-column: 1 / -1 !important;
+    grid-column: auto !important;
     max-width: 340px !important;
     margin: 12px auto !important;
   }
@@ -5421,6 +5421,47 @@ body.high-contrast .btn {
   margin-bottom: 6px !important;
 }
 
+/* Floating WhatsApp Button (Positioned directly ABOVE Chatbot on Bottom-Left) */
+.whatsapp-float-pulse {
+  position: fixed !important;
+  bottom: 168px !important;
+  left: 24px !important;
+  right: auto !important;
+  z-index: 99999 !important;
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45), 0 0 15px rgba(37, 211, 102, 0.3) !important;
+  text-decoration: none !important;
+  animation: waPulse 2s infinite !important;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  overflow: hidden !important;
+}
+
+.whatsapp-float-pulse:hover {
+  transform: scale(1.12) rotate(6deg) !important;
+  box-shadow: 0 12px 35px rgba(37, 211, 102, 0.7) !important;
+}
+
+@keyframes waPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+@media (max-width: 768px) {
+  .whatsapp-float-pulse {
+    bottom: 140px !important;
+    left: 16px !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
 /* Floating AI Chatbot Button & Panel Styles */
 .chatbot-widget-container {
   position: fixed !important;
@@ -6931,33 +6972,27 @@ main > section,
   }
 }
 
-/* Force 3-column clinical departments grid layout on desktop with a centered title circle & centered emergency card */
+/* Force 3-column clinical departments grid layout on desktop with a centered title circle */
 @media (min-width: 993px) {
   .clinical-depts-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    grid-auto-flow: dense !important;
     gap: 24px !important;
   }
   
   .clinical-dept-center-circle {
-    grid-column: 1 / -1 !important;
+    grid-column: auto !important;
     grid-row: auto !important;
     border-radius: 50% !important;
     aspect-ratio: 1 / 1 !important;
-    width: 250px !important;
-    height: 250px !important;
-    min-width: 250px !important;
-    min-height: 250px !important;
-    max-width: 250px !important;
-    max-height: 250px !important;
+    width: 240px !important;
+    height: 240px !important;
+    min-width: 240px !important;
+    min-height: 240px !important;
+    max-width: 240px !important;
+    max-height: 240px !important;
     align-self: center !important;
     justify-self: center !important;
     padding: 20px !important;
-  }
-  
-  .clinical-depts-grid .clinical-dept-item:last-of-type {
-    grid-column: 2 !important;
-    grid-row: 6 !important;
   }
 }
 

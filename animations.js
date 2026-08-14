@@ -2646,7 +2646,7 @@
         btn.target = '_blank';
         btn.title = 'Chat on WhatsApp with Aditya Medicare SPOC';
         btn.href = `https://wa.me/${W.AdityaHospitalConfig.whatsAppNumber}?text=${W.AdityaHospitalConfig.message}`;
-        btn.innerHTML = `<svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.299.434 2.503 1.185 3.477l-.774 2.827 2.905-.762c.939.619 2.057.962 3.251.963 3.181 0 5.767-2.587 5.768-5.766 0-3.18-2.586-5.765-5.767-5.765zm3.385 8.125c-.145.408-.845.774-1.185.807-.33.032-.756.142-2.481-.571-2.078-.857-3.411-2.973-3.515-3.111-.104-.139-.844-1.121-.844-2.137 0-1.016.533-1.516.723-1.721.19-.205.413-.256.551-.256.138 0 .277.002.396.007.128.005.3.003.435.328.145.348.498 1.214.542 1.303.044.089.073.193.015.308-.058.116-.087.188-.173.289-.087.101-.183.226-.261.303-.087.087-.178.182-.077.355.101.173.45 0.742 0.965 1.201.662.59 1.22.774 1.393.86.173.087.275.073.376-.044.101-.116.434-.506.55-.68.116-.173.232-.145.39-.087.158.058 1.002.472 1.175.559.173.087.289.13.332.203.043.073.043.421-.102.829z"/></svg>`;
+        btn.innerHTML = `<img src="images/gifs/whatsapp.gif" alt="WhatsApp Chat" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;" />`;
         D.body.appendChild(btn);
       }
 
@@ -2656,26 +2656,27 @@
         style.id = 'whatsapp-pulse-style';
         style.textContent = `
           .whatsapp-float-pulse {
-            position: fixed;
-            bottom: 25px;
-            left: 25px;
-            right: auto;
-            z-index: 9999;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #25D366;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            text-decoration: none;
-            animation: waPulse 2s infinite;
-            transition: transform 0.3s ease;
+            position: fixed !important;
+            bottom: 168px !important;
+            left: 24px !important;
+            right: auto !important;
+            z-index: 99999 !important;
+            width: 58px !important;
+            height: 58px !important;
+            border-radius: 50% !important;
+            background: transparent !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45), 0 0 15px rgba(37, 211, 102, 0.3) !important;
+            text-decoration: none !important;
+            animation: waPulse 2s infinite !important;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            overflow: hidden !important;
           }
           .whatsapp-float-pulse:hover {
-            transform: scale(1.12) rotate(5deg);
+            transform: scale(1.12) rotate(6deg) !important;
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.7) !important;
           }
           @keyframes waPulse {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
@@ -2684,8 +2685,8 @@
           }
           @media (max-width: 768px) {
             .whatsapp-float-pulse {
-              bottom: 20px !important;
-              left: 20px !important;
+              bottom: 140px !important;
+              left: 16px !important;
               right: auto !important;
               width: 50px !important;
               height: 50px !important;

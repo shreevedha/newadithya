@@ -1343,7 +1343,7 @@ button, input, select, textarea {
    -------------------------------------------------------------------------- */
 .facilities-grid {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
   gap: 28px !important;
 }
 
@@ -3042,7 +3042,7 @@ body {
 
 .legacy-grid {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
   gap: 24px !important;
   margin-top: 40px !important;
   perspective: 1200px;
@@ -3130,9 +3130,6 @@ body {
   .expert-talks-split {
     grid-template-columns: 1fr;
   }
-  .legacy-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 768px) {
@@ -3156,9 +3153,6 @@ body {
   .clinical-dept-center-circle {
     grid-column: auto !important;
     grid-row: auto !important;
-  }
-  .legacy-grid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -3613,11 +3607,6 @@ body {
     padding-bottom: 0 !important;
   }
 
-  /* Facilities grid */
-  .facilities-grid {
-    grid-template-columns: 1fr !important;
-  }
-
   /* Clinical depts grid */
   .clinical-dept-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -3672,11 +3661,6 @@ body {
   /* Robotic banner */
   .robotic-banner {
     padding: 24px 16px !important;
-  }
-
-  /* Legacy cards grid */
-  .legacy-grid {
-    grid-template-columns: 1fr !important;
   }
 
   /* Highlights ribbon */
@@ -5075,7 +5059,7 @@ body.high-contrast .btn {
 /* Unified Doctor Grid & Card Layout Fixes */
 .doctors-grid {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
   gap: 22px !important;
   align-items: stretch !important;
 }

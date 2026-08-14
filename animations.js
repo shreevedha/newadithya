@@ -590,25 +590,6 @@
       });
     }
 
-    // ── Legacy section 4-card 2-left 2-right slide animation (Always Visible) ──
-    const legacyCards = D.querySelectorAll('.legacy-card');
-    if (legacyCards.length >= 4) {
-      gsap.fromTo([legacyCards[0], legacyCards[1]], 
-        { x: -250, opacity: 1 },
-        {
-          x: 0, opacity: 1, ease: 'power2.out',
-          scrollTrigger: { trigger: '.legacy-grid', start: 'top 95%', end: 'top 40%', scrub: 1 }
-        }
-      );
-      gsap.fromTo([legacyCards[2], legacyCards[3]], 
-        { x: 250, opacity: 1 },
-        {
-          x: 0, opacity: 1, ease: 'power2.out',
-          scrollTrigger: { trigger: '.legacy-grid', start: 'top 95%', end: 'top 40%', scrub: 1 }
-        }
-      );
-    }
-
     // ── Doctors Showcase side-slide animation (Always Visible) ──
     const docCards = D.querySelectorAll('#doctors-grid-container .doctor-card');
     if (docCards.length >= 2) {

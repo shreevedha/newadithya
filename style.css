@@ -6821,6 +6821,36 @@ main > section,
   }
 }
 
+/* Force 3-column clinical departments grid layout on desktop with a centered title circle & centered emergency card */
+@media (min-width: 993px) {
+  .clinical-depts-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-auto-flow: dense !important;
+    gap: 24px !important;
+  }
+  
+  .clinical-dept-center-circle {
+    grid-column: 2 !important;
+    grid-row: 3 !important;
+    border-radius: 50% !important;
+    aspect-ratio: 1 / 1 !important;
+    width: 250px !important;
+    height: 250px !important;
+    min-width: 250px !important;
+    min-height: 250px !important;
+    max-width: 250px !important;
+    max-height: 250px !important;
+    align-self: center !important;
+    justify-self: center !important;
+    padding: 20px !important;
+  }
+  
+  .clinical-depts-grid .clinical-dept-item:last-of-type {
+    grid-column: 2 !important;
+    grid-row: 6 !important;
+  }
+}
+
 
 
 

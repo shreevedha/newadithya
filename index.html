@@ -92,7 +92,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=3133" />
+  <link rel="stylesheet" href="style.css?v=3134" />
   <!-- Premium Animation Stylesheet -->
   <link rel="stylesheet" href="animations.css?v=2" />
 </head>
@@ -484,7 +484,7 @@
         </a>
         <a href="specialties.html?dept=cardiac" class="clinical-dept-item" data-aos="fade-up" data-aos-delay="600">
           <div class="clinical-dept-gif-wrap">
-            <img src="images/gifs/integrateddepartments.gif" alt="Emergency & Trauma GIF" />
+            <img src="images/gifs/Integrateddepartments.gif" alt="Emergency & Trauma GIF" />
           </div>
           <div class="clinical-dept-name">Emergency Care</div>
         </a>
@@ -542,7 +542,7 @@
         <!-- 6 SENIOR SPECIALIST CARDS FOR INSTANT 3-COLUMN DISPLAY -->
         <div class="doctor-card">
           <div class="doctor-photo-container">
-            <img src="images/doctors/krishna-sravanth.jpg" alt="Dr. Krishna Sravanth Pakanati" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
+            <img src="images/doctors/krishna-sravanth.jpg" alt="Dr. Krishna Sravanth Pakanati" loading="eager" onerror="this.src='images/doctor-placeholder.svg';" />
             <span class="doctor-opd-badge">OPD Mon - Sat</span>
           </div>
           <div class="doctor-card-content">
@@ -565,7 +565,7 @@
 
         <div class="doctor-card">
           <div class="doctor-photo-container">
-            <img src="images/doctors/ramakoteswara-rao.jpg" alt="Dr. Ramakoteswara Rao K" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
+            <img src="images/doctors/ramakoteswara-rao.jpg" alt="Dr. Ramakoteswara Rao K" loading="eager" onerror="this.src='images/doctor-placeholder.svg';" />
             <span class="doctor-opd-badge">OPD Mon - Sat</span>
           </div>
           <div class="doctor-card-content">
@@ -588,7 +588,7 @@
 
         <div class="doctor-card">
           <div class="doctor-photo-container">
-            <img src="images/doctors/dr-viswa-jyothi.jpeg" alt="Dr. Viswa Jyothi" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
+            <img src="images/doctors/dr-viswa-jyothi.jpeg" alt="Dr. Viswa Jyothi" loading="eager" onerror="this.src='images/doctor-placeholder.svg';" />
             <span class="doctor-opd-badge">OPD Mon - Sat</span>
           </div>
           <div class="doctor-card-content">
@@ -611,7 +611,7 @@
 
         <div class="doctor-card">
           <div class="doctor-photo-container">
-            <img src="images/doctors/Dr_Sai_Krishna_Katakam.jpeg" alt="Dr. Sai Krishna Katakam" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
+            <img src="images/doctors/Dr_Sai_Krishna_Katakam.jpeg" alt="Dr. Sai Krishna Katakam" loading="eager" onerror="this.src='images/doctor-placeholder.svg';" />
             <span class="doctor-opd-badge">OPD Mon - Sat</span>
           </div>
           <div class="doctor-card-content">
@@ -634,7 +634,7 @@
 
         <div class="doctor-card">
           <div class="doctor-photo-container">
-            <img src="images/doctors/Dr_Raghu_Sarath_Punukollu.jpg" alt="Dr. Raghu Sarath Punukollu" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
+            <img src="images/doctors/Dr_Raghu_Sarath_Punukollu.jpg" alt="Dr. Raghu Sarath Punukollu" loading="eager" onerror="this.src='images/doctor-placeholder.svg';" />
             <span class="doctor-opd-badge">OPD Mon - Sat</span>
           </div>
           <div class="doctor-card-content">
@@ -657,7 +657,7 @@
 
         <div class="doctor-card">
           <div class="doctor-photo-container">
-            <img src="images/doctors/Dr_Jakkireddy_Sravani.jpeg" alt="Dr. M. Sravan" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
+            <img src="images/doctors/Dr_Jakkireddy_Sravani.jpeg" alt="Dr. M. Sravan" loading="eager" onerror="this.src='images/doctor-placeholder.svg';" />
             <span class="doctor-opd-badge">OPD Mon - Sat</span>
           </div>
           <div class="doctor-card-content">
@@ -1205,10 +1205,10 @@
           </div>
           <div class="expert-video-frame">
             <img src="images/Expert_Doctor_Medical_Seminar.jpg" class="expert-video-placeholder-img" alt="Aditya Medicare expert doctor health seminar" />
-            <a href="https://www.youtube.com/@adityamedicare.institute" target="_blank" rel="noopener" class="expert-video-overlay-btn" aria-label="Play video"></a>
+            <a href="https://www.youtube.com/results?search_query=Aditya+Medicare+Hospitals+Guntur" target="_blank" rel="noopener" class="expert-video-overlay-btn" aria-label="Play video"></a>
           </div>
           <div style="margin-top: 10px; text-align: center;">
-            <a href="https://www.youtube.com/@adityamedicare.institute" target="_blank" rel="noopener" class="btn btn-secondary youtube-btn" style="width: 100%; justify-content: center;">
+            <a href="https://www.youtube.com/results?search_query=Aditya+Medicare+Hospitals+Guntur" target="_blank" rel="noopener" class="btn btn-secondary youtube-btn" style="width: 100%; justify-content: center;">
               <span class="yt-icon" style="margin-right: 8px; display: inline-block; transition: transform 0.3s ease;">🎥</span> View YouTube Channel
             </a>
           </div>
@@ -1377,27 +1377,27 @@
         <button class="modal-close" id="modal-close-btn">✕</button>
       </div>
       <div class="modal-body">
-        <form id="appointment-form">
+        <form id="appointment-form" method="POST" action="#">
           <div class="form-group">
             <label for="modal-patient-name">Full Patient Name *</label>
-            <input type="text" id="modal-patient-name" class="form-control" placeholder="e.g. Ramesh Kumar" required />
+            <input type="text" id="modal-patient-name" class="form-control" placeholder="e.g. Ramesh Kumar" required name="patient-name" />
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="modal-patient-phone">Phone Number *</label>
-              <input type="tel" id="modal-patient-phone" class="form-control" placeholder="10-digit mobile number" required />
+              <input type="tel" id="modal-patient-phone" class="form-control" placeholder="10-digit mobile number" required name="patient-phone" />
             </div>
             <div class="form-group">
               <label for="modal-patient-email">Email Address</label>
-              <input type="email" id="modal-patient-email" class="form-control" placeholder="name@example.com" />
+              <input type="email" id="modal-patient-email" class="form-control" placeholder="name@example.com" name="patient-email" />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="modal-department-select">Select Medical Specialty</label>
-              <select id="modal-department-select" class="form-control">
+              <select id="modal-department-select" class="form-control" name="department">
                 <option value="">General Consultation</option>
                 <option value="Cardiology">Cardiology</option>
                 <option value="Orthopedics">Orthopedics</option>
@@ -1413,7 +1413,7 @@
 
             <div class="form-group">
               <label for="modal-doctor-select">Preferred Doctor</label>
-              <select id="modal-doctor-select" class="form-control">
+              <select id="modal-doctor-select" class="form-control" name="doctor">
                 <option value="">Any Available Specialist</option>
                 <option value="Dr. Krishna Sravanth Pakanati">Dr. Krishna Sravanth Pakanati (Orthopedics)</option>
                 <option value="Dr. Ramakoteswara Rao K">Dr. Ramakoteswara Rao K (Orthopedics)</option>
@@ -1432,11 +1432,11 @@
           <div class="form-row">
             <div class="form-group">
               <label for="modal-preferred-date">Preferred Date</label>
-              <input type="date" id="modal-preferred-date" class="form-control" />
+              <input type="date" id="modal-preferred-date" class="form-control" name="preferred-date" />
             </div>
             <div class="form-group">
               <label for="modal-time-slot">Preferred Time Slot</label>
-              <select id="modal-time-slot" class="form-control">
+              <select id="modal-time-slot" class="form-control" name="time-slot">
                 <option value="Morning">Morning (10:00 AM - 1:00 PM)</option>
                 <option value="Afternoon">Afternoon (2:00 PM - 5:00 PM)</option>
                 <option value="Evening">Evening (5:00 PM - 8:00 PM)</option>
@@ -1639,9 +1639,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
   <!-- Main Application Script -->
-  <script src="script.js?v=16"></script>
+  <script src="script.js?v=3134"></script>
   <!-- Premium Animation Engine -->
-  <script src="animations.js?v=1"></script>
+  <script src="animations.js?v=3134"></script>
   <!-- FIXED OVERALL BACKGROUND SMALL HOSPITAL LOGO WATERMARK -->
   <img src="images/Aditya_Medicare_Hospital_Logo_transparent.png" alt="Aditya Medicare Logo Watermark" class="fixed-bg-hospital-logo" />
 </body>

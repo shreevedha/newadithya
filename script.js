@@ -350,9 +350,11 @@ const doctorsData = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.classList.add('js-enabled');
   initNavbarScroll();
   initMobileMenu();
   initActiveNavLink();
+  initInputFocusWidgetHandler();
   initAppointmentModal();
   initDoctorFilters();
   initStatCounters();
@@ -628,7 +630,7 @@ function initDoctorFilters() {
     doctorGrid.innerHTML = list.map(doc => `
       <div class="doctor-card" data-department="${doc.department}">
         <div class="doctor-photo-container" data-zoom-img="${doc.image}" data-zoom-name="${doc.name}" data-zoom-dept="${doc.department}" data-zoom-qual="${doc.qualification}" data-zoom-desig="${doc.designation}">
-          <img src="${doc.image}" alt="${doc.name}" loading="lazy" onerror="this.src='images/doctor-placeholder.svg';" />
+          <img src="${doc.image}" alt="${doc.name}" loading="eager" onerror="this.src='images/doctor-placeholder.svg';" />
           <span class="doctor-opd-badge">OPD Mon - Sat</span>
           <div class="doctor-photo-zoom-hint">🔍 Click to Expand</div>
         </div>
@@ -2834,4 +2836,25 @@ function initHeroEcgWave() {
   }
 
   draw();
+}
+
+// Hide floating widgets on input focus to prevent overlapping keyboard/inputs on mobile
+function initInputFocusWidgetHandler() {
+  document.body.addEventListener('focus', (e) => {
+    if (window.innerWidth <= 768 && e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT')) {
+      const chatbot = document.querySelector('.chatbot-widget-container');
+      const whatsapp = document.querySelector('.whatsapp-float-pulse');
+      if (chatbot) chatbot.style.display = 'none';
+      if (whatsapp) whatsapp.style.display = 'none';
+    }
+  }, true); // useCapture = true is required for focus/blur delegation!
+  
+  document.body.addEventListener('blur', (e) => {
+    if (window.innerWidth <= 768 && e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT')) {
+      const chatbot = document.querySelector('.chatbot-widget-container');
+      const whatsapp = document.querySelector('.whatsapp-float-pulse');
+      if (chatbot) chatbot.style.display = 'block';
+      if (whatsapp) whatsapp.style.display = 'flex';
+    }
+  }, true);
 }

@@ -527,9 +527,9 @@
         const title = header.querySelector('.section-title');
         const sub = header.querySelector('.section-subtitle');
         const tl = gsap.timeline();
-        if (tag) tl.fromTo(tag, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.5 }, 0.1);
-        if (title) tl.fromTo(title, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.7 }, 0.25);
-        if (sub) tl.fromTo(sub, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.6 }, 0.45);
+        if (tag) tl.from(tag, { y: 20, opacity: 0, duration: 0.5 }, 0.1);
+        if (title) tl.from(title, { y: 25, opacity: 0, duration: 0.7 }, 0.25);
+        if (sub) tl.from(sub, { y: 20, opacity: 0, duration: 0.6 }, 0.45);
         return;
       }
 
@@ -538,12 +538,12 @@
       const sub = header.querySelector('.section-subtitle');
 
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: header, start: 'top 95%', toggleActions: 'play none none none' }
+        scrollTrigger: { trigger: header, start: 'top 92%', toggleActions: 'play none none none' }
       });
 
-      if (tag) tl.fromTo(tag, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.5 }, 0);
-      if (title) tl.fromTo(title, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.7 }, 0.15);
-      if (sub) tl.fromTo(sub, { y: 0, opacity: 1 }, { y: 0, opacity: 1, duration: 0.6 }, 0.35);
+      if (tag) tl.from(tag, { y: 20, opacity: 0, duration: 0.5 }, 0);
+      if (title) tl.from(title, { y: 25, opacity: 0, duration: 0.7 }, 0.15);
+      if (sub) tl.from(sub, { y: 20, opacity: 0, duration: 0.6 }, 0.35);
     });
 
     // ── Staggered Card Grids ──
@@ -552,7 +552,7 @@
       '.facilities-grid': '.facility-card',
       '.tech-grid': '.tech-card',
       '.journey-timeline-grid': '.journey-step-item',
-      '.clinical-dept-grid': '.clinical-dept-item',
+      '.clinical-depts-grid': '.clinical-dept-item',
       '.ribbon-grid': '.ribbon-item'
     };
 
@@ -562,15 +562,15 @@
       const cards = grid.querySelectorAll(c);
       if (!cards.length) return;
 
-      gsap.fromTo(cards, 
-        { y: 0, opacity: 1, scale: 1 },
-        {
-          y: 0, opacity: 1, scale: 1, duration: 0.7,
-          stagger: 0.05,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: grid, start: 'top 95%' }
-        }
-      );
+      gsap.from(cards, {
+        y: 40,
+        opacity: 0,
+        scale: 0.96,
+        duration: 0.8,
+        stagger: 0.08,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: grid, start: 'top 92%' }
+      });
     });
 
     // ── Dark section dramatic entrance ──
@@ -2677,7 +2677,8 @@
           .whatsapp-float-pulse {
             position: fixed;
             bottom: 25px;
-            right: 25px;
+            left: 25px;
+            right: auto;
             z-index: 9999;
             width: 60px;
             height: 60px;
@@ -2699,6 +2700,15 @@
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
             70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+          }
+          @media (max-width: 768px) {
+            .whatsapp-float-pulse {
+              bottom: 20px !important;
+              left: 20px !important;
+              right: auto !important;
+              width: 50px !important;
+              height: 50px !important;
+            }
           }
         `;
         D.head.appendChild(style);

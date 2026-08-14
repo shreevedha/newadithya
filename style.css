@@ -107,10 +107,38 @@ button, input, select, textarea {
 }
 
 .container {
-  width: 100%;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 20px;
+  width: 100% !important;
+  max-width: 1360px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+  padding-left: 32px !important;
+  padding-right: 32px !important;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
 }
 
 /* Inline SVG Icon Helper with Subtle Shadow */
@@ -1314,9 +1342,9 @@ button, input, select, textarea {
    FACILITIES & EQUIPMENT SHOWCASE
    -------------------------------------------------------------------------- */
 .facilities-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 28px;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 28px !important;
 }
 
 .facility-card {
@@ -3013,10 +3041,10 @@ body {
 }
 
 .legacy-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-top: 40px;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  margin-top: 40px !important;
   perspective: 1200px;
   transform-style: preserve-3d;
 }
@@ -3137,16 +3165,38 @@ body {
 /* ==========================================================================
    AOS (ANIMATE ON SCROLL) LIGHTWEIGHT CSS
    ========================================================================== */
-[data-aos] {
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
+.js-enabled [data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform !important;
+  transition-duration: 0.8s !important;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, transform !important;
+}
+
+.js-enabled [data-aos="fade-up"] {
+  transform: translateY(35px) !important;
+}
+
+.js-enabled [data-aos="fade-down"] {
+  transform: translateY(-35px) !important;
+}
+
+.js-enabled [data-aos="fade-right"] {
+  transform: translateX(-35px) !important;
+}
+
+.js-enabled [data-aos="fade-left"] {
+  transform: translateX(35px) !important;
+}
+
+.js-enabled [data-aos="zoom-in"] {
+  transform: scale(0.95) !important;
 }
 
 [data-aos].aos-animate {
-  opacity: 1;
-  transform: translate(0) scale(1);
-  pointer-events: auto;
+  opacity: 1 !important;
+  transform: translate(0) scale(1) !important;
+  pointer-events: auto !important;
 }
 
 /* Staggered Delay classes */
@@ -3556,9 +3606,9 @@ body {
 
   .filter-pills {
     justify-content: flex-start !important;
-    overflow-x: auto !important;
-    padding-bottom: 8px !important;
-    flex-wrap: nowrap !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding-bottom: 0 !important;
   }
 
   /* Facilities grid */
@@ -3601,6 +3651,11 @@ body {
     width: calc(100vw - 24px);
     height: 420px;
     right: 0;
+  }
+
+  .search-input-wrap {
+    padding-right: 68px !important;
+    box-sizing: border-box !important;
   }
 
   /* Hero floating GIFs - smaller on mobile */
@@ -3972,15 +4027,18 @@ body {
 
 .accreditation-item {
   display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
-  gap: 14px !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 12px !important;
   opacity: 1 !important;
-  padding: 18px 22px !important;
+  padding: 24px 22px !important;
   background: #f8fafc !important;
   border: 1px solid var(--border-color) !important;
   border-radius: var(--radius-lg) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
-  min-height: 85px !important;
+  min-height: 180px !important;
   box-sizing: border-box !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease !important;
 }
@@ -3994,6 +4052,7 @@ body {
 .accreditation-badge {
   font-size: 2.2rem !important;
   flex-shrink: 0 !important;
+  margin-bottom: 4px !important;
 }
 
 .accreditation-text h4 {
@@ -4001,13 +4060,15 @@ body {
   font-size: 1rem !important;
   font-weight: 700 !important;
   color: var(--navy) !important;
-  margin: 0 0 2px 0 !important;
+  margin: 0 auto 6px auto !important;
+  text-align: center !important;
 }
 
 .accreditation-text p {
   font-size: 0.85rem !important;
   color: var(--text-muted) !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
+  text-align: center !important;
 }
 
 /* DEDICATED 24/7 AMBULANCE DRIVE TRACK SECTION BEFORE FOOTER */
@@ -4421,15 +4482,16 @@ body.high-contrast .btn {
 
 .organ-navigator-grid {
   display: grid !important;
-  grid-template-columns: 29% 1fr !important;
+  grid-template-columns: 45% 1fr !important;
   gap: 32px !important;
   align-items: flex-start !important;
 }
 
 .organ-pill-list {
-  display: flex !important;
-  flex-direction: column !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 14px !important;
+  width: 100% !important;
 }
 
 .organ-btn {
@@ -4473,19 +4535,19 @@ body.high-contrast .btn {
     gap: 24px !important;
   }
   .organ-pill-list {
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 12px !important;
   }
   .organ-btn {
-    flex: 1 1 calc(50% - 12px) !important;
     height: 74px !important;
   }
 }
 
 @media (max-width: 768px) {
+  .organ-pill-list {
+    grid-template-columns: 1fr !important;
+  }
   .organ-btn {
-    flex: 1 1 100% !important;
     height: auto !important;
     padding: 12px 16px !important;
   }
@@ -4899,9 +4961,9 @@ body.high-contrast .btn {
 .section-subtitle,
 .highlights-ribbon,
 .hero-stats-wrapper {
-  opacity: 1 !important;
+  opacity: 1;
   visibility: visible !important;
-  transform: none !important;
+  transform: none;
 }
 
 .section-header {
@@ -4953,12 +5015,13 @@ body.high-contrast .btn {
 
 .ribbon-item {
   display: flex !important;
-  align-items: center !important;
-  gap: 14px !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
   background: #ffffff !important;
   border: 1px solid var(--border-color) !important;
   border-radius: var(--radius-lg) !important;
-  padding: 18px 16px !important;
+  padding: 22px 20px !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
 }
 
@@ -4995,7 +5058,7 @@ body.high-contrast .btn {
 /* Unified Doctor Grid & Card Layout Fixes */
 .doctors-grid {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 22px !important;
   align-items: stretch !important;
 }
@@ -5495,6 +5558,22 @@ body.high-contrast .btn {
   }
 }
 
+@media (max-width: 768px) {
+  .nav-inner { height: 68px !important; padding: 0 12px !important; }
+  .brand-logo { width: 40px !important; height: 40px !important; }
+  .brand-title { font-size: 1.02rem !important; }
+  .brand-subtitle { font-size: .62rem !important; display: block !important; letter-spacing: .08em !important; }
+  .clinical-dept-center-circle { min-width: 0; min-height: 220px; }
+  .doctors-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 16px !important; }
+  .doctor-card-main { grid-template-columns: 96px minmax(0, 1fr); gap: 12px; }
+  .nav-cta { display: none !important; } /* Hide CTA buttons in header on screens <= 768px */
+}
+
+@media (max-width: 620px) {
+  .doctors-grid { grid-template-columns: 1fr !important; }
+  .doctor-card-main { grid-template-columns: 110px minmax(0, 1fr); }
+}
+
 @media (max-width: 480px) {
   .brand-subtitle {
     display: none !important;
@@ -5502,27 +5581,6 @@ body.high-contrast .btn {
   .brand-title {
     font-size: 0.95rem !important;
   }
-  .nav-cta a.btn-danger {
-    display: none !important;
-  }
-  .nav-cta .btn-primary {
-    padding: 6px 10px !important;
-    font-size: 0.72rem !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-inner { height: 68px !important; padding: 0 12px !important; }
-  .brand-logo { width: 40px !important; height: 40px !important; }
-  .brand-title { font-size: 1.02rem !important; }
-  .brand-subtitle { font-size: .62rem !important; letter-spacing: .08em !important; }
-  .clinical-dept-center-circle { min-width: 0; min-height: 220px; }
-  .doctors-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 16px !important; }
-  .doctor-card-main { grid-template-columns: 96px minmax(0, 1fr); gap: 12px; }
-}
-@media (max-width: 620px) {
-  .doctors-grid { grid-template-columns: 1fr !important; }
-  .doctor-card-main { grid-template-columns: 110px minmax(0, 1fr); }
 }
 
 /* --------------------------------------------------------------------------
@@ -6094,12 +6152,18 @@ main > section,
 }
 
 .hero-subtitle {
-  color: #cbd5e1 !important;
+  color: #ffffff !important;
   font-size: clamp(1rem, 1.6vw, 1.15rem) !important;
   line-height: 1.65 !important;
   text-align: center !important;
   max-width: 860px !important;
   margin: 0 auto 28px auto !important;
+  background: rgba(3, 9, 20, 0.65) !important;
+  padding: 12px 18px !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
 }
 
 .hero-actions {
@@ -6126,6 +6190,12 @@ main > section,
   z-index: 10 !important;
   margin-top: -58px !important;
   margin-bottom: 36px !important;
+}
+
+@media (max-width: 1024px) {
+  .hero-stats-wrapper {
+    margin-top: 24px !important;
+  }
 }
 
 /* ==========================================================================
@@ -6187,9 +6257,12 @@ main > section,
 
 .accreditation-item {
   display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
-  gap: 16px !important;
-  padding: 20px 24px !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 12px !important;
+  padding: 24px !important;
   background: #ffffff !important;
   border: 1px solid rgba(0, 240, 255, 0.4) !important;
   border-radius: var(--radius-lg) !important;
@@ -6197,8 +6270,9 @@ main > section,
   position: relative !important;
   overflow: hidden !important;
   transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
-  flex: 1 1 320px !important;
+  flex: 1 1 300px !important;
   max-width: 380px !important;
+  min-height: 180px !important;
 }
 
 .accreditation-item:hover {
@@ -6596,6 +6670,157 @@ main > section,
   position: relative !important;
   z-index: 15 !important;
 }
+
+/* ==========================================================================
+   INTERACTIVE FLOOR DIRECTORY MAP LAYOUT
+   ========================================================================== */
+.floor-map-container {
+  display: grid !important;
+  grid-template-columns: 29% 1fr !important;
+  gap: 32px !important;
+  align-items: flex-start !important;
+  background: var(--navy) !important;
+  color: var(--white) !important;
+  padding: 36px !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.floor-btn-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+.floor-btn {
+  padding: 16px 20px !important;
+  color: var(--white) !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-md) !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-family: inherit !important;
+}
+
+.floor-btn.active {
+  background: rgba(0, 240, 255, 0.15) !important;
+  border: 2px solid #00F0FF !important;
+}
+
+.floor-btn:not(.active) {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.floor-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.floor-layout-display {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(0, 240, 255, 0.25) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 30px !important;
+}
+
+@media (max-width: 992px) {
+  .floor-map-container {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 24px !important;
+  }
+  .floor-btn-list {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+  .floor-btn {
+    flex: 1 1 calc(50% - 12px) !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .floor-btn {
+    flex: 1 1 100% !important;
+    padding: 12px 16px !important;
+  }
+  .floor-layout-display {
+    padding: 20px 16px !important;
+  }
+}
+
+/* Force 2 Columns Doctors Grid & Reduced Size on Mobile Views */
+@media (max-width: 768px) {
+  .doctors-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+  
+  .doctor-card {
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden !important;
+  }
+  
+  .doctor-photo-container {
+    height: 140px !important;
+  }
+  
+  .doctor-opd-badge {
+    font-size: 0.58rem !important;
+    padding: 2px 4px !important;
+  }
+  
+  .doctor-photo-zoom-hint {
+    display: none !important;
+  }
+  
+  .doctor-card-content {
+    padding: 8px 8px !important;
+    gap: 1px !important;
+  }
+  
+  .doctor-dept-badge {
+    font-size: 0.6rem !important;
+    padding: 1px 4px !important;
+    margin-bottom: 4px !important;
+  }
+  
+  .doctor-name {
+    font-size: 0.88rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 2px !important;
+  }
+  
+  .doctor-qualification {
+    font-size: 0.68rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 2px !important;
+  }
+  
+  .doctor-designation {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 4px !important;
+    min-height: auto !important;
+  }
+  
+  .doctor-treatments {
+    display: none !important;
+  }
+  
+  .doctor-card-footer {
+    padding: 6px 8px 8px 8px !important;
+  }
+  
+  .doctor-card-action {
+    padding: 6px 8px !important;
+    font-size: 0.72rem !important;
+  }
+}
+
 
 
 

@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=3000" />
+  <link rel="stylesheet" href="style.css?v=3134" />
   <link rel="stylesheet" href="animations.css?v=2" />
   <!-- Breadcrumb JSON-LD -->
   <script type="application/ld+json">
@@ -141,23 +141,23 @@
         <p class="section-subtitle">Select a floor level to locate emergency units, OTs, diagnostic suites, and patient wards.</p>
       </div>
 
-      <div class="floor-map-container" style="display: grid; grid-template-columns: 300px 1fr; gap: 30px; align-items: center; background: var(--navy); color: var(--white); padding: 36px; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
-        <div class="floor-btn-list" style="display: flex; flex-direction: column; gap: 10px;">
-          <button class="floor-btn active" data-floor="3" style="padding: 16px 20px; background: rgba(0,240,255,0.15); border: 2px solid #00F0FF; color: var(--white); font-weight: 700; border-radius: var(--radius-md); text-align: left; cursor: pointer; transition: all 0.3s ease;">
+      <div class="floor-map-container">
+        <div class="floor-btn-list">
+          <button class="floor-btn active" data-floor="3">
             🏢 3rd Floor: Executive Wards
           </button>
-          <button class="floor-btn" data-floor="2" style="padding: 16px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: var(--white); font-weight: 700; border-radius: var(--radius-md); text-align: left; cursor: pointer; transition: all 0.3s ease;">
+          <button class="floor-btn" data-floor="2">
             🏥 2nd Floor: 100-Bed ICU & NICU
           </button>
-          <button class="floor-btn" data-floor="1" style="padding: 16px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: var(--white); font-weight: 700; border-radius: var(--radius-md); text-align: left; cursor: pointer; transition: all 0.3s ease;">
+          <button class="floor-btn" data-floor="1">
             🔬 1st Floor: 8 OTs & Cath Lab
           </button>
-          <button class="floor-btn" data-floor="0" style="padding: 16px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: var(--white); font-weight: 700; border-radius: var(--radius-md); text-align: left; cursor: pointer; transition: all 0.3s ease;">
+          <button class="floor-btn" data-floor="0">
             🚑 Ground Floor: Emergency & Radiology
           </button>
         </div>
 
-        <div class="floor-layout-display" id="floor-layout-display" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(0,240,255,0.25); border-radius: var(--radius-lg); padding: 30px;">
+        <div class="floor-layout-display" id="floor-layout-display">
           <span style="background: rgba(0, 240, 255, 0.2); color: #00F0FF; padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 700;">FLOOR DIRECTORY</span>
           <h3 id="floor-title" style="font-size: 1.8rem; color: var(--white); margin: 12px 0;">3rd Floor: Executive Patient Wards & Rehabilitation</h3>
           <p id="floor-desc" style="color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.6; margin: 0;">
@@ -262,27 +262,27 @@
         <button class="modal-close" id="modal-close-btn">âœ•</button>
       </div>
       <div class="modal-body">
-        <form id="appointment-form">
+        <form id="appointment-form" method="POST" action="#">
           <div class="form-group">
             <label for="modal-patient-name">Full Patient Name *</label>
-            <input type="text" id="modal-patient-name" class="form-control" placeholder="e.g. Ramesh Kumar" required />
+            <input type="text" id="modal-patient-name" class="form-control" placeholder="e.g. Ramesh Kumar" required name="patient-name" />
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="modal-patient-phone">Phone Number *</label>
-              <input type="tel" id="modal-patient-phone" class="form-control" placeholder="10-digit mobile number" required />
+              <input type="tel" id="modal-patient-phone" class="form-control" placeholder="10-digit mobile number" required name="patient-phone" />
             </div>
             <div class="form-group">
               <label for="modal-patient-email">Email Address</label>
-              <input type="email" id="modal-patient-email" class="form-control" placeholder="name@example.com" />
+              <input type="email" id="modal-patient-email" class="form-control" placeholder="name@example.com" name="patient-email" />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="modal-department-select">Select Medical Specialty</label>
-              <select id="modal-department-select" class="form-control">
+              <select id="modal-department-select" class="form-control" name="department">
                 <option value="">General Consultation</option>
                 <option value="Cardiology">Cardiology</option>
                 <option value="Orthopedics">Orthopedics</option>
@@ -298,7 +298,7 @@
 
             <div class="form-group">
               <label for="modal-doctor-select">Preferred Doctor</label>
-              <select id="modal-doctor-select" class="form-control">
+              <select id="modal-doctor-select" class="form-control" name="doctor">
                 <option value="">Any Available Specialist</option>
                 <option value="Dr. Krishna Sravanth Pakanati">Dr. Krishna Sravanth Pakanati (Orthopedics)</option>
                 <option value="Dr. Ramakoteswara Rao K">Dr. Ramakoteswara Rao K (Orthopedics)</option>
@@ -317,11 +317,11 @@
           <div class="form-row">
             <div class="form-group">
               <label for="modal-preferred-date">Preferred Date</label>
-              <input type="date" id="modal-preferred-date" class="form-control" />
+              <input type="date" id="modal-preferred-date" class="form-control" name="preferred-date" />
             </div>
             <div class="form-group">
               <label for="modal-time-slot">Preferred Time Slot</label>
-              <select id="modal-time-slot" class="form-control">
+              <select id="modal-time-slot" class="form-control" name="time-slot">
                 <option value="Morning">Morning (10:00 AM - 1:00 PM)</option>
                 <option value="Afternoon">Afternoon (2:00 PM - 5:00 PM)</option>
                 <option value="Evening">Evening (5:00 PM - 8:00 PM)</option>
@@ -478,8 +478,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
-  <script src="script.js?v=17"></script>
-  <script src="animations.js?v=2"></script>
+  <script src="script.js?v=3134"></script>
+  <script src="animations.js?v=3134"></script>
   <!-- FIXED OVERALL BACKGROUND SMALL HOSPITAL LOGO WATERMARK -->
   <img src="images/Aditya_Medicare_Hospital_Logo_transparent.png" alt="Aditya Medicare Logo Watermark" class="fixed-bg-hospital-logo" />
 </body>

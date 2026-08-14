@@ -2687,45 +2687,37 @@ body {
 .clinical-depts-grid {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(7, auto) !important;
   gap: 24px !important;
   align-items: center !important;
   margin-top: 40px !important;
 }
 
-@media (min-width: 993px) {
-  .clinical-depts-grid {
-    grid-template-rows: repeat(7, auto) !important;
-  }
+/* Explicit 3 x 7 Grid Row/Column Placement across ALL Device Screen Ratios */
+.clinical-depts-grid > *:nth-child(1) { grid-column: 1 !important; grid-row: 1 !important; }
+.clinical-depts-grid > *:nth-child(2) { grid-column: 2 !important; grid-row: 1 !important; }
+.clinical-depts-grid > *:nth-child(3) { grid-column: 3 !important; grid-row: 1 !important; }
 
-  /* Row 1 */
-  .clinical-depts-grid > *:nth-child(1) { grid-column: 1 !important; grid-row: 1 !important; }
-  .clinical-depts-grid > *:nth-child(2) { grid-column: 2 !important; grid-row: 1 !important; }
-  .clinical-depts-grid > *:nth-child(3) { grid-column: 3 !important; grid-row: 1 !important; }
+.clinical-depts-grid > *:nth-child(4) { grid-column: 1 !important; grid-row: 2 !important; }
+.clinical-depts-grid > *:nth-child(5) { grid-column: 2 !important; grid-row: 2 !important; }
+.clinical-depts-grid > *:nth-child(6) { grid-column: 3 !important; grid-row: 2 !important; }
 
-  /* Row 2 */
-  .clinical-depts-grid > *:nth-child(4) { grid-column: 1 !important; grid-row: 2 !important; }
-  .clinical-depts-grid > *:nth-child(5) { grid-column: 2 !important; grid-row: 2 !important; }
-  .clinical-depts-grid > *:nth-child(6) { grid-column: 3 !important; grid-row: 2 !important; }
+/* Row 3: Gastroenterology (Col 1 ONLY) */
+.clinical-depts-grid > *:nth-child(7) { grid-column: 1 !important; grid-row: 3 !important; }
 
-  /* Row 3: Gastroenterology (Col 1 ONLY) */
-  .clinical-depts-grid > *:nth-child(7) { grid-column: 1 !important; grid-row: 3 !important; }
+/* Row 4: Clinical Services Centerpiece Circle (Col 2 ONLY) */
+.clinical-depts-grid > .clinical-dept-center-circle { grid-column: 2 !important; grid-row: 4 !important; }
 
-  /* Row 4: Clinical Services Circle (Col 2 ONLY) */
-  .clinical-depts-grid > .clinical-dept-center-circle { grid-column: 2 !important; grid-row: 4 !important; }
+/* Row 5: Surgical Gastro (Col 3 ONLY) */
+.clinical-depts-grid > *:nth-child(9) { grid-column: 3 !important; grid-row: 5 !important; }
 
-  /* Row 5: Surgical Gastro (Col 3 ONLY) */
-  .clinical-depts-grid > *:nth-child(9) { grid-column: 3 !important; grid-row: 5 !important; }
+.clinical-depts-grid > *:nth-child(10) { grid-column: 1 !important; grid-row: 6 !important; }
+.clinical-depts-grid > *:nth-child(11) { grid-column: 2 !important; grid-row: 6 !important; }
+.clinical-depts-grid > *:nth-child(12) { grid-column: 3 !important; grid-row: 6 !important; }
 
-  /* Row 6 */
-  .clinical-depts-grid > *:nth-child(10) { grid-column: 1 !important; grid-row: 6 !important; }
-  .clinical-depts-grid > *:nth-child(11) { grid-column: 2 !important; grid-row: 6 !important; }
-  .clinical-depts-grid > *:nth-child(12) { grid-column: 3 !important; grid-row: 6 !important; }
-
-  /* Row 7 */
-  .clinical-depts-grid > *:nth-child(13) { grid-column: 1 !important; grid-row: 7 !important; }
-  .clinical-depts-grid > *:nth-child(14) { grid-column: 2 !important; grid-row: 7 !important; }
-  .clinical-depts-grid > *:nth-child(15) { grid-column: 3 !important; grid-row: 7 !important; }
-}
+.clinical-depts-grid > *:nth-child(13) { grid-column: 1 !important; grid-row: 7 !important; }
+.clinical-depts-grid > *:nth-child(14) { grid-column: 2 !important; grid-row: 7 !important; }
+.clinical-depts-grid > *:nth-child(15) { grid-column: 3 !important; grid-row: 7 !important; }
 
 .clinical-dept-item {
   position: relative;
@@ -7116,10 +7108,6 @@ main > section,
 }
 
 @media (max-width: 992px) {
-  .clinical-depts-grid > * {
-    grid-column: auto !important;
-    grid-row: auto !important;
-  }
   .clinical-depts-grid {
     gap: 12px !important;
   }

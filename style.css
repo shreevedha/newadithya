@@ -3281,7 +3281,7 @@ body {
   height: 48px;
   background: var(--white);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-full);
+  border-radius: 25px !important;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -3291,6 +3291,7 @@ body {
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   white-space: nowrap;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .rail-icon {
@@ -3314,37 +3315,34 @@ body {
   white-space: nowrap !important;
 }
 
-/* Hover effect: Expand horizontally safely */
+/* Hover effect: Expand horizontally as a smooth capsule pill */
 .rail-item:hover {
-  width: 190px !important;
-  background: var(--navy);
-  border-color: var(--navy);
+  width: 185px !important;
+  border-radius: 25px !important;
+  background: var(--navy) !important;
+  border-color: var(--navy) !important;
 }
 
 .rail-item.rail-appointment:hover {
-  width: 205px !important;
+  width: 200px !important;
+  border-radius: 25px !important;
   background: #65a30d !important;
   border-color: #65a30d !important;
 }
 
 .rail-item:hover .rail-label {
-  opacity: 1;
-  color: var(--white);
-}
-
-.rail-item:hover .rail-label {
-  opacity: 1;
-  color: var(--white);
+  opacity: 1 !important;
+  color: var(--white) !important;
 }
 
 .rail-item:hover .rail-icon {
-  color: var(--white);
+  color: var(--white) !important;
 }
 
-.rail-call:hover { background: #dc2626; border-color: #dc2626; }
-.rail-whatsapp:hover { background: #16a34a; border-color: #16a34a; }
-.rail-location:hover { background: #0088cc; border-color: #0088cc; }
-.rail-appointment:hover { background: #7cb021; border-color: #7cb021; }
+.rail-call:hover { background: #dc2626 !important; border-color: #dc2626 !important; }
+.rail-whatsapp:hover { background: #16a34a !important; border-color: #16a34a !important; }
+.rail-location:hover { background: #0088cc !important; border-color: #0088cc !important; }
+.rail-appointment:hover { background: #65a30d !important; border-color: #65a30d !important; }
 
 
 /* FLOATING AI ASSISTANT CHATBOT (BOTTOM LEFT) */

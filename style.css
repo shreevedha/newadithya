@@ -6601,6 +6601,8 @@ main > section,
   justify-content: center !important;
   align-items: center !important;
   margin: 36px 0 24px 0 !important;
+  position: relative !important;
+  z-index: 6 !important;
 }
 
 .tech-radio-btn {
@@ -6963,6 +6965,13 @@ main > section,
 .tech-interactive-container {
   margin-top: 40px !important;
   width: 100% !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+.section-dark-tech .section-header {
+  position: relative !important;
+  z-index: 5 !important;
 }
 
 .tech-display-panel {
@@ -7096,7 +7105,25 @@ main > section,
 @media (max-width: 992px) {
   .tech-display-grid {
     grid-template-columns: 1fr !important;
-    gap: 28px !important;
+    gap: 24px !important;
+  }
+
+  .tech-radio-tabs {
+    gap: 10px !important;
+    margin: 24px 0 20px 0 !important;
+  }
+
+  .tech-radio-btn {
+    padding: 9px 16px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .tech-display-title {
+    font-size: 1.5rem !important;
+  }
+
+  .tech-media-frame {
+    aspect-ratio: 16 / 9 !important;
   }
 }
 
@@ -7105,11 +7132,82 @@ main > section,
     padding: 24px 20px !important;
     border-radius: 20px !important;
   }
+
+  .tech-radio-tabs {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    margin: 20px 0 16px 0 !important;
+  }
+
+  .tech-radio-btn {
+    justify-content: center !important;
+    padding: 12px 14px !important;
+    font-size: 0.82rem !important;
+    min-height: 44px !important;
+    border-radius: 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .tech-display-title {
+    font-size: 1.3rem !important;
+  }
+
+  .tech-display-desc {
+    font-size: 0.9rem !important;
+  }
+
+  .tech-features-list li {
+    font-size: 0.85rem !important;
+  }
+
+  .tech-media-frame {
+    aspect-ratio: 4 / 3 !important;
+  }
 }
 
+@media (max-width: 480px) {
+  .tech-display-panel {
+    padding: 18px 14px !important;
+    border-radius: 16px !important;
+  }
 
+  .tech-radio-btn {
+    padding: 10px 10px !important;
+    font-size: 0.78rem !important;
+    gap: 6px !important;
+    border-radius: 12px !important;
+  }
 
+  .tech-radio-btn .radio-dot {
+    width: 10px !important;
+    height: 10px !important;
+  }
 
+  .tech-display-title {
+    font-size: 1.15rem !important;
+  }
+
+  .tech-display-desc {
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .tech-features-list li {
+    font-size: 0.8rem !important;
+  }
+
+  .tech-media-frame {
+    aspect-ratio: 16 / 10 !important;
+    border-radius: 12px !important;
+  }
+
+  .tech-intro-instruction {
+    font-size: 0.78rem !important;
+    padding: 5px 10px !important;
+  }
+}
 
 
 

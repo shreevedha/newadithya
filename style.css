@@ -3318,10 +3318,11 @@ body {
   flex-direction: column !important;
   gap: 12px !important;
   margin-left: 10px !important;
-  transform: translateX(-150%) scale(0.85) !important;
+  transform: translateX(-30px) scale(0.7) !important;
   opacity: 0 !important;
   visibility: hidden !important;
-  transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease, visibility 0.35s ease !important;
+  pointer-events: none !important;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease, visibility 0.3s ease !important;
 }
 
 /* OPEN STATE (WHEN TOGGLED OPEN) */
@@ -3329,6 +3330,7 @@ body {
   transform: translateX(0) scale(1) !important;
   opacity: 1 !important;
   visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 .side-action-rail-container.rail-open .rail-toggle-icon {

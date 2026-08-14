@@ -771,76 +771,151 @@
         <p class="section-subtitle" style="color: #94a3b8;">Leveraging sub-millimeter surgical robotics and ultra-fast 3D digital imaging for unmatched clinical outcomes.</p>
       </div>
 
-      <div class="tech-grid">
-        <div class="tech-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="tech-card-header">
-            <div class="tech-icon-badge">🤖</div>
-            <h3 class="tech-card-title">MISSO Robotic System</h3>
-          </div>
-          <p class="tech-card-desc">Patient-specific 3D anatomical planning with sub-millimeter bone resection accuracy for total joint replacements.</p>
-          <ul class="tech-specs-list">
-            <li>Sub-millimeter implant placement precision</li>
-            <li>Minimal soft tissue trauma & quick recovery</li>
-            <li>Real-time intraoperative optical tracking</li>
-          </ul>
-        </div>
-
-        <div class="tech-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="tech-card-header">
-            <div class="tech-icon-badge">⚡</div>
-            <h3 class="tech-card-title">3T Siemens MRI Imaging</h3>
-          </div>
-          <p class="tech-card-desc">High-field 3.0 Tesla magnetic resonance imaging suite providing ultra-crisp structural brain, spine, and joint scans.</p>
-          <ul class="tech-specs-list">
-            <li>Quiet-Suite acoustic noise suppression</li>
-            <li>High-resolution 3D neuro vascular imaging</li>
-            <li>Non-invasive cardiac MRI evaluations</li>
-          </ul>
-        </div>
-
-        <div class="tech-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="tech-card-header">
-            <div class="tech-icon-badge">🫀</div>
-            <h3 class="tech-card-title">Flat-Panel Digital Cath Lab</h3>
-          </div>
-          <p class="tech-card-desc">Ultra-low radiation fluoroscopy system operating 24/7 for primary emergency angioplasties and complex stenting.</p>
-          <ul class="tech-specs-list">
-            <li>Sub-second emergency vascular access</li>
-            <li>DoseReduction AI radiation optimization</li>
-            <li>3D Coronary roadmapping integration</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tech-showcase-container" data-aos="zoom-in">
+      <!-- Interactive Tech Selector Container -->
+      <div class="tech-interactive-container">
+        
+        <!-- Technology Selector Navigation Buttons -->
         <div class="tech-radio-tabs" role="tablist">
-          <button class="tech-radio-btn active" data-tech="ctscan" role="tab" aria-selected="true">
+          <button class="tech-radio-btn" data-tech="ctscan" role="tab" aria-selected="false" tabindex="0">
             <span class="radio-dot"></span> 128-Slice CT Scan
           </button>
-          <button class="tech-radio-btn" data-tech="mri" role="tab" aria-selected="false">
+          <button class="tech-radio-btn" data-tech="mri" role="tab" aria-selected="false" tabindex="0">
             <span class="radio-dot"></span> 3T Siemens MRI Scan
           </button>
-          <button class="tech-radio-btn" data-tech="cathlab" role="tab" aria-selected="false">
+          <button class="tech-radio-btn" data-tech="cathlab" role="tab" aria-selected="false" tabindex="0">
             <span class="radio-dot"></span> Flat-Panel Cath Lab
           </button>
-          <button class="tech-radio-btn" data-tech="robotic" role="tab" aria-selected="false">
+          <button class="tech-radio-btn" data-tech="robotic" role="tab" aria-selected="false" tabindex="0">
             <span class="radio-dot"></span> MISSO Robotic System
           </button>
         </div>
-        <img src="images/CTscan.png" alt="Advanced Diagnostic Suite" class="tech-showcase-img" />
-        <!-- Hotspot Pin 1 -->
-        <div class="tech-hotspot-pin" style="top: 40%; left: 35%;">
-          <div class="tech-hotspot-tooltip">
-            <strong>128-Slice Ultra-Fast CT Scanner</strong><br/>
-            Provides 0.28-second full-cardiac scanning for immediate emergency coronary triage.
+
+        <!-- Unified Content Display Area -->
+        <div class="tech-display-panel" id="tech-display-panel">
+          
+          <!-- DEFAULT/INTRO STATE -->
+          <div class="tech-content-state active" id="tech-state-default">
+            <div class="tech-display-grid">
+              <div class="tech-display-media">
+                <div class="tech-media-frame">
+                  <img src="images/Hospital.Building.jpg" alt="Aditya Medicare Diagnostic Suite" class="tech-media-img" />
+                </div>
+              </div>
+              <div class="tech-display-info">
+                <h3 class="tech-display-title">Explore Next-Gen Medical Innovations</h3>
+                <p class="tech-display-desc">
+                  Select any technology option above to view live specifications, clinical telemetry, and diagnostic imaging capabilities.
+                </p>
+                <div class="tech-intro-instruction">
+                  <span class="tech-instruction-pulse"></span>
+                  Click an option to explore technology details
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <!-- Hotspot Pin 2 -->
-        <div class="tech-hotspot-pin" style="top: 55%; left: 65%;">
-          <div class="tech-hotspot-tooltip">
-            <strong>3D Diagnostic Workstation</strong><br/>
-            Real-time multiplanar anatomical reconstruction for precision surgical planning.
+
+          <!-- CT SCAN STATE -->
+          <div class="tech-content-state" id="tech-state-ctscan">
+            <div class="tech-display-grid">
+              <div class="tech-display-media">
+                <div class="tech-media-frame">
+                  <img src="images/CTscan.png" alt="128-Slice CT Scan System" class="tech-media-img" />
+                  <!-- Hotspot Pin 1 -->
+                  <div class="tech-hotspot-pin" style="top: 40%; left: 35%;">
+                    <div class="tech-hotspot-tooltip">
+                      <strong>128-Slice Ultra-Fast CT Scanner</strong><br/>
+                      Provides 0.28-second full-cardiac scanning for immediate emergency coronary triage.
+                    </div>
+                  </div>
+                  <!-- Hotspot Pin 2 -->
+                  <div class="tech-hotspot-pin" style="top: 55%; left: 65%;">
+                    <div class="tech-hotspot-tooltip">
+                      <strong>3D Diagnostic Workstation</strong><br/>
+                      Real-time multiplanar anatomical reconstruction for precision surgical planning.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tech-display-info">
+                <h3 class="tech-display-title">128-Slice CT Scan</h3>
+                <p class="tech-display-desc">
+                  Ultra-fast high-resolution computed tomography scanner offering sub-second full-body diagnostic triages and coronary angiography.
+                </p>
+                <ul class="tech-features-list">
+                  <li>0.28-second full-cardiac scanning speed</li>
+                  <li>DoseReduction AI radiation optimization</li>
+                  <li>Multiplanar 3D vascular reconstruction</li>
+                </ul>
+              </div>
+            </div>
           </div>
+
+          <!-- MRI STATE -->
+          <div class="tech-content-state" id="tech-state-mri">
+            <div class="tech-display-grid">
+              <div class="tech-display-media">
+                <div class="tech-media-frame">
+                  <img src="images/mri.png" alt="3T Siemens MRI Scanner" class="tech-media-img" />
+                </div>
+              </div>
+              <div class="tech-display-info">
+                <h3 class="tech-display-title">3T Siemens MRI Imaging</h3>
+                <p class="tech-display-desc">
+                  High-field 3.0 Tesla magnetic resonance imaging suite providing ultra-crisp structural brain, spine, and joint scans.
+                </p>
+                <ul class="tech-features-list">
+                  <li>Quiet-Suite acoustic noise suppression</li>
+                  <li>High-resolution 3D neuro vascular imaging</li>
+                  <li>Non-invasive cardiac MRI evaluations</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- CATH LAB STATE -->
+          <div class="tech-content-state" id="tech-state-cathlab">
+            <div class="tech-display-grid">
+              <div class="tech-display-media">
+                <div class="tech-media-frame">
+                  <img src="images/Flat_Panel_Cath_Lab.png" alt="Flat-Panel Digital Cath Lab" class="tech-media-img" />
+                </div>
+              </div>
+              <div class="tech-display-info">
+                <h3 class="tech-display-title">Flat-Panel Digital Cath Lab</h3>
+                <p class="tech-display-desc">
+                  Ultra-low radiation fluoroscopy system operating 24/7 for primary emergency angioplasties and complex stenting.
+                </p>
+                <ul class="tech-features-list">
+                  <li>Sub-second emergency vascular access</li>
+                  <li>DoseReduction AI radiation optimization</li>
+                  <li>3D Coronary roadmapping integration</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- ROBOTIC STATE -->
+          <div class="tech-content-state" id="tech-state-robotic">
+            <div class="tech-display-grid">
+              <div class="tech-display-media">
+                <div class="tech-media-frame">
+                  <img src="images/MISSO_Robotic_Knee_Surgery.jpg" alt="MISSO Robotic Knee Surgery System" class="tech-media-img" onerror="this.src='images/operation-theatre.png';" />
+                </div>
+              </div>
+              <div class="tech-display-info">
+                <h3 class="tech-display-title">MISSO Robotic System</h3>
+                <p class="tech-display-desc">
+                  Patient-specific 3D anatomical planning with sub-millimeter bone resection accuracy for total joint replacements.
+                </p>
+                <ul class="tech-features-list">
+                  <li>Sub-millimeter implant placement precision</li>
+                  <li>Minimal soft tissue trauma & quick recovery</li>
+                  <li>Real-time intraoperative optical tracking</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

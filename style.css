@@ -3286,7 +3286,8 @@ body {
 /* PERSISTENT FLOATING ACTION RAIL (RIGHT SIDE) */
 .side-action-rail {
   position: fixed !important;
-  right: 15px !important;
+  left: 15px !important;
+  right: auto !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
   display: flex !important;
@@ -3613,7 +3614,8 @@ body {
   /* Show side action rail on mobile as a compact layout to prevent overlapping text */
   .side-action-rail {
     display: flex !important;
-    right: 12px !important;
+    left: 12px !important;
+    right: auto !important;
     gap: 10px !important;
   }
   .side-action-rail .rail-item {

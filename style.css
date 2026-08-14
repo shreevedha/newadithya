@@ -4690,7 +4690,8 @@ body.high-contrast .btn {
 
 #anatomy-3d-canvas-wrap {
   width: 100% !important;
-  height: 230px !important;
+  height: auto !important;
+  min-height: 180px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
@@ -4698,10 +4699,11 @@ body.high-contrast .btn {
   background: rgba(3, 13, 26, 0.7) !important;
   border: 1px solid rgba(0, 240, 255, 0.3) !important;
   border-radius: 16px !important;
-  padding: 24px !important;
+  padding: 20px 24px !important;
   margin-bottom: 22px !important;
   box-shadow: 0 10px 25px rgba(0,0,0,0.4) !important;
   box-sizing: border-box !important;
+  overflow: visible !important;
 }
 
 .organ-gif-box {

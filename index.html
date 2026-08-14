@@ -1696,39 +1696,45 @@
     </div>
   </div>
 
-  <!-- FLOATING AI ASSISTANT CHATBOT -->
-  <div class="chatbot-widget-container">
-    <button class="chatbot-trigger" id="chatbot-trigger" aria-label="Open AI Helpdesk">
-      <img class="chat-trigger-icon" src="images/gifs/chatbot.gif" alt="Open AI Helpdesk" onerror="this.src='images/logo.png';" />
-      <span class="chat-trigger-pulse"></span>
-    </button>
+  <!-- BOTTOM-LEFT FLOATING COLUMN (WHATSAPP + AI CHATBOT) -->
+  <div class="bottom-left-floating-column">
+    <a href="https://wa.me/919100049445?text=Hello%20Aditya%20Medicare%2C%20I%20want%20to%20register%20for%20the%20Health%20Card%20%2F%20Inquiry" target="_blank" rel="noopener" class="whatsapp-float-pulse" title="Chat on WhatsApp with Aditya Medicare SPOC" aria-label="Chat on WhatsApp">
+      <img src="images/gifs/whatsapp.gif" alt="WhatsApp Chat" />
+    </a>
 
-    <div class="chatbot-panel" id="chatbot-panel">
-      <div class="chatbot-header">
-        <img class="chat-header-avatar" src="images/gifs/chatbot.gif" alt="Aditya AI Helpdesk" onerror="this.src='images/logo.png';" />
-        <div class="chat-header-info">
-          <h4>Aditya AI Helpdesk</h4>
-          <span class="chat-status"><span class="chat-status-dot"></span> Online & Active</span>
+    <div class="chatbot-widget-container">
+      <button class="chatbot-trigger" id="chatbot-trigger" aria-label="Open AI Helpdesk">
+        <img class="chat-trigger-icon" src="images/gifs/chatbot.gif" alt="Open AI Helpdesk" onerror="this.src='images/logo.png';" />
+        <span class="chat-trigger-pulse"></span>
+      </button>
+
+      <div class="chatbot-panel" id="chatbot-panel">
+        <div class="chatbot-header">
+          <img class="chat-header-avatar" src="images/gifs/chatbot.gif" alt="Aditya AI Helpdesk" onerror="this.src='images/logo.png';" />
+          <div class="chat-header-info">
+            <h4>Aditya AI Helpdesk</h4>
+            <span class="chat-status"><span class="chat-status-dot"></span> Online & Active</span>
+          </div>
+          <button class="chat-close-btn" id="chatbot-close" aria-label="Close Chat">✕</button>
         </div>
-        <button class="chat-close-btn" id="chatbot-close" aria-label="Close Chat">✕</button>
-      </div>
 
-      <div class="chatbot-body" id="chatbot-body">
-        <div class="chat-msg bot-msg">
-          Hello! How can I assist you with your health enquiries today?
+        <div class="chatbot-body" id="chatbot-body">
+          <div class="chat-msg bot-msg">
+            Hello! How can I assist you with your health enquiries today?
+          </div>
         </div>
-      </div>
 
-      <div class="chatbot-suggestions">
-        <button class="suggestion-chip" data-query="Book an Appointment">📅 Book Appointment</button>
-        <button class="suggestion-chip" data-query="Find a Doctor">🩺 Find Doctor</button>
-        <button class="suggestion-chip" data-query="Emergency Services">🚨 Emergency Info</button>
-        <button class="suggestion-chip" data-query="Operating Hours">⏰ Operating Hours</button>
-      </div>
+        <div class="chatbot-suggestions">
+          <button class="suggestion-chip" data-query="Book an Appointment">📅 Book Appointment</button>
+          <button class="suggestion-chip" data-query="Find a Doctor">🩺 Find Doctor</button>
+          <button class="suggestion-chip" data-query="Emergency Services">🚨 Emergency Info</button>
+          <button class="suggestion-chip" data-query="Operating Hours">⏰ Operating Hours</button>
+        </div>
 
-      <div class="chatbot-footer">
-        <input type="text" id="chatbot-input" placeholder="Type your health enquiry..." aria-label="Chat input" />
-        <button id="chatbot-send-btn" aria-label="Send message">➔</button>
+        <div class="chatbot-footer">
+          <input type="text" id="chatbot-input" placeholder="Type your health enquiry..." aria-label="Chat input" />
+          <button id="chatbot-send-btn" aria-label="Send message">➔</button>
+        </div>
       </div>
     </div>
   </div>

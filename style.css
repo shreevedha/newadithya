@@ -3318,11 +3318,11 @@ body {
   flex-direction: column !important;
   gap: 12px !important;
   margin-left: 10px !important;
-  transform: translateX(-30px) scale(0.7) !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease, visibility 0.3s ease !important;
+  transform: translateX(-40px) scale(0.7);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease, visibility 0.35s ease !important;
 }
 
 /* OPEN STATE (WHEN TOGGLED OPEN) */
@@ -3411,30 +3411,82 @@ body {
 .rail-appointment:hover { background: #65a30d !important; border-color: #65a30d !important; }
 
 
-/* FLOATING AI ASSISTANT CHATBOT (BOTTOM LEFT) */
+/* BOTTOM-LEFT FLOATING COLUMN (VERTICALLY STACKED & 100% LEFT-ALIGNED) */
+.bottom-left-floating-column {
+  position: fixed !important;
+  left: 20px !important;
+  bottom: 20px !important;
+  z-index: 10000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.bottom-left-floating-column * {
+  pointer-events: auto !important;
+}
+
+.whatsapp-float-pulse {
+  position: relative !important;
+  left: 0 !important;
+  bottom: auto !important;
+  right: auto !important;
+  top: auto !important;
+  z-index: 10001 !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45), 0 0 12px rgba(37, 211, 102, 0.3) !important;
+  text-decoration: none !important;
+  animation: waPulse 2s infinite !important;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+}
+
+.whatsapp-float-pulse img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: block !important;
+}
+
+/* FLOATING AI ASSISTANT CHATBOT (EXACT SAME LEFT ALIGNMENT & SIZE) */
 .chatbot-widget-container {
-  position: fixed;
-  left: 20px;
-  right: auto;
-  bottom: 90px;
-  z-index: 1000;
+  position: relative !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  top: auto !important;
+  z-index: 10002 !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .chatbot-trigger {
-  width: 56px;
-  height: 56px;
-  background: var(--blue);
-  color: var(--white);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.3s ease;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle at 35% 35%, #00F0FF 0%, #092d74 100%) !important;
+  border: 2px solid #00F0FF !important;
+  box-shadow: 0 6px 18px rgba(0, 240, 255, 0.45) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
 }
 
 .chatbot-trigger:hover {
@@ -3456,10 +3508,11 @@ body {
 }
 
 .chatbot-panel {
-  position: absolute;
-  bottom: 70px;
-  left: 0;
-  right: auto;
+  position: fixed !important;
+  bottom: 85px !important;
+  left: 20px !important;
+  right: auto !important;
+  z-index: 10005 !important;
   width: 360px;
   height: 500px;
   background: rgba(255, 255, 255, 0.95);
@@ -3655,28 +3708,61 @@ body {
     overflow-x: hidden !important;
   }
 
-  /* Show side action rail on mobile as a compact layout to prevent overlapping text */
-  .side-action-rail {
-    display: flex !important;
-    left: 12px !important;
-    right: auto !important;
-    gap: 10px !important;
+  .side-action-rail-container {
+    top: 40% !important;
   }
-  .side-action-rail .rail-item {
+  .side-action-rail-container .rail-item {
     width: 42px !important;
     height: 42px !important;
-    border-radius: 50% !important;
+    border-radius: 21px !important;
     justify-content: center !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16) !important;
   }
-  .side-action-rail .rail-icon {
+  .side-action-rail-container .rail-icon {
     width: 40px !important;
     height: 40px !important;
     font-size: 1.15rem !important;
     justify-content: center !important;
   }
-  .side-action-rail .rail-label {
+  .side-action-rail-container .rail-label {
     display: none !important;
+  }
+
+  .bottom-left-floating-column {
+    left: 12px !important;
+    bottom: 14px !important;
+    gap: 10px !important;
+  }
+  .whatsapp-float-pulse, .chatbot-trigger {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .chatbot-panel {
+    width: calc(100vw - 24px) !important;
+    height: 420px !important;
+    left: 12px !important;
+    bottom: 68px !important;
+  }
+
+  /* Specialized Clinical Services / Centers of Excellence mobile 2-per-row grid */
+  .coe-tabs-nav {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  .coe-tab-btn {
+    width: 100% !important;
+    padding: 10px 8px !important;
+    font-size: 0.78rem !important;
+    text-align: center !important;
+    white-space: normal !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 48px !important;
+    line-height: 1.2 !important;
+    box-sizing: border-box !important;
   }
 
   /* Force hide nav-cta on mobile (overrides any inline styles) */
@@ -5469,54 +5555,10 @@ body.high-contrast .btn {
   margin-bottom: 6px !important;
 }
 
-/* Floating WhatsApp Button (Positioned directly ABOVE Chatbot on Bottom-Left) */
-.whatsapp-float-pulse {
-  position: fixed !important;
-  bottom: 168px !important;
-  left: 24px !important;
-  right: auto !important;
-  z-index: 99999 !important;
-  width: 58px !important;
-  height: 58px !important;
-  border-radius: 50% !important;
-  background: transparent !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45), 0 0 15px rgba(37, 211, 102, 0.3) !important;
-  text-decoration: none !important;
-  animation: waPulse 2s infinite !important;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-  overflow: hidden !important;
-}
-
-.whatsapp-float-pulse:hover {
-  transform: scale(1.12) rotate(6deg) !important;
-  box-shadow: 0 12px 35px rgba(37, 211, 102, 0.7) !important;
-}
-
 @keyframes waPulse {
   0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
   70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
-@media (max-width: 768px) {
-  .whatsapp-float-pulse {
-    bottom: 148px !important;
-    left: 20px !important;
-    width: 52px !important;
-    height: 52px !important;
-  }
-}
-
-/* Floating AI Chatbot Button & Panel Styles */
-.chatbot-widget-container {
-  position: fixed !important;
-  bottom: 96px !important;
-  left: 24px !important;
-  right: auto !important;
-  z-index: 99999 !important;
 }
 
 .chatbot-trigger {

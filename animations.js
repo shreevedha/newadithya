@@ -2656,13 +2656,13 @@
         style.id = 'whatsapp-pulse-style';
         style.textContent = `
           .whatsapp-float-pulse {
-            position: fixed !important;
-            bottom: 168px !important;
-            left: 24px !important;
+            position: relative !important;
+            bottom: auto !important;
+            left: auto !important;
             right: auto !important;
-            z-index: 99999 !important;
-            width: 58px !important;
-            height: 58px !important;
+            z-index: 10001 !important;
+            width: 54px !important;
+            height: 54px !important;
             border-radius: 50% !important;
             background: transparent !important;
             display: flex !important;

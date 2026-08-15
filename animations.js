@@ -2763,57 +2763,53 @@
       } else {
         // Compute translations based on viewport responsive width
         const wWidth = window.innerWidth;
-        let startX1 = -300, startX2 = -180, startX3 = 180, startX4 = 300;
-        let leftRot = -8, rightRot = 8;
-        let startY = 20;
+        let startX1 = -280, startX2 = -160, startX3 = 160, startX4 = 280;
+        let leftRot = -10, rightRot = 10;
 
         if (wWidth < 768) {
           // Mobile single-column: slide alternately from left and right
-          startX1 = -80;
-          startX2 = 80;
-          startX3 = -80;
-          startX4 = 80;
-          leftRot = -3;
-          rightRot = 3;
-          startY = 0; // no vertical parallax on mobile to preserve single column scroll flow
-        } else if (wWidth < 992) {
-          // Tablet width: reduce translation distance to prevent overlap
           startX1 = -120;
-          startX2 = -60;
-          startX3 = 60;
+          startX2 = -120;
+          startX3 = 120;
           startX4 = 120;
           leftRot = -4;
           rightRot = 4;
-          startY = 12;
+        } else if (wWidth < 992) {
+          // Tablet width: balanced translation distance
+          startX1 = -180;
+          startX2 = -100;
+          startX3 = 100;
+          startX4 = 180;
+          leftRot = -6;
+          rightRot = 6;
         }
 
         // Set perspective on container to ensure smooth 3D depth rendering
         gsap.set(legacyGrid, { perspective: 1200, transformStyle: 'preserve-3d' });
 
-        // Create the scrub-synchronized GSAP timeline
+        // Create the scrub-synchronized GSAP timeline for scroll up & down
         const legacyTL = gsap.timeline({
           scrollTrigger: {
             trigger: legacySection,
-            start: 'top 80%',
-            end: 'top 25%',
-            scrub: 1.0,
+            start: 'top 88%',
+            end: 'top 30%',
+            scrub: 0.8,
             invalidateOnRefresh: true
           }
         });
 
-        // Card 1: Leftmost card (starts moving first)
+        // Left 2 Cards: Animate from LEFT towards center
+        // Card 1 (Leftmost)
         legacyTL.fromTo(legacyCards[0], {
           x: startX1,
-          y: -startY,
-          z: -100,
+          z: -80,
           rotateY: leftRot,
-          scale: 0.88,
-          opacity: 0.4,
-          filter: 'blur(4px)',
+          scale: 0.85,
+          opacity: 0,
+          filter: 'blur(6px)',
           transformPerspective: 1000
         }, {
           x: 0,
-          y: 0,
           z: 0,
           rotateY: 0,
           scale: 1,
@@ -2822,19 +2818,17 @@
           duration: 1
         }, 0);
 
-        // Card 2: Left-middle card (starts moving with 0.08 delay)
+        // Card 2 (Left-Center)
         legacyTL.fromTo(legacyCards[1], {
           x: startX2,
-          y: startY,
-          z: -60,
-          rotateY: leftRot,
-          scale: 0.93,
-          opacity: 0.55,
-          filter: 'blur(2.5px)',
+          z: -50,
+          rotateY: leftRot * 0.7,
+          scale: 0.88,
+          opacity: 0,
+          filter: 'blur(4px)',
           transformPerspective: 1000
         }, {
           x: 0,
-          y: 0,
           z: 0,
           rotateY: 0,
           scale: 1,
@@ -2843,47 +2837,44 @@
           duration: 1
         }, 0.08);
 
-        // Card 3: Right-middle card (starts moving with 0.16 delay)
+        // Right 2 Cards: Animate from RIGHT towards center
+        // Card 3 (Right-Center)
         legacyTL.fromTo(legacyCards[2], {
           x: startX3,
-          y: -startY,
-          z: -60,
-          rotateY: rightRot,
-          scale: 0.93,
-          opacity: 0.55,
-          filter: 'blur(2.5px)',
-          transformPerspective: 1000
-        }, {
-          x: 0,
-          y: 0,
-          z: 0,
-          rotateY: 0,
-          scale: 1,
-          opacity: 1,
-          filter: 'blur(0px)',
-          duration: 1
-        }, 0.16);
-
-        // Card 4: Rightmost card (starts moving with 0.24 delay)
-        legacyTL.fromTo(legacyCards[3], {
-          x: startX4,
-          y: startY,
-          z: -100,
-          rotateY: rightRot,
+          z: -50,
+          rotateY: rightRot * 0.7,
           scale: 0.88,
-          opacity: 0.4,
+          opacity: 0,
           filter: 'blur(4px)',
           transformPerspective: 1000
         }, {
           x: 0,
-          y: 0,
           z: 0,
           rotateY: 0,
           scale: 1,
           opacity: 1,
           filter: 'blur(0px)',
           duration: 1
-        }, 0.24);
+        }, 0.08);
+
+        // Card 4 (Rightmost)
+        legacyTL.fromTo(legacyCards[3], {
+          x: startX4,
+          z: -80,
+          rotateY: rightRot,
+          scale: 0.85,
+          opacity: 0,
+          filter: 'blur(6px)',
+          transformPerspective: 1000
+        }, {
+          x: 0,
+          z: 0,
+          rotateY: 0,
+          scale: 1,
+          opacity: 1,
+          filter: 'blur(0px)',
+          duration: 1
+        }, 0);
       }
     }
 

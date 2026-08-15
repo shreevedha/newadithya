@@ -499,10 +499,12 @@
     if (subtitle) tl.from(subtitle, { y: 30, opacity: 0, duration: 0.9 }, 1.0);
 
     // CTA with spring bounce
-    if (ctaButtons.length) tl.from(ctaButtons, {
-      scale: 0.6, opacity: 0, y: 20, duration: 0.8,
-      stagger: 0.12, ease: 'back.out(2)',
-      onComplete: () => gsap.set(ctaButtons, { clearProps: 'all' })
+    if (ctaButtons.length) tl.fromTo(ctaButtons, {
+      scale: 0.6, opacity: 0, y: 20
+    }, {
+      scale: 1, opacity: 1, y: 0,
+      duration: 0.8, stagger: 0.12, ease: 'back.out(2)',
+      clearProps: 'transform'
     }, 1.2);
 
     // Info bar slide up

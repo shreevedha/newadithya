@@ -619,6 +619,15 @@ button, input, select, textarea {
   margin-bottom: 40px;
 }
 
+.hero-actions .btn {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hero-actions .btn:hover {
+  transform: translateY(-4px) scale(1.04) !important;
+  box-shadow: 0 12px 30px rgba(0, 240, 255, 0.45) !important;
+}
+
 /* HERO INFO BAR (ADDRESS, OPD HOURS, EMERGENCY HOTLINE DIRECTLY IN HERO) */
 .hero-info-bar {
   display: flex;

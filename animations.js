@@ -2887,85 +2887,10 @@
       }
     }
 
-    // 3. Pre-Footer Ribbon Ambulance Scroll-Driven Movement (GPU-friendly, responsive & organic)
+    // 3. Pre-Footer Ribbon Ambulance Continuous Movement
     const ribbonAmbulance = D.querySelector('#accreditation-ambulance-drive');
-    const ribbonSec = D.querySelector('.ambulance-track-section');
-    if (ribbonAmbulance && ribbonSec) {
-      // Respect prefers-reduced-motion
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      if (prefersReducedMotion) {
-        // Keep stationary at center with a simple opacity fade-in
-        gsap.fromTo(ribbonAmbulance, { opacity: 0, x: 0, xPercent: -50, yPercent: -50, scale: 1 }, {
-          opacity: 1,
-          scrollTrigger: {
-            trigger: ribbonSec,
-            start: 'top 90%',
-            end: 'top 50%',
-            scrub: 1.0
-          }
-        });
-      } else {
-        // Responsive variables
-        const wWidth = window.innerWidth;
-        let startX = '-45vw';
-        let overshootX = '2.5vw';
-        
-        if (wWidth < 768) {
-          // Mobile: Keep within viewport, smaller movement
-          startX = '-16vw';
-          overshootX = '0.5vw';
-        } else if (wWidth < 992) {
-          // Tablet: Intermediate travel
-          startX = '-32vw';
-          overshootX = '1.2vw';
-        }
-
-        // Initialize state centered dynamically at left: 50%
-        gsap.set(ribbonAmbulance, { left: '50%', xPercent: -50, yPercent: -50 });
-
-        // Create the scrub-synchronized timeline
-        const ambulanceTL = gsap.timeline({
-          scrollTrigger: {
-            trigger: ribbonSec,
-            start: 'top 95%',
-            end: 'bottom 20%',
-            scrub: 1.0,
-            invalidateOnRefresh: true
-          }
-        });
-
-        // Phase 1: Travel from far left and overshoot slightly past the center (creating momentum)
-        ambulanceTL.fromTo(ribbonAmbulance, {
-          x: startX,
-          scale: 0.92,
-          yPercent: -50
-        }, {
-          x: overshootX,
-          scale: 1.05,
-          yPercent: -50,
-          duration: 0.75,
-          ease: 'power1.out'
-        });
-
-        // Phase 2: Settle back to center (x: 0) with a premium damping effect and subtle scale adjustment
-        ambulanceTL.to(ribbonAmbulance, {
-          x: '0vw',
-          scale: 1.0,
-          yPercent: -50,
-          duration: 0.25,
-          ease: 'power2.inOut'
-        });
-
-        // Subtle floating / bobbing animation while the section remains visible
-        gsap.to(ribbonAmbulance, {
-          y: '+=3px',
-          duration: 1.2,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut'
-        });
-      }
+    if (ribbonAmbulance) {
+      gsap.set(ribbonAmbulance, { clearProps: 'all' });
     }
 
     // 4. Expert Talks & Healthy Lifestyle Scroll-Driven Parallax and Reveals

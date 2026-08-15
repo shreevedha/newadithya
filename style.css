@@ -6602,8 +6602,8 @@ main > section,
 .accreditation-ambulance-drive {
   position: absolute !important;
   top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
+  left: -360px !important;
+  transform: translateY(-50%) !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 14px !important;
@@ -6612,8 +6612,20 @@ main > section,
   border-radius: 50px !important;
   border: 2px solid #00F0FF !important;
   white-space: nowrap !important;
-  will-change: transform !important;
-  animation: ambulanceEmergencyLights 1.6s linear infinite !important;
+  will-change: left !important;
+  animation-name: driveAmbulanceContinuous, ambulanceEmergencyLights !important;
+  animation-duration: 8s, 1.6s !important;
+  animation-timing-function: linear, linear !important;
+  animation-iteration-count: infinite, infinite !important;
+}
+
+@keyframes driveAmbulanceContinuous {
+  0% {
+    left: -360px;
+  }
+  100% {
+    left: calc(100% + 60px);
+  }
 }
 
 @keyframes ambulanceEmergencyLights {
@@ -6628,6 +6640,7 @@ main > section,
     padding: 6px 16px !important;
     font-size: 0.8rem !important;
     gap: 8px !important;
+    animation-duration: 6s, 1.6s !important;
   }
 }
 

@@ -1800,20 +1800,6 @@
       });
     }
 
-    // Info bar slides away faster
-    if (infoBar) {
-      gsap.to(infoBar, {
-        y: -90,
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: hero,
-          start: '30% top',
-          end: 'bottom top',
-          scrub: 0.4
-        }
-      });
-    }
 
     // Floating GIFs at intermediate depth
     [gifLeft, gifRight].forEach((gif, i) => {

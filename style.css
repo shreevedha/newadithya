@@ -2523,7 +2523,7 @@ body {
 .hero-subtitle { color: #dcebed; max-width: 700px; }
 .hero-badge { background: rgba(100, 213, 208, 0.12); border-color: rgba(100, 213, 208, 0.45); color: #b8f3ef; }
 .hero-info-bar { background: rgba(4, 22, 34, 0.45); border-color: rgba(184, 243, 239, 0.22); }
-.hero-stats-wrapper { margin-top: -58px; }
+.hero-stats-wrapper { margin-top: 24px; }
 .stats-grid { border-color: #d7e7e9; box-shadow: 0 20px 48px rgba(8, 38, 61, 0.13); }
 .stat-number { color: var(--navy); }
 .stat-number span { color: var(--blue); }
@@ -2555,7 +2555,7 @@ body {
   .hero-info-bar { flex-direction: column; align-items: stretch; gap: 14px; padding: 16px; }
   .hero-info-item { align-items: flex-start; }
   .hero-info-emergency, .hero-emergency-btn { width: 100%; justify-content: center; }
-  .hero-stats-wrapper { margin-top: -42px; }
+  .hero-stats-wrapper { margin-top: 20px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); padding: 18px 10px; gap: 8px; }
   .stat-card:not(:last-child)::after { display: none; }
   .stat-number { font-size: 2rem; }
@@ -6449,17 +6449,17 @@ main > section,
   width: 100% !important;
 }
 
-/* OVERLAY HERO STATS WRAPPER ON TOP OF HERO BACKGROUND IMAGE */
+/* OVERLAY HERO STATS WRAPPER BELOW HERO INFO BAR */
 .hero-stats-wrapper {
   position: relative !important;
   z-index: 10 !important;
-  margin-top: -58px !important;
+  margin-top: 28px !important;
   margin-bottom: 36px !important;
 }
 
 @media (max-width: 1024px) {
   .hero-stats-wrapper {
-    margin-top: 24px !important;
+    margin-top: 20px !important;
   }
 }
 

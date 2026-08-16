@@ -2867,29 +2867,10 @@
       }
     }
 
-    // 3. Pre-Footer Ribbon Ambulance Scroll-Driven Movement
+    // 3. Pre-Footer Ribbon Ambulance Continuous Movement
     const ribbonAmbulance = D.querySelector('#accreditation-ambulance-drive');
-    const ribbonSec = D.querySelector('.ambulance-track-section');
-    if (ribbonAmbulance && ribbonSec) {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      if (!prefersReducedMotion) {
-        gsap.set(ribbonAmbulance, { left: '0%', xPercent: -50, yPercent: -50 });
-
-        gsap.to(ribbonAmbulance, {
-          left: '100%',
-          xPercent: -50,
-          yPercent: -50,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: ribbonSec,
-            start: 'top 95%',
-            end: 'bottom 5%',
-            scrub: 1.0,
-            invalidateOnRefresh: true
-          }
-        });
-      }
+    if (ribbonAmbulance) {
+      gsap.set(ribbonAmbulance, { clearProps: 'all' });
     }
 
     // 4. Expert Talks & Healthy Lifestyle Scroll-Driven Parallax and Reveals

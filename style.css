@@ -5406,7 +5406,7 @@ body.high-contrast .btn {
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   z-index: 999999 !important;
-  display: flex !important;
+  display: none !important;
   align-items: center !important;
   justify-content: center !important;
   padding: 20px !important;
@@ -5416,6 +5416,7 @@ body.high-contrast .btn {
 }
 
 .doctor-lightbox-overlay.active {
+  display: flex !important;
   opacity: 1 !important;
   pointer-events: all !important;
 }

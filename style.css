@@ -6627,10 +6627,7 @@ main > section,
   border: 2px solid #00F0FF !important;
   white-space: nowrap !important;
   will-change: left !important;
-  animation-name: driveAmbulanceContinuous, ambulanceEmergencyLights !important;
-  animation-duration: 8s, 1.6s !important;
-  animation-timing-function: linear, linear !important;
-  animation-iteration-count: infinite, infinite !important;
+  animation: driveAmbulanceContinuous 8s linear infinite, ambulanceEmergencyLights 1.6s linear infinite !important;
 }
 
 @keyframes driveAmbulanceContinuous {
@@ -6654,7 +6651,7 @@ main > section,
     padding: 6px 16px !important;
     font-size: 0.8rem !important;
     gap: 8px !important;
-    animation-duration: 6s, 1.6s !important;
+    animation: driveAmbulanceContinuous 6s linear infinite, ambulanceEmergencyLights 1.6s linear infinite !important;
   }
 }
 

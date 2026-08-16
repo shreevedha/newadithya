@@ -2518,6 +2518,7 @@ function initDoctorPhotoLightbox() {
     lightbox = document.createElement('div');
     lightbox.id = 'doctor-lightbox-modal';
     lightbox.className = 'doctor-lightbox-overlay';
+    lightbox.style.display = 'none';
     lightbox.innerHTML = `
       <div class="doctor-lightbox-card">
         <button class="doctor-lightbox-close" id="doctor-lightbox-close-btn" aria-label="Close Lightbox">✕</button>
@@ -2538,12 +2539,14 @@ function initDoctorPhotoLightbox() {
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox || e.target.closest('#doctor-lightbox-close-btn')) {
         lightbox.classList.remove('active');
+        lightbox.style.display = 'none';
       }
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && lightbox.classList.contains('active')) {
         lightbox.classList.remove('active');
+        lightbox.style.display = 'none';
       }
     });
   }
@@ -2570,11 +2573,13 @@ function initDoctorPhotoLightbox() {
     if (bookBtn) {
       bookBtn.onclick = () => {
         lightbox.classList.remove('active');
+        lightbox.style.display = 'none';
         const modalBtn = document.querySelector(`[data-open-modal="true"][data-doctor="${name}"]`) || document.querySelector('[data-open-modal="true"]');
         if (modalBtn) modalBtn.click();
       };
     }
 
+    lightbox.style.display = 'flex';
     lightbox.classList.add('active');
   });
 }

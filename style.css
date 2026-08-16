@@ -4315,12 +4315,12 @@ body {
 }
 
 .accreditation-text h4 {
-  font-family: var(--font-title) !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  color: var(--navy) !important;
-  margin: 0 auto 6px auto !important;
-  text-align: center !important;
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 auto 6px auto;
+  text-align: center;
 }
 
 .accreditation-text p {
@@ -6635,24 +6635,25 @@ main > section,
   line-height: 1 !important;
 }
 
-.accreditation-ambulance-drive .accreditation-text h4 {
+.ambulance-track-section .accreditation-ambulance-drive .accreditation-text h4,
+#accreditation-ambulance-drive .accreditation-text h4 {
   color: #ffffff !important;
   font-family: 'DM Sans', system-ui, sans-serif !important;
-  font-size: 0.92rem !important;
+  font-size: 0.95rem !important;
   font-weight: 700 !important;
   margin: 0 !important;
   line-height: 1.2 !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
 }
 
-.accreditation-ambulance-drive .accreditation-text p {
+.ambulance-track-section .accreditation-ambulance-drive .accreditation-text p,
+#accreditation-ambulance-drive .accreditation-text p {
   color: #00F0FF !important;
   font-family: 'DM Sans', system-ui, sans-serif !important;
-  font-size: 0.75rem !important;
+  font-size: 0.78rem !important;
   font-weight: 600 !important;
   margin: 0 !important;
   line-height: 1.2 !important;
-  letter-spacing: 0.02em !important;
 }
 
 @keyframes driveAmbulanceContinuous {
@@ -6677,11 +6678,13 @@ main > section,
     gap: 8px !important;
     animation: driveAmbulanceContinuous 7s linear infinite, ambulanceEmergencyLights 1.6s linear infinite !important;
   }
-  .accreditation-ambulance-drive .accreditation-text h4 {
+  #accreditation-ambulance-drive .accreditation-text h4 {
     font-size: 0.82rem !important;
+    color: #ffffff !important;
   }
-  .accreditation-ambulance-drive .accreditation-text p {
+  #accreditation-ambulance-drive .accreditation-text p {
     font-size: 0.68rem !important;
+    color: #00F0FF !important;
   }
 }
 
